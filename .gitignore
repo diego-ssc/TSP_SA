@@ -1,0 +1,5 @@
+# projectile file
+.projectile
+
+# build generated directory
+/build
