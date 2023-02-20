@@ -5,6 +5,7 @@ add_global_arguments('-lsqlite3',
                      language : 'c') #-g
 
 sqlite = dependency('sqlite3')
+glib = dependency('glib-2.0')
 
 src = [
   'src/main.c',
@@ -18,10 +19,21 @@ src = [
 includes = include_directories('src/')
 
 TSP_SA = static_library('TSP_SA', src,
-                        dependencies: [ sqlite ],
+                        dependencies: [ sqlite, glib ],
                         include_directories: [ includes ],
                         install : true)
 
 exe = executable('TSP_SA', src,
-                 dependencies: [ sqlite ],
+                 dependencies: [ sqlite, glib ],
                  install : true)
+
+# tests
+checks = [ 'city' ]
+foreach check : checks
+  check_sources = [ 'test/test_' + check + '.c' ]
+  check_check = executable('test_' + check, check_sources,
+                           dependencies: [ sqlite, glib ],
+                           include_directories: [ includes ],
+                           link_with: [ TSP_SA ])
+  test('Test ' + check, check_check)
+endforeach
