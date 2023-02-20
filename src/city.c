@@ -17,7 +17,8 @@
  * this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
-#include "heuristic.h"
+#include <stdlib.h>
+
 #include "city.h"
 
 /* The city structure */
@@ -28,3 +29,39 @@ struct _City {
   char* country;
   char* name;
 };
+
+/* Creates a new City. */
+City* city_new(int id, int x, int y,
+               char* country,
+               char* name) {
+  City* city = malloc(sizeof(struct _City));
+  if (!city)
+    return 0;
+  city->id = id;
+  city->x = x;
+  city->y = y;
+  city->country = country;
+  if (!city->country) {
+    free(city);
+    return 0;
+  }
+  city->name = name;
+  if (!city->name) {
+    free(city);
+    return 0;
+  }
+  return city;
+}
+
+/* Frees the memory used by the city. */
+void city_free(City* city) {
+  if (city->country)
+    free(city->country);
+  if(city->name)
+    free(city->name);
+  free(city);
+}
+
+float city_distance(City* c_1, City* c_2) {
+  return 0.0;
+}

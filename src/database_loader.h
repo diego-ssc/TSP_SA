@@ -19,11 +19,12 @@
 
 #pragma once
 
+#include "heuristic.h"
+
 /**
  * Creates a new Database Loader.
- * @param matrix the matrix of the loader.
  */
-Database_loader* loader_new(City** matrix);
+Database_loader* loader_new();
 
 /**
  * Frees the memory used by the database loader.
@@ -35,7 +36,7 @@ void loader_free(Database_loader* loader);
  * Loads the database into a two dimensional
  * array.
  */
-void load();
+void loader_load(Database_loader*);
 
 /**
  * Returns the two dimensional array of the loader.

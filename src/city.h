@@ -19,6 +19,8 @@
 
 #pragma once
 
+#include "heuristic.h"
+
 /**
  * Creates a new City.
  * @param id the id of the city.

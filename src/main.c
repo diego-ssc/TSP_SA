@@ -19,5 +19,11 @@
 
 #include <stdio.h>
 
+#include "database_loader.h"
+#include "heuristic.h"
+
 int main(int argc, char** argv) {
+  /* Database_loader* loader = loader_new(); */
+  /* loader_load(loader); */
+  /* loader_free(loader); */
 }
