@@ -17,12 +17,12 @@ typedef struct {
 
 /* Test environment constructor. */
 static Test_env* test_env_new() {
-  Test_env *test_env = malloc(sizeof(struct Test_env));
+  Test_env *test_env = malloc(sizeof(Test_env));
   if (!test_env)
     return 0;
   test_env->seed = time(0);
   srandom(test_env->seed);
-  test_env->ids = malloc(12);
+  test_env->ids = malloc(sizeof(int)*12);
   int i;
   for (i = 0; i < 12; test_env->ids++)
     *test_env->ids = random() % MAX_ID;
@@ -30,6 +30,7 @@ static Test_env* test_env_new() {
     free(test_env);
     return 0;
   }
+  return test_env;
 }
 
 /* Test city. */
