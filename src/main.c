@@ -23,7 +23,8 @@
 #include "heuristic.h"
 
 int main(int argc, char** argv) {
-  /* Database_loader* loader = loader_new(); */
-  /* loader_load(loader); */
-  /* loader_free(loader); */
+  Database_loader* loader = loader_new();
+  loader_open(loader);
+  loader_load_connections(loader);
+  loader_free(loader);
 }

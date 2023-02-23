@@ -27,6 +27,11 @@
 /* The database loader structure. */
 struct _Database_loader {
   City** matrix;
+  sqlite3 *db;
+  char *path;
+  char *zErrMsg;
+  char *sql;
+  int rc;
 };
 
 /* Creates a new Database Loader. */
@@ -37,13 +42,18 @@ Database_loader* loader_new() {
   return loader;
 }
 
-/** Frees the memory used by the database loader. */
+/* Frees the memory used by the database loader. */
 void loader_free(Database_loader* loader) {
   if (loader->matrix)
     free(loader->matrix);
+  if (loader->zErrMsg)
+    sqlite3_free(loader->zErrMsg);
+  if (loader->db)
+    sqlite3_free(loader->db);
   free(loader);
 }
 
+/* The callback function of the sql queries */
 static int callback(void *loader, int numCol,
                     char **colData, char **colName) {
   int i;
@@ -56,27 +66,37 @@ static int callback(void *loader, int numCol,
   return 0;
 }
 
-void loader_load(Database_loader* loader) {
-  char *sql, *path;
-  char *zErrMsg = 0;
-  sqlite3 *db;
-  int rc;
+/* Opens the database. */
+void loader_open(Database_loader* loader) {
+  loader->path = realpath("./data/tsp.db", 0);
 
-  path = realpath("./data/db.sqlite3", 0);
-
-  if (access(path, F_OK) == 0) {
-    rc = sqlite3_open(path, &db);
-    if (rc) {
-      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+  if (access(loader->path, F_OK) == 0) {
+    loader->rc = sqlite3_open(loader->path, &(loader->db));
+    if (loader->rc) {
+      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(loader->db));
       exit(1);
-    }
-    sql = "SELECT * FROM cities;";
-    rc = sqlite3_exec(db, sql, callback, loader, &zErrMsg);
-    if (rc != SQLITE_OK) {
-      fprintf(stderr, "SQL error: %s\n", zErrMsg);
-      sqlite3_free(zErrMsg);
     }
   } else {
     fprintf(stderr, "Database not found\n");
+  }
+}
+
+/* Loads the database cities into a two dimensional array. */
+void loader_load_cities(Database_loader* loader) {
+  loader->sql = "SELECT * FROM cities;";
+  loader->rc = sqlite3_exec(loader->db, loader->sql, callback, loader, &(loader->zErrMsg));
+  if (loader->rc != SQLITE_OK) {
+    fprintf(stderr, "SQL error: %s\n", loader->zErrMsg);
+    sqlite3_free(loader->zErrMsg);
+  }
+}
+
+/* Loads the database connections into a two dimensional array. */
+void loader_load_connections(Database_loader* loader) {
+  loader->sql = "SELECT * FROM connections;";
+  loader->rc = sqlite3_exec(loader->db, loader->sql, callback, loader, &(loader->zErrMsg));
+  if (loader->rc != SQLITE_OK) {
+    fprintf(stderr, "SQL error: %s\n", loader->zErrMsg);
+    sqlite3_free(loader->zErrMsg);
   }
 }
