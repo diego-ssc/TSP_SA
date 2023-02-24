@@ -26,8 +26,9 @@
 
 /* The database loader structure. */
 struct _Database_loader {
-  City* cities;
-  int connections[123403][123403];
+  City** cities;
+  /* int connections[123403][123403]; */
+  int connections[12][12];
   sqlite3 *db;
   char *path;
   char *zErrMsg;
@@ -35,10 +36,18 @@ struct _Database_loader {
   int rc;
 };
 
+/* The callback data structure. */
+typedef struct _Data {
+  Database_loader* loader;
+  void (*f)(Database_loader*,
+            int*, int*,char**);
+  int* j;
+} Data;
+
 /* Creates a new Database Loader. */
 Database_loader* loader_new() {
   Database_loader* loader = malloc(sizeof(struct _Database_loader));
-  /* loader->cities = malloc(sizeof(struct _City) * 1092); */
+  loader->cities = city_array(1092);
   if (!loader)
     return 0;
   return loader;
@@ -51,37 +60,48 @@ void loader_free(Database_loader* loader) {
   if (loader->db)
     sqlite3_free(loader->db);
   if (loader->cities)
-    free(loader->cities);
+    city_array_free(&(loader->cities), 1092);
   free(loader);
 }
 
 /* The callback function of the sql queries */
-static int callback(void *loader, int numCol,
+static int callback(void *data, int numCol,
                     char **colData, char **colName) {
-  int i;
+  int i,*j;
 
-  for (i = 0; i < numCol; i++) {
-    /* callback_str += colData[i]; */
-    /* callback_str += "\n"; */
-    printf("%s\n", *(colData + i));
+  Database_loader* loader = ((Data*)data)->loader;
+  printf("Dirección: %p\n", loader);
+  void(*f)(Database_loader*, int*, int*, char**) = ((Data*)data)->f;
+  j = ((Data*)data)->j;
+  i = 0;
+  while (i < numCol) {
+    printf("%s : index = %d, %d\n", *(colData + i), i, *j);
+    (*f)(loader, &i, j, colData);
+    printf("A.%s : index = %d, %d\n", *(colData + i), i, *j);
   }
-  /* ((Database_loader*)loader)->matrix = colData; */
   return 0;
 }
 
 /* Fills up the database loader cities array. */
 static void fill_cities(Database_loader* loader,
-                        int* i, char **data) {
+                        int* i, int* j, char** data) {
+  printf("(%d, %s, %s, %d, %d)\n\n",
+         atoi(*(data+*i)), *(data+*i+1), *(data+*i+2),
+         atoi(*(data+*i+4)), atoi(*(data+*i+5)));
   City* city = city_new(atoi(*(data+*i)), *(data+*i+1), *(data+*i+2),
-                        atoi(*(data+*i+3)), atoi(*(data+4)));
-
-  /* *(loader->cities + *i) = city; */
+                        atoi(*(data+*i+4)), atoi(*(data+*i+5)));
+  city_array_set_element(&loader->cities,&city, *j);
+  printf("guardado en índice: %d; a la ciudad: %s; dentro del arreglo: %s\n",
+         *j, city_name(city), city_name(*(loader->cities+*j)));
+  (*i) += 6;
+  (*j)++;
 }
 
 /* Fills up the database loader connections array. */
 static void fill_connections(Database_loader* loader,
-                             int i, char *data) {
-
+                             int* i, int* j, char** data) {
+  *(*(loader->connections + atoi(*(data+*i))) + atoi(*(data+*i+1)))
+    = atoi(*(data+*i+1));
 }
 
 /* Opens the database. */
@@ -102,22 +122,39 @@ void loader_open(Database_loader* loader) {
 
 /* Loads the database cities into a two dimensional array. */
 void loader_load_cities(Database_loader* loader) {
+  Data *data = malloc(sizeof(struct _Data));
+  data->loader = loader;
+  data->f = fill_cities;
+  int n = 0;
+  data->j = &n;
   loader->sql = "SELECT * FROM cities;";
   loader->rc = sqlite3_exec(loader->db, loader->sql, callback,
-                            loader, &(loader->zErrMsg));
+                            data, &(loader->zErrMsg));
   if (loader->rc != SQLITE_OK) {
     fprintf(stderr, "SQL error: %s\n", loader->zErrMsg);
     sqlite3_free(loader->zErrMsg);
   }
+  /*   printf("name: %s\n",city_name(*(loader->cities+i))); */
+  printf("Dirección final: %p\n", loader);
+  for (int i = 0; i < 5; ++i)
+    printf("guardado en índice: %d; a la ciudad: %s\n",
+           i, city_name(*(loader->cities+i)));
+  free(data);
 }
 
 /* Loads the database connections into a two dimensional array. */
 void loader_load_connections(Database_loader* loader) {
+  Data *data = malloc(sizeof(struct _Data));
+  data->loader = loader;
+  data->f = fill_connections;
+  int n = 0;
+  data->j = &n;
   loader->sql = "SELECT * FROM connections;";
   loader->rc = sqlite3_exec(loader->db, loader->sql, callback,
-                            loader, &(loader->zErrMsg));
+                            data, &(loader->zErrMsg));
   if (loader->rc != SQLITE_OK) {
     fprintf(stderr, "SQL error: %s\n", loader->zErrMsg);
     sqlite3_free(loader->zErrMsg);
   }
+  free(data);
 }

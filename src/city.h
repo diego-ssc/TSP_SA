@@ -84,14 +84,29 @@ char* city_name(City* city);
 float city_distance(City* c, City* d);
 
 /**
+ * Returns the name of the city.
+ * @param city the city.
+ * @return the name.
+ */
+char* city_name(City* city);
+
+/**
  * Returns an array of cities.
  * @param n the number of cities in the array.
  */
-City* city_array(int n);
+City** city_array(int n);
 
 /**
  * Frees the memory used by the array of cities.
- * @param city the pointer to the first element of the array.
- * @param n the array size.
+ * @param cities the pointer to the first element of the array.
+ * @param the number of elements.
  */
-void city_array_free(City* city, int n);
+void city_array_free(City*** cities, int n);
+
+/**
+ * Sets the i-th element of a cities array.
+ * @param city_1 the array.
+ * @param city_2 the pointer to the new element.
+ * @param i the index.
+ */
+void city_array_set_element(City*** city_1, City** city_2, int i);
