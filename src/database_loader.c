@@ -26,7 +26,8 @@
 
 /* The database loader structure. */
 struct _Database_loader {
-  City** matrix;
+  City* cities;
+  int connections[123403][123403];
   sqlite3 *db;
   char *path;
   char *zErrMsg;
@@ -37,6 +38,7 @@ struct _Database_loader {
 /* Creates a new Database Loader. */
 Database_loader* loader_new() {
   Database_loader* loader = malloc(sizeof(struct _Database_loader));
+  /* loader->cities = malloc(sizeof(struct _City) * 1092); */
   if (!loader)
     return 0;
   return loader;
@@ -44,12 +46,12 @@ Database_loader* loader_new() {
 
 /* Frees the memory used by the database loader. */
 void loader_free(Database_loader* loader) {
-  if (loader->matrix)
-    free(loader->matrix);
   if (loader->zErrMsg)
     sqlite3_free(loader->zErrMsg);
   if (loader->db)
     sqlite3_free(loader->db);
+  if (loader->cities)
+    free(loader->cities);
   free(loader);
 }
 
@@ -57,6 +59,7 @@ void loader_free(Database_loader* loader) {
 static int callback(void *loader, int numCol,
                     char **colData, char **colName) {
   int i;
+
   for (i = 0; i < numCol; i++) {
     /* callback_str += colData[i]; */
     /* callback_str += "\n"; */
@@ -66,6 +69,21 @@ static int callback(void *loader, int numCol,
   return 0;
 }
 
+/* Fills up the database loader cities array. */
+static void fill_cities(Database_loader* loader,
+                        int* i, char **data) {
+  City* city = city_new(atoi(*(data+*i)), *(data+*i+1), *(data+*i+2),
+                        atoi(*(data+*i+3)), atoi(*(data+4)));
+
+  /* *(loader->cities + *i) = city; */
+}
+
+/* Fills up the database loader connections array. */
+static void fill_connections(Database_loader* loader,
+                             int i, char *data) {
+
+}
+
 /* Opens the database. */
 void loader_open(Database_loader* loader) {
   loader->path = realpath("./data/tsp.db", 0);
@@ -73,7 +91,8 @@ void loader_open(Database_loader* loader) {
   if (access(loader->path, F_OK) == 0) {
     loader->rc = sqlite3_open(loader->path, &(loader->db));
     if (loader->rc) {
-      fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(loader->db));
+      fprintf(stderr, "Can't open database: %s\n",
+              sqlite3_errmsg(loader->db));
       exit(1);
     }
   } else {
@@ -84,7 +103,8 @@ void loader_open(Database_loader* loader) {
 /* Loads the database cities into a two dimensional array. */
 void loader_load_cities(Database_loader* loader) {
   loader->sql = "SELECT * FROM cities;";
-  loader->rc = sqlite3_exec(loader->db, loader->sql, callback, loader, &(loader->zErrMsg));
+  loader->rc = sqlite3_exec(loader->db, loader->sql, callback,
+                            loader, &(loader->zErrMsg));
   if (loader->rc != SQLITE_OK) {
     fprintf(stderr, "SQL error: %s\n", loader->zErrMsg);
     sqlite3_free(loader->zErrMsg);
@@ -94,7 +114,8 @@ void loader_load_cities(Database_loader* loader) {
 /* Loads the database connections into a two dimensional array. */
 void loader_load_connections(Database_loader* loader) {
   loader->sql = "SELECT * FROM connections;";
-  loader->rc = sqlite3_exec(loader->db, loader->sql, callback, loader, &(loader->zErrMsg));
+  loader->rc = sqlite3_exec(loader->db, loader->sql, callback,
+                            loader, &(loader->zErrMsg));
   if (loader->rc != SQLITE_OK) {
     fprintf(stderr, "SQL error: %s\n", loader->zErrMsg);
     sqlite3_free(loader->zErrMsg);
