@@ -19,6 +19,8 @@
 
 #include <stdlib.h>
 
+#include <stdio.h>
+
 #include "city.h"
 
 /* The city structure */
@@ -31,9 +33,10 @@ struct _City {
 };
 
 /* Creates a new City. */
-City* city_new(int id, int x, int y,
+City* city_new(int id, char* name,
                char* country,
-               char* name) {
+               int x, int y
+               ) {
   City* city = malloc(sizeof(struct _City));
   if (!city)
     return 0;
@@ -62,6 +65,22 @@ void city_free(City* city) {
   free(city);
 }
 
+/* Computes the distance between two cities. */
 float city_distance(City* c_1, City* c_2) {
   return 0.0;
+}
+
+/* Returns an array of cities. */
+City* city_array(int n) {
+  return malloc(n * sizeof(struct _City));;
+}
+
+/* Frees the memory used by the array of cities. */
+void city_array_free(City* city, int n) {
+  while(int a = n-- + 1) {
+    printf("n: %d\n", n);
+    printf("na: %d\n", n%a);
+    city_free(city + n%a);
+  }
+  
 }

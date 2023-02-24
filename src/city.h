@@ -24,14 +24,15 @@
 /**
  * Creates a new City.
  * @param id the id of the city.
+ * @param name the name of the city.
+ * @param country the country of the city.
  * @param x the x coordinate of the city.
  * @param y the y coordinate of the city.
- * @param country the country of the city.
- * @param name the name of the city.
  */
-City* city_new(int id, int x, int y,
+City* city_new(int id, char* name,
                char* country,
-               char* name);
+               int x, int y
+               );
 
 /**
  * Frees the memory used by the city.
@@ -81,3 +82,16 @@ char* city_name(City* city);
  * @retuen the distance.
  */
 float city_distance(City* c, City* d);
+
+/**
+ * Returns an array of cities.
+ * @param n the number of cities in the array.
+ */
+City* city_array(int n);
+
+/**
+ * Frees the memory used by the array of cities.
+ * @param city the pointer to the first element of the array.
+ * @param n the array size.
+ */
+void city_array_free(City* city, int n);
