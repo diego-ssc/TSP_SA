@@ -58,10 +58,7 @@ City* city_new(int id, char* name,
 
 /* Frees the memory used by the city. */
 void city_free(City* city) {
-  if (city->country)
-    free(city->country);
-  if(city->name)
-    free(city->name);
+  printf("Eliminando: %s\n",city->name);
   free(city);
 }
 
@@ -70,17 +67,29 @@ float city_distance(City* c_1, City* c_2) {
   return 0.0;
 }
 
+/* Returns the name of the city. */
+char* city_name(City* city) {
+  return city->name;
+}
+
 /* Returns an array of cities. */
-City* city_array(int n) {
-  return malloc(n * sizeof(struct _City));;
+City** city_array(int n) {
+  return malloc(n * sizeof(struct _City));
 }
 
 /* Frees the memory used by the array of cities. */
-void city_array_free(City* city, int n) {
-  while(int a = n-- + 1) {
-    printf("n: %d\n", n);
-    printf("na: %d\n", n%a);
-    city_free(city + n%a);
+void city_array_free(City*** cities, int n) {
+  int a = n;
+  while ((n--)) {
+    printf("Liberando i: %d; Ciudad: %s", a-(n+1), city_name(*((*cities) + a-(n+1))));
+    city_free(*((*cities) + a-(n+1)));
   }
-  
+  free(*cities);
+}
+
+/* Sets the i-th element of a cities array. */
+void city_array_set_element(City*** city_1, City** city_2, int i) {
+  *((*city_1) + i) = *city_2;
+  printf("guardado en índice: %d; a la ciudad: %s; dentro del arreglo: %s\n",
+         i, city_name(*city_2), city_name(*((*city_1) + i))); //city_name(**(city_1 + i))
 }

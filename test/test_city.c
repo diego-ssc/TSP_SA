@@ -2,12 +2,13 @@
 #include <locale.h>
 #include <stdlib.h>
 #include <time.h>
+#include <stdio.h>
 
 #include "city.h"
 
 #define MAX_DISTANCE_40    4947749.059999999590218
 #define MAX_DISTANCE_150   4979370.000000000000000000
-#define MAX_ID 1000 //Check
+#define MAX_ID             1092
 
 /* Test environment. */
 typedef struct {
@@ -35,14 +36,14 @@ static Test_env* test_env_new() {
 
 /* Test city. */
 typedef struct {
-  City* city;
+  City* city_1;
+  City* city_2;
 } Test_city;
 
 /* Sets up a city test case. */
-static Test_city* test_city_set_up(Test_city* test_city,
+static void test_city_set_up(Test_city* test_city,
                                    gconstpointer user_data) {
   /* test_city->city = city_new(); */
-  return 0;
 }
 
 /* Tears down a city test case. */
@@ -51,10 +52,21 @@ static void test_city_tear_down(Test_city* test_city,
   /* g_clear_object(&test_city->city); */
 }
 
-int main(int argc, char** argv) {
-  setlocale(LC_ALL, "");
-  g_test_init(&argc, &argv, 0);
+/* Tests the distance between two cities */
+static void test_city_distance(Test_city* test_city,
+                               gconstpointer user_data) {
+  
+}
 
-  /* g_test_add("/test-city/test-distance/", Test_city, ""); */
+int main(int argc, char** argv) {
+  Test_env *test_env = test_env_new();
+  printf("Seed: %d", test_env->seed);
+  
+  setlocale(LC_ALL, "");
+  g_test_init(&argc, &argv, NULL);
+
+  g_test_add("/test-city/distance/", Test_city, "user-data",
+             test_city_set_up, test_city_distance,
+             test_city_tear_down);
   return g_test_run();
 }

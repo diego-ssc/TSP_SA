@@ -1,0 +1,3125 @@
+(1, Tokyo, Japan, 35, 139)
+(null) : index = 6, 1
+
+(2, Shanghai, China, 31, 121)
+(null) : index = 6, 2
+
+(3, Bombay, India, 18, 72)
+(null) : index = 6, 3
+
+(4, Karachi, Pakistan, 24, 67)
+(null) : index = 6, 4
+
+(5, Delhi, India, 28, 77)
+(null) : index = 6, 5
+
+(6, New Delhi, India, 28, 77)
+(null) : index = 6, 6
+
+(7, Manila, Philippines, 14, 120)
+(null) : index = 6, 7
+
+(8, Moscow, Russian Federation, 55, 37)
+(null) : index = 6, 8
+
+(9, Seoul, South Korea, 37, 126)
+(null) : index = 6, 9
+
+(10, São Paulo, Brazil, -23, -46)
+(null) : index = 6, 10
+
+(11, Istanbul, Turkey, 41, 28)
+(null) : index = 6, 11
+
+(12, Lagos, Nigeria, 6, 3)
+(null) : index = 6, 12
+
+(13, Mexico, Mexico, 19, -99)
+(null) : index = 6, 13
+
+(14, Jakarta, Indonesia, -6, 106)
+(null) : index = 6, 14
+
+(15, New York, United States, 40, -74)
+(null) : index = 6, 15
+
+(16, Kinshasa, Congo-Kinshasa, -4, 15)
+(null) : index = 6, 16
+
+(17, Cairo, Egypt, 30, 31)
+(null) : index = 6, 17
+
+(18, Lima, Peru, -12, -77)
+(null) : index = 6, 18
+
+(19, Peking, China, 39, 116)
+(null) : index = 6, 19
+
+(20, London, United Kingdom, 51, 0)
+(null) : index = 6, 20
+
+(21, Bogotá, Colombia, 4, -74)
+(null) : index = 6, 21
+
+(22, Dhaka, Bangladesh, 23, 90)
+(null) : index = 6, 22
+
+(23, Lahore, Pakistan, 31, 74)
+(null) : index = 6, 23
+
+(24, Rio de Janeiro, Brazil, -22, -43)
+(null) : index = 6, 24
+
+(25, Baghdad, Iraq, 33, 44)
+(null) : index = 6, 25
+
+(26, Bangkok, Thailand, 13, 100)
+(null) : index = 6, 26
+
+(27, Bangalore, India, 12, 77)
+(null) : index = 6, 27
+
+(28, Santiago, Chile, -33, -70)
+(null) : index = 6, 28
+
+(29, Calcutta, India, 22, 88)
+(null) : index = 6, 29
+
+(30, Toronto, Canada, 43, -79)
+(null) : index = 6, 30
+
+(31, Rangoon, Myanmar, 16, 96)
+(null) : index = 6, 31
+
+(32, Sydney, Australia, -33, 151)
+(null) : index = 6, 32
+
+(33, Madras, India, 13, 80)
+(null) : index = 6, 33
+
+(34, Wuhan, China, 30, 114)
+(null) : index = 6, 34
+
+(35, Saint Petersburg, Russian Federation, 59, 30)
+(null) : index = 6, 35
+
+(36, Chongqing, China, 29, 106)
+(null) : index = 6, 36
+
+(37, Xian, China, 34, 108)
+(null) : index = 6, 37
+
+(38, Chengdu, China, 30, 104)
+(null) : index = 6, 38
+
+(39, Los Angeles, United States, 34, -118)
+(null) : index = 6, 39
+
+(40, Alexandria, Egypt, 31, 29)
+(null) : index = 6, 40
+
+(41, Tianjin, China, 39, 117)
+(null) : index = 6, 41
+
+(42, Melbourne, Australia, -37, 144)
+(null) : index = 6, 42
+
+(43, Ahmadabad, India, 23, 72)
+(null) : index = 6, 43
+
+(44, Abidjan, Côte d’Ivoire, 5, -4)
+(null) : index = 6, 44
+
+(45, Kano, Nigeria, 11, 8)
+(null) : index = 6, 45
+
+(46, Casablanca, Morocco, 33, -7)
+(null) : index = 6, 46
+
+(47, Hyderabad, India, 17, 78)
+(null) : index = 6, 47
+
+(48, Ibadan, Nigeria, 7, 3)
+(null) : index = 6, 48
+
+(49, Singapore, Singapore, 1, 103)
+(null) : index = 6, 49
+
+(50, Ankara, Turkey, 39, 32)
+(null) : index = 6, 50
+
+(51, Shenyang, China, 41, 123)
+(null) : index = 6, 51
+
+(52, Riyadh, Saudi Arabia, 24, 46)
+(null) : index = 6, 52
+
+(53, Ho Chi Minh City, Viet Nam, 10, 106)
+(null) : index = 6, 53
+
+(54, Cape Town, South Africa, -33, 18)
+(null) : index = 6, 54
+
+(55, Berlin, Germany, 52, 13)
+(null) : index = 6, 55
+
+(56, Montreal, Canada, 45, -73)
+(null) : index = 6, 56
+
+(57, Harbin, China, 45, 126)
+(null) : index = 6, 57
+
+(58, Guangzhou, China, 23, 113)
+(null) : index = 6, 58
+
+(59, Durban, South Africa, -29, 31)
+(null) : index = 6, 59
+
+(60, Madrid, Spain, 40, -3)
+(null) : index = 6, 60
+
+(61, Nanjing, China, 32, 118)
+(null) : index = 6, 61
+
+(62, Kabul, Afghanistan, 34, 69)
+(null) : index = 6, 62
+
+(63, Pune, India, 18, 73)
+(null) : index = 6, 63
+
+(64, Surat, India, 20, 72)
+(null) : index = 6, 64
+
+(65, Chicago, United States, 41, -87)
+(null) : index = 6, 65
+
+(66, Kanpur, India, 26, 80)
+(null) : index = 6, 66
+
+(67, Umm Durman, Sudan, 15, 32)
+(null) : index = 6, 67
+
+(68, Luanda, Angola, -8, 13)
+(null) : index = 6, 68
+
+(69, Addis Abeba, Ethiopia, 9, 38)
+(null) : index = 6, 69
+
+(70, Nairobi, Kenya, -1, 36)
+(null) : index = 6, 70
+
+(71, Taiyuan, China, 37, 112)
+(null) : index = 6, 71
+
+(72, Jaipur, India, 26, 75)
+(null) : index = 6, 72
+
+(73, Salvador, Brazil, -12, -38)
+(null) : index = 6, 73
+
+(74, Dakar, Senegal, 14, -17)
+(null) : index = 6, 74
+
+(75, Dar es Salaam, Tanzania, -6, 39)
+(null) : index = 6, 75
+
+(76, Rome, Italy, 41, 12)
+(null) : index = 6, 76
+
+(77, Mogadishu, Somalia, 2, 45)
+(null) : index = 6, 77
+
+(78, Jiddah, Saudi Arabia, 21, 39)
+(null) : index = 6, 78
+
+(79, Changchun, China, 43, 125)
+(null) : index = 6, 79
+
+(80, Taipei, Taiwan, 25, 121)
+(null) : index = 6, 80
+
+(81, Kiev, Ukraine, 50, 30)
+(null) : index = 6, 81
+
+(82, Faisalabad, Pakistan, 31, 73)
+(null) : index = 6, 82
+
+(83, Izmir, Turkey, 38, 27)
+(null) : index = 6, 83
+
+(84, Lakhnau, India, 26, 80)
+(null) : index = 6, 84
+
+(85, Gizeh, Egypt, 30, 31)
+(null) : index = 6, 85
+
+(86, Fortaleza, Brazil, -3, -41)
+(null) : index = 6, 86
+
+(87, Cali, Colombia, 3, -76)
+(null) : index = 6, 87
+
+(88, Surabaya, Indonesia, -7, 112)
+(null) : index = 6, 88
+
+(89, Belo Horizonte, Brazil, -19, -43)
+(null) : index = 6, 89
+
+(90, Mashhad, Iran, 36, 59)
+(null) : index = 6, 90
+
+(91, Nagpur, India, 21, 79)
+(null) : index = 6, 91
+
+(92, Harare, Zimbabwe, -17, 31)
+(null) : index = 6, 92
+
+(93, Brasília, Brazil, -15, -47)
+(null) : index = 6, 93
+
+(94, Santo Domingo, Dominican Republic, 18, -69)
+(null) : index = 6, 94
+
+(95, Nagoya, Japan, 35, 136)
+(null) : index = 6, 95
+
+(96, Aleppo, Syria, 36, 37)
+(null) : index = 6, 96
+
+(97, Paris, France, 48, 2)
+(null) : index = 6, 97
+
+(98, Jinan, China, 36, 116)
+(null) : index = 6, 98
+
+(99, Tangshan, China, 37, 114)
+(null) : index = 6, 99
+
+(100, Dalian, China, 38, 121)
+(null) : index = 6, 100
+
+(101, Houston, United States, 29, -95)
+(null) : index = 6, 101
+
+(102, Johannesburg, South Africa, -26, 28)
+(null) : index = 6, 102
+
+(103, Medellín, Colombia, 6, -75)
+(null) : index = 6, 103
+
+(104, Algiers, Algeria, 36, 3)
+(null) : index = 6, 104
+
+(105, Tashkent, Uzbekistan, 41, 69)
+(null) : index = 6, 105
+
+(106, Khartoum, Sudan, 15, 32)
+(null) : index = 6, 106
+
+(107, Accra, Ghana, 5, 0)
+(null) : index = 6, 107
+
+(108, Guayaquil, Ecuador, -2, -79)
+(null) : index = 6, 108
+
+(109, Maracaibo, Venezuela, 10, -71)
+(null) : index = 6, 109
+
+(110, Rabat, Morocco, 34, -6)
+(null) : index = 6, 110
+
+(111, Jilin, China, 43, 126)
+(null) : index = 6, 111
+
+(112, Hangzhou, China, 30, 120)
+(null) : index = 6, 112
+
+(113, Bucharest, Romania, 44, 26)
+(null) : index = 6, 113
+
+(114, Nanchang, China, 28, 115)
+(null) : index = 6, 114
+
+(115, Conakry, Guinea, 9, -13)
+(null) : index = 6, 115
+
+(116, Brisbane, Australia, -27, 153)
+(null) : index = 6, 116
+
+(117, Vancouver, Canada, 49, -123)
+(null) : index = 6, 117
+
+(118, Indore, India, 22, 75)
+(null) : index = 6, 118
+
+(119, Caracas, Venezuela, 10, -66)
+(null) : index = 6, 119
+
+(120, Ecatepec, Mexico, 19, -99)
+(null) : index = 6, 120
+
+(121, Medan, Indonesia, 3, 98)
+(null) : index = 6, 121
+
+(122, Rawalpindi, Pakistan, 33, 73)
+(null) : index = 6, 122
+
+(123, Minsk, Belarus, 53, 27)
+(null) : index = 6, 123
+
+(124, Hamburg, Germany, 53, 10)
+(null) : index = 6, 124
+
+(125, Curitiba, Brazil, -25, -49)
+(null) : index = 6, 125
+
+(126, Budapest, Hungary, 47, 19)
+(null) : index = 6, 126
+
+(127, Bandung, Indonesia, -6, 107)
+(null) : index = 6, 127
+
+(128, Soweto, South Africa, -26, 27)
+(null) : index = 6, 128
+
+(129, Warsaw, Poland, 52, 21)
+(null) : index = 6, 129
+
+(130, Qingdao, China, 36, 120)
+(null) : index = 6, 130
+
+(131, Guadalajara, Mexico, 20, -103)
+(null) : index = 6, 131
+
+(132, Pretoria, South Africa, -25, 28)
+(null) : index = 6, 132
+
+(133, Patna, India, 25, 85)
+(null) : index = 6, 133
+
+(134, Bhopal, India, 23, 77)
+(null) : index = 6, 134
+
+(135, Manaus, Brazil, -3, -60)
+(null) : index = 6, 135
+
+(136, Xinyang, China, 32, 114)
+(null) : index = 6, 136
+
+(137, Kaduna, Nigeria, 10, 7)
+(null) : index = 6, 137
+
+(138, Damascus, Syria, 33, 36)
+(null) : index = 6, 138
+
+(139, Phnum Pénh, Cambodia, 11, 104)
+(null) : index = 6, 139
+
+(140, Barcelona, Spain, 41, 2)
+(null) : index = 6, 140
+
+(141, Vienna, Austria, 48, 16)
+(null) : index = 6, 141
+
+(142, Esfahan, Iran, 32, 51)
+(null) : index = 6, 142
+
+(143, Ludhiana, India, 30, 75)
+(null) : index = 6, 143
+
+(144, Kobe, Japan, 34, 135)
+(null) : index = 6, 144
+
+(145, Bekasi, Indonesia, -6, 106)
+(null) : index = 6, 145
+
+(146, Kaohsiung, Taiwan, 22, 120)
+(null) : index = 6, 146
+
+(147, Kaohsiung, Taiwan, 22, 120)
+(null) : index = 6, 147
+
+(148, Ürümqi, China, 43, 87)
+(null) : index = 6, 148
+
+(149, Thana, India, 19, 72)
+(null) : index = 6, 149
+
+(150, Recife, Brazil, -8, -34)
+(null) : index = 6, 150
+
+(151, Kumasi, Ghana, 6, -1)
+(null) : index = 6, 151
+
+(152, Kuala Lumpur, Malaysia, 3, 101)
+(null) : index = 6, 152
+
+(153, Philadelphia, United States, 39, -75)
+(null) : index = 6, 153
+
+(154, Karaj, Iran, 35, 51)
+(null) : index = 6, 154
+
+(155, Perth, Australia, -31, 115)
+(null) : index = 6, 155
+
+(156, Cordoba, Argentina, -31, -64)
+(null) : index = 6, 156
+
+(157, Multan, Pakistan, 30, 71)
+(null) : index = 6, 157
+
+(158, Hanoi, Viet Nam, 21, 105)
+(null) : index = 6, 158
+
+(159, Agra, India, 27, 78)
+(null) : index = 6, 159
+
+(160, Phoenix, United States, 33, -112)
+(null) : index = 6, 160
+
+(161, Tabriz, Iran, 38, 46)
+(null) : index = 6, 161
+
+(162, Novosibirsk, Russian Federation, 55, 82)
+(null) : index = 6, 162
+
+(163, Lanzhou, China, 36, 103)
+(null) : index = 6, 163
+
+(164, Bursa, Turkey, 40, 29)
+(null) : index = 6, 164
+
+(165, Vadodara, India, 22, 73)
+(null) : index = 6, 165
+
+(166, Belém, Brazil, -1, -48)
+(null) : index = 6, 166
+
+(167, Juarez, Mexico, 31, -106)
+(null) : index = 6, 167
+
+(168, Fushun, China, 41, 123)
+(null) : index = 6, 168
+
+(169, Quito, Ecuador, 0, -78)
+(null) : index = 6, 169
+
+(170, Puebla, Mexico, 19, -98)
+(null) : index = 6, 170
+
+(171, Antananarivo, Madagascar, -18, 47)
+(null) : index = 6, 171
+
+(172, Luoyang, China, 34, 112)
+(null) : index = 6, 172
+
+(173, Hefei, China, 31, 117)
+(null) : index = 6, 173
+
+(174, Hyderabad, Pakistan, 25, 68)
+(null) : index = 6, 174
+
+(175, Valencia, Venezuela, 10, -68)
+(null) : index = 6, 175
+
+(176, Gujranwala, Pakistan, 32, 74)
+(null) : index = 6, 176
+
+(177, Barranquilla, Colombia, 10, -74)
+(null) : index = 6, 177
+
+(178, Tijuana, Mexico, 32, -117)
+(null) : index = 6, 178
+
+(179, Lubumbashi, Congo-Kinshasa, -11, 27)
+(null) : index = 6, 179
+
+(180, Porto Alegre, Brazil, -30, -51)
+(null) : index = 6, 180
+
+(181, Tangerang, Indonesia, -6, 106)
+(null) : index = 6, 181
+
+(182, Handan, China, 36, 114)
+(null) : index = 6, 182
+
+(183, Kampala, Uganda, 0, 32)
+(null) : index = 6, 183
+
+(184, Suzhou, China, 31, 120)
+(null) : index = 6, 184
+
+(185, Khulna, Bangladesh, 22, 89)
+(null) : index = 6, 185
+
+(186, Douala, Cameroon, 4, 9)
+(null) : index = 6, 186
+
+(187, Makasar, Indonesia, -5, 119)
+(null) : index = 6, 187
+
+(188, Kawasaki, Japan, 35, 139)
+(null) : index = 6, 188
+
+(189, Montevideo, Uruguay, -34, -56)
+(null) : index = 6, 189
+
+(190, Yaoundé, Cameroon, 3, 11)
+(null) : index = 6, 190
+
+(191, Bamako, Mali, 12, -8)
+(null) : index = 6, 191
+
+(192, Semarang, Indonesia, -6, 110)
+(null) : index = 6, 192
+
+(193, Yekaterinburg, Russian Federation, 56, 60)
+(null) : index = 6, 193
+
+(194, San Diego, United States, 32, -117)
+(null) : index = 6, 194
+
+(195, Pimpri, India, 18, 73)
+(null) : index = 6, 195
+
+(196, Nizhniy Novgorod, Russian Federation, 56, 44)
+(null) : index = 6, 196
+
+(197, Faridabad, India, 28, 77)
+(null) : index = 6, 197
+
+(198, Lusaka, Zambia, -15, 28)
+(null) : index = 6, 198
+
+(199, Kalyan, India, 19, 73)
+(null) : index = 6, 199
+
+(200, San Antonio, United States, 29, -98)
+(null) : index = 6, 200
+
+(201, Stockholm, Sweden, 59, 18)
+(null) : index = 6, 201
+
+(202, Bayrut, Lebanon, 33, 35)
+(null) : index = 6, 202
+
+(203, Shiraz, Iran, 29, 52)
+(null) : index = 6, 203
+
+(204, Adana, Turkey, 37, 35)
+(null) : index = 6, 204
+
+(205, Munich, Germany, 48, 11)
+(null) : index = 6, 205
+
+(206, Palembang, Indonesia, -2, 104)
+(null) : index = 6, 206
+
+(207, Port-au-Prince, Haiti, 18, -72)
+(null) : index = 6, 207
+
+(208, Nezahualcóyotl, Mexico, 19, -99)
+(null) : index = 6, 208
+
+(209, Peshawar, Pakistan, 34, 71)
+(null) : index = 6, 209
+
+(210, Rosario, Argentina, -32, -60)
+(null) : index = 6, 210
+
+(211, Davao, Philippines, 7, 125)
+(null) : index = 6, 211
+
+(212, Dallas, United States, 32, -96)
+(null) : index = 6, 212
+
+(213, Mandalay, Myanmar, 22, 96)
+(null) : index = 6, 213
+
+(214, Almaty, Kazakhstan, 43, 76)
+(null) : index = 6, 214
+
+(215, Mecca, Saudi Arabia, 21, 39)
+(null) : index = 6, 215
+
+(216, Ghaziabad, India, 28, 77)
+(null) : index = 6, 216
+
+(217, Anshan, China, 41, 122)
+(null) : index = 6, 217
+
+(218, Xuzhou, China, 34, 117)
+(null) : index = 6, 218
+
+(219, Depok, Indonesia, -6, 106)
+(null) : index = 6, 219
+
+(220, Maputo, Mozambique, -25, 32)
+(null) : index = 6, 220
+
+(221, Freetown, Sierra Leone, 8, -13)
+(null) : index = 6, 221
+
+(222, Fuzhou, China, 26, 119)
+(null) : index = 6, 222
+
+(223, Rajkot, India, 22, 70)
+(null) : index = 6, 223
+
+(224, Guiyang, China, 26, 106)
+(null) : index = 6, 224
+
+(225, Goiânia, Brazil, -16, -49)
+(null) : index = 6, 225
+
+(226, Guarulhos, Brazil, -23, -46)
+(null) : index = 6, 226
+
+(227, Varanasi, India, 25, 83)
+(null) : index = 6, 227
+
+(228, Fez, Morocco, 34, -4)
+(null) : index = 6, 228
+
+(229, Milan, Italy, 45, 9)
+(null) : index = 6, 229
+
+(230, Prague, Czech Republic, 50, 14)
+(null) : index = 6, 230
+
+(231, Tripoli, Libya, 32, 13)
+(null) : index = 6, 231
+
+(232, Port Harcourt, Nigeria, 4, 7)
+(null) : index = 6, 232
+
+(233, Hiroshima, Japan, 34, 132)
+(null) : index = 6, 233
+
+(234, Managua, Nicaragua, 12, -86)
+(null) : index = 6, 234
+
+(235, Dubai, United Arab Emirates, 25, 55)
+(null) : index = 6, 235
+
+(236, Samara, Russian Federation, 53, 50)
+(null) : index = 6, 236
+
+(237, Omsk, Russian Federation, 55, 73)
+(null) : index = 6, 237
+
+(238, Bénin, Nigeria, 6, 5)
+(null) : index = 6, 238
+
+(239, Monterrey, Mexico, 25, -100)
+(null) : index = 6, 239
+
+(240, Baku, Azerbaijan, 40, 49)
+(null) : index = 6, 240
+
+(241, Brazzaville, Congo, -4, 15)
+(null) : index = 6, 241
+
+(242, Belgrade, Serbia, 44, 20)
+(null) : index = 6, 242
+
+(243, León, Mexico, 21, -101)
+(null) : index = 6, 243
+
+(244, Maiduguri, Nigeria, 11, 13)
+(null) : index = 6, 244
+
+(245, Wuxi, China, 31, 120)
+(null) : index = 6, 245
+
+(246, Kazan, Russian Federation, 55, 49)
+(null) : index = 6, 246
+
+(247, Yerevan, Armenia, 40, 44)
+(null) : index = 6, 247
+
+(248, Amritsar, India, 31, 74)
+(null) : index = 6, 248
+
+(249, Copenhagen, Denmark, 55, 12)
+(null) : index = 6, 249
+
+(250, Taichung, Taiwan, 24, 120)
+(null) : index = 6, 250
+
+(251, Saitama, Japan, 35, 139)
+(null) : index = 6, 251
+
+(252, Rostov-na-Donu, Russian Federation, 47, 39)
+(null) : index = 6, 252
+
+(253, Adelaide, Australia, -34, 138)
+(null) : index = 6, 253
+
+(254, Allahabad, India, 25, 81)
+(null) : index = 6, 254
+
+(255, Gaziantep, Turkey, 37, 37)
+(null) : index = 6, 255
+
+(256, Visakhapatnam, India, 17, 83)
+(null) : index = 6, 256
+
+(257, Chelyabinsk, Russian Federation, 55, 61)
+(null) : index = 6, 257
+
+(258, Sofia, Bulgaria, 42, 23)
+(null) : index = 6, 258
+
+(259, Datong, China, 40, 113)
+(null) : index = 6, 259
+
+(260, Tbilisi, Georgia, 41, 44)
+(null) : index = 6, 260
+
+(261, Xianyang, China, 34, 108)
+(null) : index = 6, 261
+
+(262, Ufa, Russian Federation, 54, 56)
+(null) : index = 6, 262
+
+(263, Campinas, Brazil, -22, -47)
+(null) : index = 6, 263
+
+(264, Ouagadougou, Burkina Faso, 12, -1)
+(null) : index = 6, 264
+
+(265, Jabalpur, India, 23, 79)
+(null) : index = 6, 265
+
+(266, Haora, India, 22, 88)
+(null) : index = 6, 266
+
+(267, Huainan, China, 32, 116)
+(null) : index = 6, 267
+
+(268, Dublin, Ireland, 53, -6)
+(null) : index = 6, 268
+
+(269, Kunming, China, 25, 102)
+(null) : index = 6, 269
+
+(270, Brussels, Belgium, 50, 4)
+(null) : index = 6, 270
+
+(271, Aurangabad, India, 19, 75)
+(null) : index = 6, 271
+
+(272, Qom, Iran, 34, 50)
+(null) : index = 6, 272
+
+(273, Volgograd, Russian Federation, 48, 44)
+(null) : index = 6, 273
+
+(274, Shenzhen, China, 22, 114)
+(null) : index = 6, 274
+
+(275, Nova Iguaçu, Brazil, -22, -43)
+(null) : index = 6, 275
+
+(276, Rongcheng, China, 23, 116)
+(null) : index = 6, 276
+
+(277, Odesa, Ukraine, 46, 30)
+(null) : index = 6, 277
+
+(278, Kitakyushu, Japan, 33, 130)
+(null) : index = 6, 278
+
+(279, Sholapur, India, 17, 75)
+(null) : index = 6, 279
+
+(280, Baoding, China, 38, 115)
+(null) : index = 6, 280
+
+(281, Benxi, China, 41, 123)
+(null) : index = 6, 281
+
+(282, Zapopan, Mexico, 20, -103)
+(null) : index = 6, 282
+
+(283, Birmingham, United Kingdom, 52, -1)
+(null) : index = 6, 283
+
+(284, Perm, Russian Federation, 58, 56)
+(null) : index = 6, 284
+
+(285, Naples, Italy, 40, 14)
+(null) : index = 6, 285
+
+(286, Srinagar, India, 34, 74)
+(null) : index = 6, 286
+
+(287, Zaria, Nigeria, 11, 7)
+(null) : index = 6, 287
+
+(288, Guatemala City, Guatemala, 14, -90)
+(null) : index = 6, 288
+
+(289, Mendoza, Argentina, -32, -68)
+(null) : index = 6, 289
+
+(290, Cologne, Germany, 50, 6)
+(null) : index = 6, 290
+
+(291, Calgary, Canada, 51, -114)
+(null) : index = 6, 291
+
+(292, Port Elizabeth, South Africa, -33, 25)
+(null) : index = 6, 292
+
+(293, Maceió, Brazil, -9, -35)
+(null) : index = 6, 293
+
+(294, Cartagena, Colombia, 10, -75)
+(null) : index = 6, 294
+
+(295, Changzhou, China, 31, 119)
+(null) : index = 6, 295
+
+(296, Ranchi, India, 23, 85)
+(null) : index = 6, 296
+
+(297, Marrakesh, Morocco, 31, -8)
+(null) : index = 6, 297
+
+(298, São Gonçalo, Brazil, -22, -43)
+(null) : index = 6, 298
+
+(299, Monrovia, Liberia, 6, -10)
+(null) : index = 6, 299
+
+(300, Irbil, Iraq, 36, 44)
+(null) : index = 6, 300
+
+(301, Jodhpur, India, 26, 73)
+(null) : index = 6, 301
+
+(302, São Luís, Brazil, -2, -44)
+(null) : index = 6, 302
+
+(303, Chandigarh, India, 30, 76)
+(null) : index = 6, 303
+
+(304, Madurai, India, 9, 78)
+(null) : index = 6, 304
+
+(305, Krasnoyarsk, Russian Federation, 56, 92)
+(null) : index = 6, 305
+
+(306, Huaibei, China, 33, 116)
+(null) : index = 6, 306
+
+(307, Cochabamba, Bolivia, -17, -66)
+(null) : index = 6, 307
+
+(308, Guwahati, India, 26, 91)
+(null) : index = 6, 308
+
+(309, Aba, Nigeria, 5, 7)
+(null) : index = 6, 309
+
+(310, San Jose, United States, 37, -121)
+(null) : index = 6, 310
+
+(311, Bulawayo, Zimbabwe, -20, 28)
+(null) : index = 6, 311
+
+(312, Pingdingshan, China, 33, 113)
+(null) : index = 6, 312
+
+(313, Detroit, United States, 42, -83)
+(null) : index = 6, 313
+
+(314, Gwalior, India, 26, 78)
+(null) : index = 6, 314
+
+(315, Qiqihar, China, 47, 123)
+(null) : index = 6, 315
+
+(316, Klang, Malaysia, 3, 101)
+(null) : index = 6, 316
+
+(317, Konya, Turkey, 37, 32)
+(null) : index = 6, 317
+
+(318, Mbuji-Mayi, Congo-Kinshasa, -6, 23)
+(null) : index = 6, 318
+
+(319, Vijayawada, India, 16, 80)
+(null) : index = 6, 319
+
+(320, Ottawa, Canada, 45, -75)
+(null) : index = 6, 320
+
+(321, Maisuru, India, 12, 76)
+(null) : index = 6, 321
+
+(322, Wenzhou, China, 27, 120)
+(null) : index = 6, 322
+
+(323, Saratov, Russian Federation, 51, 46)
+(null) : index = 6, 323
+
+(324, Ogbomosho, Nigeria, 8, 4)
+(null) : index = 6, 324
+
+(325, Ahvaz, Iran, 31, 48)
+(null) : index = 6, 325
+
+(326, Tegucigalpa, Honduras, 14, -87)
+(null) : index = 6, 326
+
+(327, Turin, Italy, 45, 7)
+(null) : index = 6, 327
+
+(328, Naucalpan, Mexico, 19, -99)
+(null) : index = 6, 328
+
+(329, Ulaanbaatar, Mongolia, 47, 106)
+(null) : index = 6, 329
+
+(330, Arequipa, Peru, -16, -71)
+(null) : index = 6, 330
+
+(331, Voronezh, Russian Federation, 51, 39)
+(null) : index = 6, 331
+
+(332, Padang, Indonesia, 0, 100)
+(null) : index = 6, 332
+
+(333, Hubli, India, 15, 75)
+(null) : index = 6, 333
+
+(334, Lvov, Ukraine, 49, 24)
+(null) : index = 6, 334
+
+(335, Tucuman, Argentina, -26, -65)
+(null) : index = 6, 335
+
+(336, Tangier, Morocco, 35, -5)
+(null) : index = 6, 336
+
+(337, Edmonton, Canada, 53, -113)
+(null) : index = 6, 337
+
+(338, Duque de Caxias, Brazil, -22, -43)
+(null) : index = 6, 338
+
+(339, Jos, Nigeria, 9, 8)
+(null) : index = 6, 339
+
+(340, Ilorin, Nigeria, 8, 4)
+(null) : index = 6, 340
+
+(341, La Paz, Bolivia, -16, -68)
+(null) : index = 6, 341
+
+(342, Barquisimeto, Venezuela, 10, -69)
+(null) : index = 6, 342
+
+(343, Oslo, Norway, 59, 10)
+(null) : index = 6, 343
+
+(344, Nanning, China, 22, 108)
+(null) : index = 6, 344
+
+(345, Johor Bahru, Malaysia, 1, 103)
+(null) : index = 6, 345
+
+(346, Mombasa, Kenya, -4, 39)
+(null) : index = 6, 346
+
+(347, Asgabat, Turkmenistan, 37, 58)
+(null) : index = 6, 347
+
+(348, Jacksonville, United States, 30, -81)
+(null) : index = 6, 348
+
+(349, Zaporizhzhya, Ukraine, 47, 35)
+(null) : index = 6, 349
+
+(350, Marseille, France, 43, 5)
+(null) : index = 6, 350
+
+(351, Kathmandu, Nepal, 27, 85)
+(null) : index = 6, 351
+
+(352, Jalandhar, India, 31, 75)
+(null) : index = 6, 352
+
+(353, Thiruvananthapuram, India, 8, 76)
+(null) : index = 6, 353
+
+(354, Sakai, Japan, 34, 135)
+(null) : index = 6, 354
+
+(355, Anyang, China, 36, 114)
+(null) : index = 6, 355
+
+(356, Selam, India, 11, 78)
+(null) : index = 6, 356
+
+(357, Tiruchchirappalli, India, 10, 78)
+(null) : index = 6, 357
+
+(358, Hohhot, China, 40, 111)
+(null) : index = 6, 358
+
+(359, Niamey, Niger, 13, 1)
+(null) : index = 6, 359
+
+(360, Niamey, Niger, 13, 2)
+(null) : index = 6, 360
+
+(361, Indianapolis, United States, 39, -86)
+(null) : index = 6, 361
+
+(362, Valencia, Spain, 39, 0)
+(null) : index = 6, 362
+
+(363, Bogor, Indonesia, -6, 106)
+(null) : index = 6, 363
+
+(364, Xining, China, 36, 101)
+(null) : index = 6, 364
+
+(365, Kermanshah, Iran, 34, 47)
+(null) : index = 6, 365
+
+(366, Liuzhou, China, 24, 109)
+(null) : index = 6, 366
+
+(367, Kota, India, 25, 75)
+(null) : index = 6, 367
+
+(368, Natal, Brazil, -5, -35)
+(null) : index = 6, 368
+
+(369, Bhubaneswar, India, 20, 85)
+(null) : index = 6, 369
+
+(370, Qinhuangdao, China, 39, 119)
+(null) : index = 6, 370
+
+(371, Hengyang, China, 26, 112)
+(null) : index = 6, 371
+
+(372, Antalya, Turkey, 36, 30)
+(null) : index = 6, 372
+
+(373, Cebu, Philippines, 10, 123)
+(null) : index = 6, 373
+
+(374, Islamabad, Pakistan, 33, 73)
+(null) : index = 6, 374
+
+(375, Cracow, Poland, 50, 19)
+(null) : index = 6, 375
+
+(376, Aligarh, India, 27, 78)
+(null) : index = 6, 376
+
+(377, Pietermaritzburg, South Africa, -29, 30)
+(null) : index = 6, 377
+
+(378, Taian, China, 36, 117)
+(null) : index = 6, 378
+
+(379, Trujillo, Peru, -8, -79)
+(null) : index = 6, 379
+
+(380, Malang, Indonesia, -7, 112)
+(null) : index = 6, 380
+
+(381, Ciudad Guayana, Venezuela, 8, -62)
+(null) : index = 6, 381
+
+(382, Amsterdam, Netherlands, 52, 4)
+(null) : index = 6, 382
+
+(383, Kigali, Rwanda, -1, 30)
+(null) : index = 6, 383
+
+(384, Bareli, India, 28, 79)
+(null) : index = 6, 384
+
+(385, Teresina, Brazil, -5, -42)
+(null) : index = 6, 385
+
+(386, Xinxiang, China, 35, 113)
+(null) : index = 6, 386
+
+(387, São Bernardo do Campo, Brazil, -23, -46)
+(null) : index = 6, 387
+
+(388, Hegang, China, 47, 130)
+(null) : index = 6, 388
+
+(389, Riga, Latvia, 56, 24)
+(null) : index = 6, 389
+
+(390, Columbus, United States, 39, -82)
+(null) : index = 6, 390
+
+(391, Oyo, Nigeria, 7, 3)
+(null) : index = 6, 391
+
+(392, Tainan, Taiwan, 22, 120)
+(null) : index = 6, 392
+
+(393, Quetta, Pakistan, 30, 67)
+(null) : index = 6, 393
+
+(394, San Francisco, United States, 37, -122)
+(null) : index = 6, 394
+
+(395, Campo Grande, Brazil, -20, -54)
+(null) : index = 6, 395
+
+(396, Athens, Greece, 37, 23)
+(null) : index = 6, 396
+
+(397, Guadalupe, Mexico, 25, -100)
+(null) : index = 6, 397
+
+(398, Cúcuta, Colombia, 7, -72)
+(null) : index = 6, 398
+
+(399, Moradabad, India, 28, 78)
+(null) : index = 6, 399
+
+(400, Langfang, China, 39, 116)
+(null) : index = 6, 400
+
+(401, Ningbo, China, 29, 121)
+(null) : index = 6, 401
+
+(402, Yantai, China, 37, 121)
+(null) : index = 6, 402
+
+(403, Tolyatti, Russian Federation, 53, 49)
+(null) : index = 6, 403
+
+(404, Mérida, Mexico, 20, -89)
+(null) : index = 6, 404
+
+(405, Tlalnepantla, Mexico, 19, -99)
+(null) : index = 6, 405
+
+(406, Jerusalem, Israel, 31, 35)
+(null) : index = 6, 406
+
+(407, Chisinau, Moldova, 47, 28)
+(null) : index = 6, 407
+
+(408, Nouakchott, Mauritania, 18, -15)
+(null) : index = 6, 408
+
+(409, Zhuzhou, China, 27, 113)
+(null) : index = 6, 409
+
+(410, Chihuahua, Mexico, 28, -106)
+(null) : index = 6, 410
+
+(411, Bhiwandi, India, 19, 73)
+(null) : index = 6, 411
+
+(412, Jaboatão, Brazil, -8, -35)
+(null) : index = 6, 412
+
+(413, Rajshahi, Bangladesh, 24, 88)
+(null) : index = 6, 413
+
+(414, Zagreb, Croatia, 45, 16)
+(null) : index = 6, 414
+
+(415, Sarajevo, Bosnia and Herzegovina, 43, 18)
+(null) : index = 6, 415
+
+(416, Tunis, Tunisia, 36, 10)
+(null) : index = 6, 416
+
+(417, Zhangjiakou, China, 40, 114)
+(null) : index = 6, 417
+
+(418, Cotonou, Benin, 6, 2)
+(null) : index = 6, 418
+
+(419, Zigong, China, 29, 104)
+(null) : index = 6, 419
+
+(420, Fuxin, China, 42, 121)
+(null) : index = 6, 420
+
+(421, Liaoyang, China, 41, 123)
+(null) : index = 6, 421
+
+(422, Sevilla, Spain, 37, -5)
+(null) : index = 6, 422
+
+(423, La Plata, Argentina, -34, -57)
+(null) : index = 6, 423
+
+(424, Bangui, Central African Republic, 4, 18)
+(null) : index = 6, 424
+
+(425, Raipur, India, 21, 81)
+(null) : index = 6, 425
+
+(426, Austin, United States, 30, -97)
+(null) : index = 6, 426
+
+(427, Osasco, Brazil, -23, -46)
+(null) : index = 6, 427
+
+(428, San Luis Potosí, Mexico, 22, -100)
+(null) : index = 6, 428
+
+(429, Gorakhpur, India, 26, 83)
+(null) : index = 6, 429
+
+(430, Ipoh, Malaysia, 4, 101)
+(null) : index = 6, 430
+
+(431, Zhangdian, China, 36, 118)
+(null) : index = 6, 431
+
+(432, Palermo, Italy, 38, 13)
+(null) : index = 6, 432
+
+(433, Puyang, China, 35, 115)
+(null) : index = 6, 433
+
+(434, Nantong, China, 32, 120)
+(null) : index = 6, 434
+
+(435, Mudanjiang, China, 44, 129)
+(null) : index = 6, 435
+
+(436, Santo André, Brazil, -23, -46)
+(null) : index = 6, 436
+
+(437, Aguascalientes, Mexico, 21, -102)
+(null) : index = 6, 437
+
+(438, Agadir, Morocco, 30, -9)
+(null) : index = 6, 438
+
+(439, Hamilton, Canada, 43, -79)
+(null) : index = 6, 439
+
+(440, Enugu, Nigeria, 6, 7)
+(null) : index = 6, 440
+
+(441, Kryvyy Rih, Ukraine, 47, 33)
+(null) : index = 6, 441
+
+(442, Acapulco, Mexico, 16, -99)
+(null) : index = 6, 442
+
+(443, João Pessoa, Brazil, -7, -34)
+(null) : index = 6, 443
+
+(444, Benghazi, Libya, 32, 20)
+(null) : index = 6, 444
+
+(445, Krasnodar, Russian Federation, 45, 38)
+(null) : index = 6, 445
+
+(446, Shaoyang, China, 26, 111)
+(null) : index = 6, 446
+
+(447, Guilin, China, 25, 110)
+(null) : index = 6, 447
+
+(448, Sagamihara, Japan, 35, 139)
+(null) : index = 6, 448
+
+(449, Colombo, Sri Lanka, 6, 79)
+(null) : index = 6, 449
+
+(450, Frankfurt, Germany, 50, 8)
+(null) : index = 6, 450
+
+(451, Lilongwe, Malawi, -13, 33)
+(null) : index = 6, 451
+
+(452, Wahran, Algeria, 35, 0)
+(null) : index = 6, 452
+
+(453, Mar del Plata, Argentina, -38, -57)
+(null) : index = 6, 453
+
+(454, Quebec, Canada, 46, -71)
+(null) : index = 6, 454
+
+(455, Memphis, United States, 35, -90)
+(null) : index = 6, 455
+
+(456, Ulyanovsk, Russian Federation, 54, 48)
+(null) : index = 6, 456
+
+(457, Zhanjiang, China, 21, 110)
+(null) : index = 6, 457
+
+(458, Yogyakarta, Indonesia, -7, 110)
+(null) : index = 6, 458
+
+(459, Zaragoza, Spain, 41, 0)
+(null) : index = 6, 459
+
+(460, Wroclaw, Poland, 51, 17)
+(null) : index = 6, 460
+
+(461, Zhenjiang, China, 32, 119)
+(null) : index = 6, 461
+
+(462, Winnipeg, Canada, 49, -97)
+(null) : index = 6, 462
+
+(463, Dandong, China, 40, 124)
+(null) : index = 6, 463
+
+(464, Izhevsk, Russian Federation, 56, 53)
+(null) : index = 6, 464
+
+(465, Shaoguan, China, 24, 113)
+(null) : index = 6, 465
+
+(466, Yancheng, China, 33, 120)
+(null) : index = 6, 466
+
+(467, Foshan, China, 23, 113)
+(null) : index = 6, 467
+
+(468, Contagem, Brazil, -19, -44)
+(null) : index = 6, 468
+
+(469, Bhilai, India, 21, 81)
+(null) : index = 6, 469
+
+(470, Jibuti, Djibouti, 11, 43)
+(null) : index = 6, 470
+
+(471, Saltillo, Mexico, 25, -101)
+(null) : index = 6, 471
+
+(472, Fort Worth, United States, 32, -97)
+(null) : index = 6, 472
+
+(473, Jamshedpur, India, 22, 86)
+(null) : index = 6, 473
+
+(474, Haikou, China, 20, 110)
+(null) : index = 6, 474
+
+(475, São José dos Campos, Brazil, -23, -45)
+(null) : index = 6, 475
+
+(476, Mersin, Turkey, 36, 34)
+(null) : index = 6, 476
+
+(477, Taizhou, China, 32, 119)
+(null) : index = 6, 477
+
+(478, Querétaro, Mexico, 20, -100)
+(null) : index = 6, 478
+
+(479, Xingtai, China, 37, 114)
+(null) : index = 6, 479
+
+(480, Baltimore, United States, 39, -76)
+(null) : index = 6, 480
+
+(481, Glasgow, United Kingdom, 55, -4)
+(null) : index = 6, 481
+
+(482, Yaroslavl, Russian Federation, 57, 39)
+(null) : index = 6, 482
+
+(483, Benoni, South Africa, -26, 28)
+(null) : index = 6, 483
+
+(484, Hamamatsu, Japan, 34, 137)
+(null) : index = 6, 484
+
+(485, Kochi, India, 9, 76)
+(null) : index = 6, 485
+
+(486, Jinzhou, China, 41, 121)
+(null) : index = 6, 486
+
+(487, Amravati, India, 20, 77)
+(null) : index = 6, 487
+
+(488, Rotterdam, Netherlands, 51, 4)
+(null) : index = 6, 488
+
+(489, Abu Dhabi, United Arab Emirates, 24, 54)
+(null) : index = 6, 489
+
+(490, Hai Phong, Viet Nam, 20, 106)
+(null) : index = 6, 490
+
+(491, Orumiyeh, Iran, 37, 45)
+(null) : index = 6, 491
+
+(492, Kirkuk, Iraq, 35, 44)
+(null) : index = 6, 492
+
+(493, Barnaul, Russian Federation, 53, 83)
+(null) : index = 6, 493
+
+(494, Charlotte, United States, 35, -80)
+(null) : index = 6, 494
+
+(495, El Paso, United States, 31, -106)
+(null) : index = 6, 495
+
+(496, Luancheng, China, 37, 114)
+(null) : index = 6, 496
+
+(497, Mexicali, Mexico, 32, -115)
+(null) : index = 6, 497
+
+(498, Hermosillo, Mexico, 29, -110)
+(null) : index = 6, 498
+
+(499, Rasht, Iran, 37, 49)
+(null) : index = 6, 499
+
+(500, Dortmund, Germany, 51, 7)
+(null) : index = 6, 500
+
+(501, Kayseri, Turkey, 38, 35)
+(null) : index = 6, 501
+
+(502, Abeokuta, Nigeria, 7, 3)
+(null) : index = 6, 502
+
+(503, Morelia, Mexico, 19, -101)
+(null) : index = 6, 503
+
+(504, Stuttgart, Germany, 48, 9)
+(null) : index = 6, 504
+
+(505, Yingkou, China, 40, 122)
+(null) : index = 6, 505
+
+(506, Chimalhuacán, Mexico, 19, -98)
+(null) : index = 6, 506
+
+(507, Zhangzhou, China, 24, 117)
+(null) : index = 6, 507
+
+(508, Vladivostok, Russian Federation, 43, 131)
+(null) : index = 6, 508
+
+(509, Irkutsk, Russian Federation, 52, 104)
+(null) : index = 6, 509
+
+(510, Belfast, United Kingdom, 54, -5)
+(null) : index = 6, 510
+
+(511, Genoa, Italy, 44, 8)
+(null) : index = 6, 511
+
+(512, Blantyre, Malawi, -15, 35)
+(null) : index = 6, 512
+
+(513, Kingston, Jamaica, 18, -76)
+(null) : index = 6, 513
+
+(514, Chiclayo, Peru, -6, -79)
+(null) : index = 6, 514
+
+(515, Culiacán, Mexico, 24, -107)
+(null) : index = 6, 515
+
+(516, Hachioji, Japan, 35, 139)
+(null) : index = 6, 516
+
+(517, Milwaukee, United States, 43, -87)
+(null) : index = 6, 517
+
+(518, Xiamen, China, 24, 118)
+(null) : index = 6, 518
+
+(519, Khabarovsk, Russian Federation, 48, 135)
+(null) : index = 6, 519
+
+(520, Libreville, Gabon, 0, 9)
+(null) : index = 6, 520
+
+(521, Kerman, Iran, 30, 57)
+(null) : index = 6, 521
+
+(522, Düsseldorf, Germany, 51, 6)
+(null) : index = 6, 522
+
+(523, Kaifeng, China, 34, 114)
+(null) : index = 6, 523
+
+(524, Essen, Germany, 51, 7)
+(null) : index = 6, 524
+
+(525, Bengbu, China, 32, 117)
+(null) : index = 6, 525
+
+(526, Bikaner, India, 28, 73)
+(null) : index = 6, 526
+
+(527, Banjarmasin, Indonesia, -3, 114)
+(null) : index = 6, 527
+
+(528, Shihezi, China, 44, 86)
+(null) : index = 6, 528
+
+(529, Bouaké, Côte d’Ivoire, 7, -5)
+(null) : index = 6, 529
+
+(530, Bucaramanga, Colombia, 7, -73)
+(null) : index = 6, 530
+
+(531, Boston, United States, 42, -71)
+(null) : index = 6, 531
+
+(532, Kuching, Malaysia, 1, 110)
+(null) : index = 6, 532
+
+(533, Poznan, Poland, 52, 16)
+(null) : index = 6, 533
+
+(534, Seattle, United States, 47, -122)
+(null) : index = 6, 534
+
+(535, Veracruz, Mexico, 19, -96)
+(null) : index = 6, 535
+
+(536, Asmara, Eritrea, 15, 38)
+(null) : index = 6, 536
+
+(537, Sokoto, Nigeria, 13, 5)
+(null) : index = 6, 537
+
+(538, Uberlândia, Brazil, -18, -48)
+(null) : index = 6, 538
+
+(539, Onitsha, Nigeria, 6, 6)
+(null) : index = 6, 539
+
+(540, Funabashi, Japan, 35, 139)
+(null) : index = 6, 540
+
+(541, Sorocaba, Brazil, -23, -47)
+(null) : index = 6, 541
+
+(542, Helsinki, Finland, 60, 24)
+(null) : index = 6, 542
+
+(543, Málaga, Spain, 36, -4)
+(null) : index = 6, 543
+
+(544, Warangal, India, 18, 79)
+(null) : index = 6, 544
+
+(545, Denver, United States, 39, -104)
+(null) : index = 6, 545
+
+(546, Santiago, Dominican Republic, 19, -70)
+(null) : index = 6, 546
+
+(547, Santiago de Cuba, Cuba, 20, -75)
+(null) : index = 6, 547
+
+(548, Surakarta, Indonesia, -7, 110)
+(null) : index = 6, 548
+
+(549, Huaiyin, China, 33, 119)
+(null) : index = 6, 549
+
+(550, Bhavnagar, India, 21, 72)
+(null) : index = 6, 550
+
+(551, Bahawalpur, Pakistan, 29, 71)
+(null) : index = 6, 551
+
+(552, Washington, United States, 38, -77)
+(null) : index = 6, 552
+
+(553, Ribeirão Prêto, Brazil, -21, -47)
+(null) : index = 6, 553
+
+(554, Aden, Yemen, 12, 45)
+(null) : index = 6, 554
+
+(555, Jiamusi, China, 46, 130)
+(null) : index = 6, 555
+
+(556, Antipolo, Philippines, 14, 121)
+(null) : index = 6, 556
+
+(557, Salta, Argentina, -24, -65)
+(null) : index = 6, 557
+
+(558, Neijiang, China, 29, 105)
+(null) : index = 6, 558
+
+(559, Bremen, Germany, 53, 8)
+(null) : index = 6, 559
+
+(560, Sharjah, United Arab Emirates, 25, 55)
+(null) : index = 6, 560
+
+(561, Matola, Mozambique, -25, 32)
+(null) : index = 6, 561
+
+(562, Dushanbe, Tajikistan, 38, 68)
+(null) : index = 6, 562
+
+(563, Sargodha, Pakistan, 32, 72)
+(null) : index = 6, 563
+
+(564, Vilnius, Lithuania, 54, 25)
+(null) : index = 6, 564
+
+(565, Cancún, Mexico, 21, -86)
+(null) : index = 6, 565
+
+(566, Portland, United States, 45, -122)
+(null) : index = 6, 566
+
+(567, Maanshan, China, 31, 118)
+(null) : index = 6, 567
+
+(568, Las Vegas, United States, 36, -115)
+(null) : index = 6, 568
+
+(569, Yangzhou, China, 32, 119)
+(null) : index = 6, 569
+
+(570, Novokuznetsk, Russian Federation, 53, 87)
+(null) : index = 6, 570
+
+(571, Kisangani, Congo-Kinshasa, 0, 25)
+(null) : index = 6, 571
+
+(572, Port Said, Egypt, 31, 32)
+(null) : index = 6, 572
+
+(573, Warri, Nigeria, 5, 5)
+(null) : index = 6, 573
+
+(574, Tanggu, China, 39, 117)
+(null) : index = 6, 574
+
+(575, Oklahoma City, United States, 35, -97)
+(null) : index = 6, 575
+
+(576, Jiangmen, China, 22, 113)
+(null) : index = 6, 576
+
+(577, Nashville, United States, 36, -86)
+(null) : index = 6, 577
+
+(578, Beira, Mozambique, -19, 34)
+(null) : index = 6, 578
+
+(579, Guntur, India, 16, 80)
+(null) : index = 6, 579
+
+(580, Yueyang, China, 29, 113)
+(null) : index = 6, 580
+
+(581, Cangzhou, China, 38, 116)
+(null) : index = 6, 581
+
+(582, San Salvador, El Salvador, 13, -89)
+(null) : index = 6, 582
+
+(583, Torreón, Mexico, 25, -103)
+(null) : index = 6, 583
+
+(584, Dehra Dun, India, 30, 78)
+(null) : index = 6, 584
+
+(585, Cuiabá, Brazil, -15, -56)
+(null) : index = 6, 585
+
+(586, López Mateos, Mexico, 19, -99)
+(null) : index = 6, 586
+
+(587, Petaling Jaya, Malaysia, 3, 101)
+(null) : index = 6, 587
+
+(588, Ryazan, Russian Federation, 54, 39)
+(null) : index = 6, 588
+
+(589, Hanover, Germany, 52, 9)
+(null) : index = 6, 589
+
+(590, Tyumen, Russian Federation, 57, 65)
+(null) : index = 6, 590
+
+(591, Durgapur, India, 23, 87)
+(null) : index = 6, 591
+
+(592, Tucson, United States, 32, -110)
+(null) : index = 6, 592
+
+(593, Ajmer, India, 26, 74)
+(null) : index = 6, 593
+
+(594, Lisbon, Portugal, 38, -9)
+(null) : index = 6, 594
+
+(595, Changde, China, 29, 111)
+(null) : index = 6, 595
+
+(596, Jiaozuo, China, 35, 113)
+(null) : index = 6, 596
+
+(597, Ulhasnagar, India, 19, 73)
+(null) : index = 6, 597
+
+(598, Kolhapur, India, 16, 74)
+(null) : index = 6, 598
+
+(599, Lipetsk, Russian Federation, 52, 39)
+(null) : index = 6, 599
+
+(600, Shiliguri, India, 26, 88)
+(null) : index = 6, 600
+
+(601, Göteborg, Sweden, 57, 11)
+(null) : index = 6, 601
+
+(602, Eskisehir, Turkey, 39, 30)
+(null) : index = 6, 602
+
+(603, Hamadan, Iran, 34, 48)
+(null) : index = 6, 603
+
+(604, Penza, Russian Federation, 53, 45)
+(null) : index = 6, 604
+
+(605, Tembisa, South Africa, -25, 28)
+(null) : index = 6, 605
+
+(606, Makati, Philippines, 14, 121)
+(null) : index = 6, 606
+
+(607, Asunción, Paraguay, -25, -57)
+(null) : index = 6, 607
+
+(608, San Nicolás de los Garza, Mexico, 25, -100)
+(null) : index = 6, 608
+
+(609, Wuhu, China, 31, 118)
+(null) : index = 6, 609
+
+(610, Toluca, Mexico, 19, -99)
+(null) : index = 6, 610
+
+(611, Niigata, Japan, 37, 139)
+(null) : index = 6, 611
+
+(612, Duisburg, Germany, 51, 6)
+(null) : index = 6, 612
+
+(613, Asansol, India, 23, 86)
+(null) : index = 6, 613
+
+(614, Arak, Iran, 34, 49)
+(null) : index = 6, 614
+
+(615, Astrakhan, Russian Federation, 46, 48)
+(null) : index = 6, 615
+
+(616, Zhuhai, China, 22, 113)
+(null) : index = 6, 616
+
+(617, Gold Coast, Australia, -28, 153)
+(null) : index = 6, 617
+
+(618, Oshogbo, Nigeria, 7, 4)
+(null) : index = 6, 618
+
+(619, Shashi, China, 30, 112)
+(null) : index = 6, 619
+
+(620, Reynosa, Mexico, 26, -98)
+(null) : index = 6, 620
+
+(621, Makhachkala, Russian Federation, 42, 47)
+(null) : index = 6, 621
+
+(622, Newcastle, Australia, -32, 151)
+(null) : index = 6, 622
+
+(623, Nuremberg, Germany, 49, 11)
+(null) : index = 6, 623
+
+(624, Tlaquepaque, Mexico, 20, -103)
+(null) : index = 6, 624
+
+(625, Leipzig, Germany, 51, 12)
+(null) : index = 6, 625
+
+(626, Jamnagar, India, 22, 70)
+(null) : index = 6, 626
+
+(627, Aracaju, Brazil, -10, -37)
+(null) : index = 6, 627
+
+(628, San Pedro Sula, Honduras, 15, -88)
+(null) : index = 6, 628
+
+(629, Suez, Egypt, 29, 32)
+(null) : index = 6, 629
+
+(630, Albuquerque, United States, 35, -106)
+(null) : index = 6, 630
+
+(631, Tomsk, Russian Federation, 56, 84)
+(null) : index = 6, 631
+
+(632, Nanded, India, 19, 77)
+(null) : index = 6, 632
+
+(633, Saharanpur, India, 29, 77)
+(null) : index = 6, 633
+
+(634, Gulbarga, India, 17, 76)
+(null) : index = 6, 634
+
+(635, Bhatpara, India, 22, 88)
+(null) : index = 6, 635
+
+(636, Long Beach, United States, 33, -118)
+(null) : index = 6, 636
+
+(637, Feira de Santana, Brazil, -12, -38)
+(null) : index = 6, 637
+
+(638, Shah Alam, Malaysia, 3, 101)
+(null) : index = 6, 638
+
+(639, Himeji, Japan, 34, 134)
+(null) : index = 6, 639
+
+(640, Tuxtla Gutiérrez, Mexico, 16, -93)
+(null) : index = 6, 640
+
+(641, Gomel, Belarus, 52, 30)
+(null) : index = 6, 641
+
+(642, Dresden, Germany, 51, 13)
+(null) : index = 6, 642
+
+(643, Hargeysa, Somalia, 9, 44)
+(null) : index = 6, 643
+
+(644, Yazd, Iran, 31, 54)
+(null) : index = 6, 644
+
+(645, Sialkot, Pakistan, 32, 74)
+(null) : index = 6, 645
+
+(646, Kemerovo, Russian Federation, 55, 86)
+(null) : index = 6, 646
+
+(647, Yichang, China, 30, 111)
+(null) : index = 6, 647
+
+(648, The Hague, Netherlands, 52, 4)
+(null) : index = 6, 648
+
+(649, Cuautitlán Izcalli, Mexico, 19, -99)
+(null) : index = 6, 649
+
+(650, Yinchuan, China, 38, 106)
+(null) : index = 6, 650
+
+(651, Skopje, Macedonia, 42, 21)
+(null) : index = 6, 651
+
+(652, Vereeniging, South Africa, -26, 27)
+(null) : index = 6, 652
+
+(653, Maoming, China, 21, 110)
+(null) : index = 6, 653
+
+(654, Da Nang, Viet Nam, 16, 108)
+(null) : index = 6, 654
+
+(655, Londrina, Brazil, -23, -51)
+(null) : index = 6, 655
+
+(656, Jiaojiang, China, 28, 121)
+(null) : index = 6, 656
+
+(657, Matsudo, Japan, 35, 139)
+(null) : index = 6, 657
+
+(658, Juiz de Fora, Brazil, -21, -43)
+(null) : index = 6, 658
+
+(659, San Juan, Argentina, -31, -68)
+(null) : index = 6, 659
+
+(660, Liverpool, United Kingdom, 53, -3)
+(null) : index = 6, 660
+
+(661, Nishinomiya, Japan, 34, 135)
+(null) : index = 6, 661
+
+(662, Tula, Russian Federation, 54, 37)
+(null) : index = 6, 662
+
+(663, Kawaguchi, Japan, 35, 139)
+(null) : index = 6, 663
+
+(664, Sacramento, United States, 38, -121)
+(null) : index = 6, 664
+
+(665, Zunyi, China, 27, 106)
+(null) : index = 6, 665
+
+(666, Belford Roxo, Brazil, -22, -43)
+(null) : index = 6, 666
+
+(667, Jiaxing, China, 30, 120)
+(null) : index = 6, 667
+
+(668, Jammu, India, 32, 74)
+(null) : index = 6, 668
+
+(669, Fresno, United States, 36, -119)
+(null) : index = 6, 669
+
+(670, Lyon, France, 45, 4)
+(null) : index = 6, 670
+
+(671, Kananga, Congo-Kinshasa, -5, 22)
+(null) : index = 6, 671
+
+(672, Bloemfontein, South Africa, -29, 26)
+(null) : index = 6, 672
+
+(673, Xiangfan, China, 32, 112)
+(null) : index = 6, 673
+
+(674, Gdansk, Poland, 54, 18)
+(null) : index = 6, 674
+
+(675, Calabar, Nigeria, 4, 8)
+(null) : index = 6, 675
+
+(676, Panzhihua, China, 26, 101)
+(null) : index = 6, 676
+
+(677, Joinville, Brazil, -26, -48)
+(null) : index = 6, 677
+
+(678, Zamboanga, Philippines, 6, 122)
+(null) : index = 6, 678
+
+(679, Mixco, Guatemala, 14, -90)
+(null) : index = 6, 679
+
+(680, Antwerp, Belgium, 51, 4)
+(null) : index = 6, 680
+
+(681, New Orleans, United States, 29, -90)
+(null) : index = 6, 681
+
+(682, Ichikawa, Japan, 35, 139)
+(null) : index = 6, 682
+
+(683, Ujjain, India, 23, 75)
+(null) : index = 6, 683
+
+(684, Kirov, Russian Federation, 58, 49)
+(null) : index = 6, 684
+
+(685, Kota Kinabalu, Malaysia, 5, 116)
+(null) : index = 6, 685
+
+(686, Durango, Mexico, 24, -104)
+(null) : index = 6, 686
+
+(687, Niterói, Brazil, -22, -43)
+(null) : index = 6, 687
+
+(688, Hengshui, China, 37, 115)
+(null) : index = 6, 688
+
+(689, Chitungwiza, Zimbabwe, -17, 31)
+(null) : index = 6, 689
+
+(690, Santa Fe, Argentina, -31, -60)
+(null) : index = 6, 690
+
+(691, Pontianak, Indonesia, 0, 109)
+(null) : index = 6, 691
+
+(692, Leeds, United Kingdom, 53, -1)
+(null) : index = 6, 692
+
+(693, São João de Meriti, Brazil, -22, -43)
+(null) : index = 6, 693
+
+(694, Bacolod, Philippines, 10, 122)
+(null) : index = 6, 694
+
+(695, Manado, Indonesia, 1, 124)
+(null) : index = 6, 695
+
+(696, Jining, China, 35, 116)
+(null) : index = 6, 696
+
+(697, Constantine, Algeria, 36, 6)
+(null) : index = 6, 697
+
+(698, Mesa, United States, 33, -111)
+(null) : index = 6, 698
+
+(699, Urfa, Turkey, 37, 38)
+(null) : index = 6, 699
+
+(700, Cleveland, United States, 41, -81)
+(null) : index = 6, 700
+
+(701, Virginia Beach, United States, 36, -75)
+(null) : index = 6, 701
+
+(702, Chengde, China, 40, 118)
+(null) : index = 6, 702
+
+(703, Xuchang, China, 34, 113)
+(null) : index = 6, 703
+
+(704, Sheffield, United Kingdom, 53, -1)
+(null) : index = 6, 704
+
+(705, Cheboksary, Russian Federation, 56, 47)
+(null) : index = 6, 705
+
+(706, Cagayan de Oro, Philippines, 8, 124)
+(null) : index = 6, 706
+
+(707, Boksburg, South Africa, -26, 28)
+(null) : index = 6, 707
+
+(708, Rajpur, India, 22, 88)
+(null) : index = 6, 708
+
+(709, Amagasaki, Japan, 34, 135)
+(null) : index = 6, 709
+
+(710, Malatya, Turkey, 38, 38)
+(null) : index = 6, 710
+
+(711, Kansas City, United States, 39, -94)
+(null) : index = 6, 711
+
+(712, Kansas City, United States, 39, -94)
+(null) : index = 6, 712
+
+(713, Dasmariñas, Philippines, 14, 120)
+(null) : index = 6, 713
+
+(714, Pereira, Colombia, 4, -75)
+(null) : index = 6, 714
+
+(715, Carrefour, Haiti, 18, -72)
+(null) : index = 6, 715
+
+(716, Iquitos, Peru, -3, -73)
+(null) : index = 6, 716
+
+(717, Mawlamyine, Myanmar, 16, 97)
+(null) : index = 6, 717
+
+(718, Baoji, China, 34, 107)
+(null) : index = 6, 718
+
+(719, Kurashiki, Japan, 34, 133)
+(null) : index = 6, 719
+
+(720, Garoua, Cameroon, 9, 13)
+(null) : index = 6, 720
+
+(721, Mwanza, Tanzania, -2, 32)
+(null) : index = 6, 721
+
+(722, Kousséri, Cameroon, 12, 15)
+(null) : index = 6, 722
+
+(723, Tirunelveli, India, 8, 77)
+(null) : index = 6, 723
+
+(724, Edinburgh, United Kingdom, 55, -3)
+(null) : index = 6, 724
+
+(725, Malegaon, India, 20, 74)
+(null) : index = 6, 725
+
+(726, Matamoros, Mexico, 25, -97)
+(null) : index = 6, 726
+
+(727, Kaliningrad, Russian Federation, 54, 20)
+(null) : index = 6, 727
+
+(728, Ananindeua, Brazil, -1, -48)
+(null) : index = 6, 728
+
+(729, Balikpapan, Indonesia, -1, 116)
+(null) : index = 6, 729
+
+(730, Dadiangas, Philippines, 6, 125)
+(null) : index = 6, 730
+
+(731, Namangan, Uzbekistan, 40, 71)
+(null) : index = 6, 731
+
+(732, Katsina, Nigeria, 12, 7)
+(null) : index = 6, 732
+
+(733, Welkom, South Africa, -27, 26)
+(null) : index = 6, 733
+
+(734, Santa Marta, Colombia, 11, -74)
+(null) : index = 6, 734
+
+(735, El Mahalla el Kubra, Egypt, 30, 31)
+(null) : index = 6, 735
+
+(736, Bristol, United Kingdom, 51, -2)
+(null) : index = 6, 736
+
+(737, Yokosuka, Japan, 35, 139)
+(null) : index = 6, 737
+
+(738, Akola, India, 20, 77)
+(null) : index = 6, 738
+
+(739, Belgaum, India, 15, 74)
+(null) : index = 6, 739
+
+(740, Luqiao, China, 28, 121)
+(null) : index = 6, 740
+
+(741, Bryansk, Russian Federation, 53, 34)
+(null) : index = 6, 741
+
+(742, Xalapa, Mexico, 19, -96)
+(null) : index = 6, 742
+
+(743, Barcelona, Venezuela, 10, -64)
+(null) : index = 6, 743
+
+(744, Chaozhou, China, 23, 116)
+(null) : index = 6, 744
+
+(745, Gaya, India, 24, 85)
+(null) : index = 6, 745
+
+(746, Bratislava, Slovakia, 48, 17)
+(null) : index = 6, 746
+
+(747, Atlanta, United States, 33, -84)
+(null) : index = 6, 747
+
+(748, Likasi, Congo-Kinshasa, -10, 26)
+(null) : index = 6, 748
+
+(749, Luxor, Egypt, 25, 32)
+(null) : index = 6, 749
+
+(750, Ibagué, Colombia, 4, -75)
+(null) : index = 6, 750
+
+(751, East London, South Africa, -33, 27)
+(null) : index = 6, 751
+
+(752, Shaoxing, China, 30, 120)
+(null) : index = 6, 752
+
+(753, Erzurum, Turkey, 39, 41)
+(null) : index = 6, 753
+
+(754, Ivanovo, Russian Federation, 56, 40)
+(null) : index = 6, 754
+
+(755, Akure, Nigeria, 7, 5)
+(null) : index = 6, 755
+
+(756, Asyut, Egypt, 27, 31)
+(null) : index = 6, 756
+
+(757, Kenitra, Morocco, 34, -6)
+(null) : index = 6, 757
+
+(758, Jambi, Indonesia, -1, 103)
+(null) : index = 6, 758
+
+(759, Korba, India, 22, 82)
+(null) : index = 6, 759
+
+(760, Bokaro, India, 23, 85)
+(null) : index = 6, 760
+
+(761, San Juan, United States, 18, -66)
+(null) : index = 6, 761
+
+(762, Sukkur, Pakistan, 27, 68)
+(null) : index = 6, 762
+
+(763, Auckland, New Zealand, -36, 174)
+(null) : index = 6, 763
+
+(764, Mangaluru, India, 12, 74)
+(null) : index = 6, 764
+
+(765, Luohe, China, 33, 114)
+(null) : index = 6, 765
+
+(766, Shymkent, Kazakhstan, 42, 69)
+(null) : index = 6, 766
+
+(767, Hsinchu, Taiwan, 24, 120)
+(null) : index = 6, 767
+
+(768, Szczecin, Poland, 53, 14)
+(null) : index = 6, 768
+
+(769, Omaha, United States, 41, -95)
+(null) : index = 6, 769
+
+(770, Magnitogorsk, Russian Federation, 53, 59)
+(null) : index = 6, 770
+
+(771, Jhansi, India, 25, 78)
+(null) : index = 6, 771
+
+(772, Florianópolis, Brazil, -27, -48)
+(null) : index = 6, 772
+
+(773, Santos, Brazil, -23, -46)
+(null) : index = 6, 773
+
+(774, Toulouse, France, 43, 1)
+(null) : index = 6, 774
+
+(775, Maturín, Venezuela, 9, -63)
+(null) : index = 6, 775
+
+(776, Ardabil, Iran, 38, 48)
+(null) : index = 6, 776
+
+(777, Murcia, Spain, 37, -1)
+(null) : index = 6, 777
+
+(778, Chaoyang, China, 41, 120)
+(null) : index = 6, 778
+
+(779, Kursk, Russian Federation, 51, 36)
+(null) : index = 6, 779
+
+(780, Kitchener, Canada, 43, -80)
+(null) : index = 6, 780
+
+(781, Panamá, Panama, 8, -79)
+(null) : index = 6, 781
+
+(782, Shiyan, China, 32, 110)
+(null) : index = 6, 782
+
+(783, Santiago del Estero, Argentina, -27, -64)
+(null) : index = 6, 783
+
+(784, Biên Hòa, Viet Nam, 10, 106)
+(null) : index = 6, 784
+
+(785, Resistencia, Argentina, -27, -58)
+(null) : index = 6, 785
+
+(786, Ribeirão das Neves, Brazil, -19, -44)
+(null) : index = 6, 786
+
+(787, Hirakata, Japan, 34, 135)
+(null) : index = 6, 787
+
+(788, Denpasar, Indonesia, -8, 115)
+(null) : index = 6, 788
+
+(789, Tanta, Egypt, 30, 30)
+(null) : index = 6, 789
+
+(790, Newcastle, South Africa, -27, 29)
+(null) : index = 6, 790
+
+(791, Jixi, China, 45, 130)
+(null) : index = 6, 791
+
+(792, Zanzibar, Tanzania, -6, 39)
+(null) : index = 6, 792
+
+(793, Tonalá, Mexico, 20, -103)
+(null) : index = 6, 793
+
+(794, Kassala, Sudan, 15, 36)
+(null) : index = 6, 794
+
+(795, Kitwe, Zambia, -12, 28)
+(null) : index = 6, 795
+
+(796, Tver, Russian Federation, 56, 35)
+(null) : index = 6, 796
+
+(797, Machida, Japan, 35, 139)
+(null) : index = 6, 797
+
+(798, Yangjiang, China, 21, 111)
+(null) : index = 6, 798
+
+(799, Tiruppur, India, 11, 77)
+(null) : index = 6, 799
+
+(800, Keelung, Taiwan, 25, 121)
+(null) : index = 6, 800
+
+(801, Villa Nueva, Guatemala, 14, -90)
+(null) : index = 6, 801
+
+(802, Manchester, United Kingdom, 53, -2)
+(null) : index = 6, 802
+
+(803, Maracay, Venezuela, 10, -67)
+(null) : index = 6, 803
+
+(804, Vila Velha, Brazil, -20, -40)
+(null) : index = 6, 804
+
+(805, Weifang, China, 36, 119)
+(null) : index = 6, 805
+
+(806, Fujisawa, Japan, 35, 139)
+(null) : index = 6, 806
+
+(807, Oakland, United States, 37, -122)
+(null) : index = 6, 807
+
+(808, Ndola, Zambia, -12, 28)
+(null) : index = 6, 808
+
+(809, Samsun, Turkey, 41, 36)
+(null) : index = 6, 809
+
+(810, Kollam, India, 8, 76)
+(null) : index = 6, 810
+
+(811, Serra, Brazil, -20, -40)
+(null) : index = 6, 811
+
+(812, Tallinn, Estonia, 59, 24)
+(null) : index = 6, 812
+
+(813, Bamenda, Cameroon, 5, 10)
+(null) : index = 6, 813
+
+(814, Bello, Colombia, 6, -75)
+(null) : index = 6, 814
+
+(815, Xinpu, China, 34, 119)
+(null) : index = 6, 815
+
+(816, Sandakan, Malaysia, 5, 118)
+(null) : index = 6, 816
+
+(817, Qandahar, Afghanistan, 31, 65)
+(null) : index = 6, 817
+
+(818, Diadema, Brazil, -23, -46)
+(null) : index = 6, 818
+
+(819, Corrientes, Argentina, -27, -58)
+(null) : index = 6, 819
+
+(820, Samut Prakan, Thailand, 13, 100)
+(null) : index = 6, 820
+
+(821, Nampula, Mozambique, -15, 39)
+(null) : index = 6, 821
+
+(822, Bissau, Guinea-Bissau, 11, -15)
+(null) : index = 6, 822
+
+(823, Iloilo, Philippines, 10, 122)
+(null) : index = 6, 823
+
+(824, Campos, Brazil, -21, -41)
+(null) : index = 6, 824
+
+(825, Bochum, Germany, 51, 7)
+(null) : index = 6, 825
+
+(826, Misratah, Libya, 32, 15)
+(null) : index = 6, 826
+
+(827, Mauá, Brazil, -23, -46)
+(null) : index = 6, 827
+
+(828, Abomey-Calavi, Benin, 6, 2)
+(null) : index = 6, 828
+
+(829, Toyonaka, Japan, 34, 135)
+(null) : index = 6, 829
+
+(830, Honolulu, United States, 21, -157)
+(null) : index = 6, 830
+
+(831, Betim, Brazil, -19, -44)
+(null) : index = 6, 831
+
+(832, Fukuyama, Japan, 34, 133)
+(null) : index = 6, 832
+
+(833, Miami, United States, 25, -80)
+(null) : index = 6, 833
+
+(834, Pasto, Colombia, 1, -77)
+(null) : index = 6, 834
+
+(835, Tulsa, United States, 36, -95)
+(null) : index = 6, 835
+
+(836, Caxias do Sul, Brazil, -29, -51)
+(null) : index = 6, 836
+
+(837, Nizhniy Tagil, Russian Federation, 57, 59)
+(null) : index = 6, 837
+
+(838, Huancayo, Peru, -12, -75)
+(null) : index = 6, 838
+
+(839, Dezhou, China, 37, 116)
+(null) : index = 6, 839
+
+(840, Palma, Spain, 39, 2)
+(null) : index = 6, 840
+
+(841, Krugersdorp, South Africa, -26, 27)
+(null) : index = 6, 841
+
+(842, Panihati, India, 22, 88)
+(null) : index = 6, 842
+
+(843, Chungho, Taiwan, 24, 121)
+(null) : index = 6, 843
+
+(844, Toyohashi, Japan, 34, 137)
+(null) : index = 6, 844
+
+(845, Cimahi, Indonesia, -6, 107)
+(null) : index = 6, 845
+
+(846, Brno, Czech Republic, 49, 16)
+(null) : index = 6, 846
+
+(847, Delmas, Haiti, 18, -72)
+(null) : index = 6, 847
+
+(848, Zhoukou, China, 33, 114)
+(null) : index = 6, 848
+
+(849, Makiyivka, Ukraine, 48, 37)
+(null) : index = 6, 849
+
+(850, Kahramanmaras, Turkey, 37, 36)
+(null) : index = 6, 850
+
+(851, Nonthaburi, Thailand, 13, 100)
+(null) : index = 6, 851
+
+(852, Taoyüan, Taiwan, 24, 121)
+(null) : index = 6, 852
+
+(853, Tirana, Albania, 41, 19)
+(null) : index = 6, 853
+
+(854, São José do Rio Prêto, Brazil, -20, -49)
+(null) : index = 6, 854
+
+(855, Kaunas, Lithuania, 54, 23)
+(null) : index = 6, 855
+
+(856, Xuanhua, China, 40, 115)
+(null) : index = 6, 856
+
+(857, Colorado Springs, United States, 38, -104)
+(null) : index = 6, 857
+
+(858, Seremban, Malaysia, 2, 101)
+(null) : index = 6, 858
+
+(859, Ife, Nigeria, 7, 4)
+(null) : index = 6, 859
+
+(860, Pingxiang, China, 27, 113)
+(null) : index = 6, 860
+
+(861, Van, Turkey, 38, 43)
+(null) : index = 6, 861
+
+(862, Bobo Dioulasso, Burkina Faso, 11, -4)
+(null) : index = 6, 862
+
+(863, Tel Aviv-Yafo, Israel, 32, 34)
+(null) : index = 6, 863
+
+(864, Abadan, Iran, 30, 48)
+(null) : index = 6, 864
+
+(865, Minneapolis, United States, 44, -93)
+(null) : index = 6, 865
+
+(866, Arlington, United States, 32, -97)
+(null) : index = 6, 866
+
+(867, Ahmadnagar, India, 19, 74)
+(null) : index = 6, 867
+
+(868, Bologna, Italy, 44, 11)
+(null) : index = 6, 868
+
+(869, Dhule, India, 20, 74)
+(null) : index = 6, 869
+
+(870, Olinda, Brazil, -8, -34)
+(null) : index = 6, 870
+
+(871, Bydgoszcz, Poland, 53, 18)
+(null) : index = 6, 871
+
+(872, Kuantan, Malaysia, 3, 103)
+(null) : index = 6, 872
+
+(873, Petare, Venezuela, 10, -66)
+(null) : index = 6, 873
+
+(874, Xico, Mexico, 19, -98)
+(null) : index = 6, 874
+
+(875, Las Palmas, Spain, 28, -15)
+(null) : index = 6, 875
+
+(876, Tétouan, Morocco, 35, -5)
+(null) : index = 6, 876
+
+(877, Larkana, Pakistan, 27, 68)
+(null) : index = 6, 877
+
+(878, Christchurch, New Zealand, -43, 172)
+(null) : index = 6, 878
+
+(879, Wuppertal, Germany, 51, 7)
+(null) : index = 6, 879
+
+(880, Stavropol, Russian Federation, 45, 41)
+(null) : index = 6, 880
+
+(881, Villahermosa, Mexico, 17, -92)
+(null) : index = 6, 881
+
+(882, Toyota, Japan, 35, 137)
+(null) : index = 6, 882
+
+(883, Zhaoqing, China, 23, 112)
+(null) : index = 6, 883
+
+(884, Bhagalpur, India, 25, 87)
+(null) : index = 6, 884
+
+(885, Shekhupura, Pakistan, 31, 73)
+(null) : index = 6, 885
+
+(886, Carapicuíba, Brazil, -23, -46)
+(null) : index = 6, 886
+
+(887, Sanchung, Taiwan, 25, 121)
+(null) : index = 6, 887
+
+(888, Tamale, Ghana, 9, 0)
+(null) : index = 6, 888
+
+(889, Ulan-Ude, Russian Federation, 51, 107)
+(null) : index = 6, 889
+
+(890, Lublin, Poland, 51, 22)
+(null) : index = 6, 890
+
+(891, Neuquen, Argentina, -38, -68)
+(null) : index = 6, 891
+
+(892, Anqing, China, 30, 117)
+(null) : index = 6, 892
+
+(893, Taraz, Kazakhstan, 42, 71)
+(null) : index = 6, 893
+
+(894, Manizales, Colombia, 5, -75)
+(null) : index = 6, 894
+
+(895, Sanmenxia, China, 34, 111)
+(null) : index = 6, 895
+
+(896, Zanjan, Iran, 36, 48)
+(null) : index = 6, 896
+
+(897, Iwaki, Japan, 37, 140)
+(null) : index = 6, 897
+
+(898, Bacoor, Philippines, 14, 120)
+(null) : index = 6, 898
+
+(899, Asahikawa, Japan, 43, 142)
+(null) : index = 6, 899
+
+(900, Ambon, Indonesia, -3, 128)
+(null) : index = 6, 900
+
+(901, Tabuk, Saudi Arabia, 28, 36)
+(null) : index = 6, 901
+
+(902, Wichita, United States, 37, -97)
+(null) : index = 6, 902
+
+(903, Samarinda, Indonesia, 0, 117)
+(null) : index = 6, 903
+
+(904, Mazatlán, Mexico, 23, -106)
+(null) : index = 6, 904
+
+(905, Takatsuki, Japan, 34, 135)
+(null) : index = 6, 905
+
+(906, Thessaloníki, Greece, 40, 22)
+(null) : index = 6, 906
+
+(907, Neiva, Colombia, 2, -75)
+(null) : index = 6, 907
+
+(908, Okazaki, Japan, 34, 137)
+(null) : index = 6, 908
+
+(909, Apodaca, Mexico, 25, -100)
+(null) : index = 6, 909
+
+(910, Vinnytsya, Ukraine, 49, 28)
+(null) : index = 6, 910
+
+(911, Anshun, China, 26, 105)
+(null) : index = 6, 911
+
+(912, Suita, Japan, 34, 135)
+(null) : index = 6, 912
+
+(913, Tema, Ghana, 5, 0)
+(null) : index = 6, 913
+
+(914, Ixtapaluca, Mexico, 19, -98)
+(null) : index = 6, 914
+
+(915, Muzaffarnagar, India, 29, 77)
+(null) : index = 6, 915
+
+(916, Nuevo Laredo, Mexico, 27, -99)
+(null) : index = 6, 916
+
+(917, Bilbao, Spain, 43, -2)
+(null) : index = 6, 917
+
+(918, Sanandaj, Iran, 35, 46)
+(null) : index = 6, 918
+
+(919, Latur, India, 18, 76)
+(null) : index = 6, 919
+
+(920, Campina Grande, Brazil, -7, -35)
+(null) : index = 6, 920
+
+(921, Camagüey, Cuba, 21, -77)
+(null) : index = 6, 921
+
+(922, Florence, Italy, 43, 11)
+(null) : index = 6, 922
+
+(923, London, Canada, 42, -81)
+(null) : index = 6, 923
+
+(924, Chifeng, China, 42, 118)
+(null) : index = 6, 924
+
+(925, Zurich, Switzerland, 47, 8)
+(null) : index = 6, 925
+
+(926, Astana, Kazakhstan, 51, 71)
+(null) : index = 6, 926
+
+(927, Belgorod, Russian Federation, 50, 36)
+(null) : index = 6, 927
+
+(928, Kusti, Sudan, 13, 32)
+(null) : index = 6, 928
+
+(929, Qitaihe, China, 45, 130)
+(null) : index = 6, 929
+
+(930, Doha, Qatar, 25, 51)
+(null) : index = 6, 930
+
+(931, Turmero, Venezuela, 10, -67)
+(null) : index = 6, 931
+
+(932, Arkhangelsk, Russian Federation, 64, 40)
+(null) : index = 6, 932
+
+(933, Boma, Congo-Kinshasa, -5, 13)
+(null) : index = 6, 933
+
+(934, Cuernavaca, Mexico, 18, -99)
+(null) : index = 6, 934
+
+(935, Kurgan, Russian Federation, 55, 65)
+(null) : index = 6, 935
+
+(936, Santa Ana, United States, 33, -117)
+(null) : index = 6, 936
+
+(937, Soledad, Colombia, 10, -74)
+(null) : index = 6, 937
+
+(938, Zhongshan, China, 22, 113)
+(null) : index = 6, 938
+
+(939, Piracicaba, Brazil, -22, -47)
+(null) : index = 6, 939
+
+(940, Buraydah, Saudi Arabia, 26, 43)
+(null) : index = 6, 940
+
+(941, Nice, France, 43, 7)
+(null) : index = 6, 941
+
+(942, Jhang, Pakistan, 31, 72)
+(null) : index = 6, 942
+
+(943, Arusha, Tanzania, -3, 36)
+(null) : index = 6, 943
+
+(944, Ambattur, India, 13, 80)
+(null) : index = 6, 944
+
+(945, Iseyin, Nigeria, 7, 3)
+(null) : index = 6, 945
+
+(946, Koriyama, Japan, 37, 140)
+(null) : index = 6, 946
+
+(947, Kashiwa, Japan, 35, 139)
+(null) : index = 6, 947
+
+(948, Aksu, China, 41, 80)
+(null) : index = 6, 948
+
+(949, Irapuato, Mexico, 20, -101)
+(null) : index = 6, 949
+
+(950, Tokorozawa, Japan, 35, 139)
+(null) : index = 6, 950
+
+(951, Leicester, United Kingdom, 52, -1)
+(null) : index = 6, 951
+
+(952, Leicester, United Kingdom, 52, -1)
+(null) : index = 6, 952
+
+(953, Kaluga, Russian Federation, 54, 36)
+(null) : index = 6, 953
+
+(954, Macapá, Brazil, 0, -51)
+(null) : index = 6, 954
+
+(955, Raleigh, United States, 35, -78)
+(null) : index = 6, 955
+
+(956, Kawagoe, Japan, 35, 139)
+(null) : index = 6, 956
+
+(957, Tungi, Bangladesh, 23, 90)
+(null) : index = 6, 957
+
+(958, Bellary, India, 15, 76)
+(null) : index = 6, 958
+
+(959, Itaquaquecetuba, Brazil, -23, -46)
+(null) : index = 6, 959
+
+(960, San José, Costa Rica, 9, -84)
+(null) : index = 6, 960
+
+(961, Bauru, Brazil, -22, -49)
+(null) : index = 6, 961
+
+(962, Tieling, China, 42, 123)
+(null) : index = 6, 962
+
+(963, Anaheim, United States, 33, -117)
+(null) : index = 6, 963
+
+(964, Qazvin, Iran, 36, 50)
+(null) : index = 6, 964
+
+(965, Orël, Russian Federation, 52, 36)
+(null) : index = 6, 965
+
+(966, Muzaffarpur, India, 26, 85)
+(null) : index = 6, 966
+
+(967, Kamarhati, India, 22, 88)
+(null) : index = 6, 967
+
+(968, Wad Madani, Sudan, 14, 33)
+(null) : index = 6, 968
+
+(969, Tucheng, Taiwan, 24, 121)
+(null) : index = 6, 969
+
+(970, Montes Claros, Brazil, -16, -43)
+(null) : index = 6, 970
+
+(971, Plovdiv, Bulgaria, 42, 24)
+(null) : index = 6, 971
+
+(972, Khorramshahr, Iran, 30, 48)
+(null) : index = 6, 972
+
+(973, Cariacica, Brazil, -20, -40)
+(null) : index = 6, 973
+
+(974, Mathura, India, 27, 77)
+(null) : index = 6, 974
+
+(975, Bujumbura, Burundi, -3, 29)
+(null) : index = 6, 975
+
+(976, Khorramabad, Iran, 33, 48)
+(null) : index = 6, 976
+
+(977, Soyapango, El Salvador, 13, -89)
+(null) : index = 6, 977
+
+(978, Patiala, India, 30, 76)
+(null) : index = 6, 978
+
+(979, Pavlodar, Kazakhstan, 52, 76)
+(null) : index = 6, 979
+
+(980, Asfi, Morocco, 32, -9)
+(null) : index = 6, 980
+
+(981, Chandrapur, India, 19, 79)
+(null) : index = 6, 981
+
+(982, Pacet, Indonesia, -6, 107)
+(null) : index = 6, 982
+
+(983, Canoas, Brazil, -29, -51)
+(null) : index = 6, 983
+
+(984, Sochi, Russian Federation, 43, 39)
+(null) : index = 6, 984
+
+(985, Bielefeld, Germany, 52, 8)
+(null) : index = 6, 985
+
+(986, Yanji, China, 42, 129)
+(null) : index = 6, 986
+
+(987, Piura, Peru, -5, -80)
+(null) : index = 6, 987
+
+(988, Bhilwara, India, 25, 74)
+(null) : index = 6, 988
+
+(989, Moji das Cruzes, Brazil, -23, -46)
+(null) : index = 6, 989
+
+(990, Thrissur, India, 10, 76)
+(null) : index = 6, 990
+
+(991, Brahmapur, India, 19, 84)
+(null) : index = 6, 991
+
+(992, Tampa, United States, 27, -82)
+(null) : index = 6, 992
+
+(993, São Vicente, Brazil, -23, -46)
+(null) : index = 6, 993
+
+(994, Canberra, Australia, -35, 149)
+(null) : index = 6, 994
+
+(995, Volzhskiy, Russian Federation, 48, 44)
+(null) : index = 6, 995
+
+(996, Villavicencio, Colombia, 4, -73)
+(null) : index = 6, 996
+
+(997, Jundiaí, Brazil, -23, -46)
+(null) : index = 6, 997
+
+(998, San Miguelito, Panama, 9, -79)
+(null) : index = 6, 998
+
+(999, Smolensk, Russian Federation, 54, 32)
+(null) : index = 6, 999
+
+(1000, Saint Louis, United States, 38, -90)
+(null) : index = 6, 1000
+
+(1001, Thiès, Senegal, 14, -16)
+(null) : index = 6, 1001
+
+(1002, Pelotas, Brazil, -31, -52)
+(null) : index = 6, 1002
+
+(1003, Kherson, Ukraine, 46, 32)
+(null) : index = 6, 1003
+
+(1004, Shahjahanpur, India, 27, 79)
+(null) : index = 6, 1004
+
+(1005, Chimbote, Peru, -9, -78)
+(null) : index = 6, 1005
+
+(1006, Akita, Japan, 39, 140)
+(null) : index = 6, 1006
+
+(1007, Maroua, Cameroon, 10, 14)
+(null) : index = 6, 1007
+
+(1008, Pachuca, Mexico, 20, -98)
+(null) : index = 6, 1008
+
+(1009, Anápolis, Brazil, -16, -48)
+(null) : index = 6, 1009
+
+(1010, Shimoga, India, 13, 75)
+(null) : index = 6, 1010
+
+(1011, Pittsburgh, United States, 40, -79)
+(null) : index = 6, 1011
+
+(1012, Samarkand, Uzbekistan, 39, 66)
+(null) : index = 6, 1012
+
+(1013, Murmansk, Russian Federation, 68, 33)
+(null) : index = 6, 1013
+
+(1014, Holguín, Cuba, 20, -76)
+(null) : index = 6, 1014
+
+(1015, Öskemen, Kazakhstan, 49, 82)
+(null) : index = 6, 1015
+
+(1016, Eslamshahr, Iran, 35, 51)
+(null) : index = 6, 1016
+
+(1017, Shangrao, China, 28, 117)
+(null) : index = 6, 1017
+
+(1018, Mataram, Indonesia, -8, 116)
+(null) : index = 6, 1018
+
+(1019, Andijon, Uzbekistan, 40, 72)
+(null) : index = 6, 1019
+
+(1020, Iasi, Romania, 47, 27)
+(null) : index = 6, 1020
+
+(1021, Poltava, Ukraine, 49, 34)
+(null) : index = 6, 1021
+
+(1022, Koshigaya, Japan, 35, 139)
+(null) : index = 6, 1022
+
+(1023, Vladikavkaz, Russian Federation, 43, 44)
+(null) : index = 6, 1023
+
+(1024, Hrodna, Belarus, 53, 23)
+(null) : index = 6, 1024
+
+(1025, Katowice, Poland, 50, 19)
+(null) : index = 6, 1025
+
+(1026, Rohtak, India, 28, 76)
+(null) : index = 6, 1026
+
+(1027, Ostrava, Czech Republic, 49, 18)
+(null) : index = 6, 1027
+
+(1028, Baicheng, China, 45, 122)
+(null) : index = 6, 1028
+
+(1029, Cluj-Napoca, Romania, 46, 23)
+(null) : index = 6, 1029
+
+(1030, Calamba, Philippines, 14, 121)
+(null) : index = 6, 1030
+
+(1031, Bauchi, Nigeria, 10, 9)
+(null) : index = 6, 1031
+
+(1032, Valladolid, Spain, 41, -4)
+(null) : index = 6, 1032
+
+(1033, Armenia, Colombia, 4, -75)
+(null) : index = 6, 1033
+
+(1034, Timisoara, Romania, 45, 21)
+(null) : index = 6, 1034
+
+(1035, Tambun, Indonesia, -6, 107)
+(null) : index = 6, 1035
+
+(1036, Bonn, Germany, 50, 7)
+(null) : index = 6, 1036
+
+(1037, Soacha, Colombia, 4, -74)
+(null) : index = 6, 1037
+
+(1038, Ikorodu, Nigeria, 6, 3)
+(null) : index = 6, 1038
+
+(1039, Posadas, Argentina, -27, -55)
+(null) : index = 6, 1039
+
+(1040, Coacalco, Mexico, 19, -99)
+(null) : index = 6, 1040
+
+(1041, Denizli, Turkey, 37, 29)
+(null) : index = 6, 1041
+
+(1042, Jinxi, China, 40, 120)
+(null) : ind
