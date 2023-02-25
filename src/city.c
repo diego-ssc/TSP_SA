@@ -62,6 +62,8 @@ City* city_new(int id, char* name,
 void city_free(City* city) {
   if (city->name)
     free(city->name);
+  if (city->country)
+    free(city->country);
   free(city);
 }
 
@@ -83,7 +85,7 @@ City** city_array(int n) {
 /* Frees the memory used by the array of cities. */
 void city_array_free(City*** cities, int n) {
   int a = n;
-  while ((n--)) 
+  while ((n--))
     city_free(*((*cities) + a-(n+1)));
   free(*cities);
 }
