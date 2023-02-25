@@ -48,9 +48,19 @@ typedef struct _Data {
 /* Creates a new Database Loader. */
 Database_loader* loader_new() {
   Database_loader* loader = malloc(sizeof(struct _Database_loader));
-  loader->cities = city_array(CITY_NUMBER);
   if (!loader)
     return 0;
+  loader->cities = city_array(CITY_NUMBER);
+  if (!loader->cities) {
+    free(loader);
+    return 0;
+  }
+  loader->n = calloc(1, sizeof(int));
+  if (!loader->n) {
+    free(loader->cities);
+    free(loader);
+    return 0;
+  }
   return loader;
 }
 
@@ -60,6 +70,8 @@ void loader_free(Database_loader* loader) {
     city_array_free(&(loader->cities), CITY_NUMBER);
   if (loader->path)
     free(loader->path);
+  if (loader->n)
+    free(loader->n);
   free(loader);
 }
 
@@ -142,8 +154,6 @@ static void loader_load_connections(Database_loader* loader) {
 
 /* Loads the database. */
 void loader_load(Database_loader* loader) {
-  int n = 0;
-  loader->n = &n;
   loader_load_cities(loader);
   loader_load_connections(loader);
 }
