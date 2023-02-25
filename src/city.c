@@ -18,8 +18,7 @@
  */
 
 #include <stdlib.h>
-
-#include <stdio.h>
+#include <string.h>
 
 #include "city.h"
 
@@ -43,13 +42,16 @@ City* city_new(int id, char* name,
   city->id = id;
   city->x = x;
   city->y = y;
-  city->country = country;
+  city->country = malloc(strlen(country)+1);
+  strcpy(city->country, country);
   if (!city->country) {
     free(city);
     return 0;
   }
-  city->name = name;
+  city->name = malloc(strlen(name)+1);
+  strcpy(city->name, name);
   if (!city->name) {
+    free(city->country);
     free(city);
     return 0;
   }
@@ -58,7 +60,8 @@ City* city_new(int id, char* name,
 
 /* Frees the memory used by the city. */
 void city_free(City* city) {
-  printf("Eliminando: %s\n",city->name);
+  if (city->name)
+    free(city->name);
   free(city);
 }
 
@@ -80,16 +83,12 @@ City** city_array(int n) {
 /* Frees the memory used by the array of cities. */
 void city_array_free(City*** cities, int n) {
   int a = n;
-  while ((n--)) {
-    printf("Liberando i: %d; Ciudad: %s", a-(n+1), city_name(*((*cities) + a-(n+1))));
+  while ((n--)) 
     city_free(*((*cities) + a-(n+1)));
-  }
   free(*cities);
 }
 
 /* Sets the i-th element of a cities array. */
 void city_array_set_element(City*** city_1, City** city_2, int i) {
   *((*city_1) + i) = *city_2;
-  printf("guardado en índice: %d; a la ciudad: %s; dentro del arreglo: %s\n",
-         i, city_name(*city_2), city_name(*((*city_1) + i))); //city_name(**(city_1 + i))
 }

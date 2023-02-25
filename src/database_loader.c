@@ -24,11 +24,12 @@
 
 #include "database_loader.h"
 
+#define CITY_NUMBER 1092
+
 /* The database loader structure. */
 struct _Database_loader {
   City** cities;
-  /* int connections[123403][123403]; */
-  int connections[12][12];
+  int connections[CITY_NUMBER][CITY_NUMBER];
   sqlite3 *db;
   char *path;
   char *zErrMsg;
@@ -47,7 +48,7 @@ typedef struct _Data {
 /* Creates a new Database Loader. */
 Database_loader* loader_new() {
   Database_loader* loader = malloc(sizeof(struct _Database_loader));
-  loader->cities = city_array(1092);
+  loader->cities = city_array(CITY_NUMBER);
   if (!loader)
     return 0;
   return loader;
@@ -55,12 +56,10 @@ Database_loader* loader_new() {
 
 /* Frees the memory used by the database loader. */
 void loader_free(Database_loader* loader) {
-  if (loader->zErrMsg)
-    sqlite3_free(loader->zErrMsg);
-  if (loader->db)
-    sqlite3_free(loader->db);
   if (loader->cities)
-    city_array_free(&(loader->cities), 1092);
+    city_array_free(&(loader->cities), CITY_NUMBER);
+  if (loader->path)
+    free(loader->path);
   free(loader);
 }
 
@@ -70,29 +69,20 @@ static int callback(void *data, int numCol,
   int i,*j;
 
   Database_loader* loader = ((Data*)data)->loader;
-  printf("Dirección: %p\n", loader);
   void(*f)(Database_loader*, int*, int*, char**) = ((Data*)data)->f;
   j = ((Data*)data)->j;
   i = 0;
-  while (i < numCol) {
-    printf("%s : index = %d, %d\n", *(colData + i), i, *j);
+  while (i < numCol)
     (*f)(loader, &i, j, colData);
-    printf("A.%s : index = %d, %d\n", *(colData + i), i, *j);
-  }
   return 0;
 }
 
 /* Fills up the database loader cities array. */
 static void fill_cities(Database_loader* loader,
                         int* i, int* j, char** data) {
-  printf("(%d, %s, %s, %d, %d)\n\n",
-         atoi(*(data+*i)), *(data+*i+1), *(data+*i+2),
-         atoi(*(data+*i+4)), atoi(*(data+*i+5)));
   City* city = city_new(atoi(*(data+*i)), *(data+*i+1), *(data+*i+2),
                         atoi(*(data+*i+4)), atoi(*(data+*i+5)));
-  city_array_set_element(&loader->cities,&city, *j);
-  printf("guardado en índice: %d; a la ciudad: %s; dentro del arreglo: %s\n",
-         *j, city_name(city), city_name(*(loader->cities+*j)));
+  city_array_set_element(&(loader->cities),&city, *j);
   (*i) += 6;
   (*j)++;
 }
@@ -134,11 +124,6 @@ void loader_load_cities(Database_loader* loader) {
     fprintf(stderr, "SQL error: %s\n", loader->zErrMsg);
     sqlite3_free(loader->zErrMsg);
   }
-  /*   printf("name: %s\n",city_name(*(loader->cities+i))); */
-  printf("Dirección final: %p\n", loader);
-  for (int i = 0; i < 5; ++i)
-    printf("guardado en índice: %d; a la ciudad: %s\n",
-           i, city_name(*(loader->cities+i)));
   free(data);
 }
 
