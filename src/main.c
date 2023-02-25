@@ -25,7 +25,6 @@
 int main(int argc, char** argv) {
   Database_loader* loader = loader_new();
   loader_open(loader);
-  /* loader_load_connections(loader); */
-  loader_load_cities(loader);
+  loader_load(loader);
   loader_free(loader);
 }

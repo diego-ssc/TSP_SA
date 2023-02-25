@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <stdio.h>
+
 #include "city.h"
 
 /* The city structure */
