@@ -35,14 +35,14 @@ struct _Database_loader {
   char *zErrMsg;
   char *sql;
   int rc;
+  int *n;
 };
 
 /* The callback data structure. */
 typedef struct _Data {
   Database_loader* loader;
   void (*f)(Database_loader*,
-            int*, int*,char**);
-  int* j;
+            int*, char**);
 } Data;
 
 /* Creates a new Database Loader. */
@@ -66,32 +66,32 @@ void loader_free(Database_loader* loader) {
 /* The callback function of the sql queries */
 static int callback(void *data, int numCol,
                     char **colData, char **colName) {
-  int i,*j;
+  int i;
 
   Database_loader* loader = ((Data*)data)->loader;
-  void(*f)(Database_loader*, int*, int*, char**) = ((Data*)data)->f;
-  j = ((Data*)data)->j;
+  void(*f)(Database_loader*, int*, char**) = ((Data*)data)->f;
   i = 0;
   while (i < numCol)
-    (*f)(loader, &i, j, colData);
+    (*f)(loader, &i, colData);
   return 0;
 }
 
 /* Fills up the database loader cities array. */
 static void fill_cities(Database_loader* loader,
-                        int* i, int* j, char** data) {
+                        int* i, char** data) {
   City* city = city_new(atoi(*(data+*i)), *(data+*i+1), *(data+*i+2),
                         atoi(*(data+*i+4)), atoi(*(data+*i+5)));
-  city_array_set_element(&(loader->cities),&city, *j);
-  (*i) += 6;
-  (*j)++;
+  city_array_set_element(&(loader->cities),&city, *loader->n);
+  *i += 6;
+  ++*loader->n;
 }
 
 /* Fills up the database loader connections array. */
 static void fill_connections(Database_loader* loader,
-                             int* i, int* j, char** data) {
+                             int* i, char** data) {
   *(*(loader->connections + atoi(*(data+*i))) + atoi(*(data+*i+1)))
-    = atoi(*(data+*i+1));
+    = atoi(*(data+*i+2));
+  *i += 3;
 }
 
 /* Opens the database. */
@@ -111,12 +111,10 @@ void loader_open(Database_loader* loader) {
 }
 
 /* Loads the database cities into a two dimensional array. */
-void loader_load_cities(Database_loader* loader) {
+static void loader_load_cities(Database_loader* loader) {
   Data *data = malloc(sizeof(struct _Data));
   data->loader = loader;
   data->f = fill_cities;
-  int n = 0;
-  data->j = &n;
   loader->sql = "SELECT * FROM cities;";
   loader->rc = sqlite3_exec(loader->db, loader->sql, callback,
                             data, &(loader->zErrMsg));
@@ -127,13 +125,11 @@ void loader_load_cities(Database_loader* loader) {
   free(data);
 }
 
-/* Loads the database connections into a two dimensional array. */
-void loader_load_connections(Database_loader* loader) {
+/* Loads the database connections into a one dimensional array. */
+static void loader_load_connections(Database_loader* loader) {
   Data *data = malloc(sizeof(struct _Data));
   data->loader = loader;
   data->f = fill_connections;
-  int n = 0;
-  data->j = &n;
   loader->sql = "SELECT * FROM connections;";
   loader->rc = sqlite3_exec(loader->db, loader->sql, callback,
                             data, &(loader->zErrMsg));
@@ -142,4 +138,12 @@ void loader_load_connections(Database_loader* loader) {
     sqlite3_free(loader->zErrMsg);
   }
   free(data);
+}
+
+/* Loads the database. */
+void loader_load(Database_loader* loader) {
+  int n = 0;
+  loader->n = &n;
+  loader_load_cities(loader);
+  loader_load_connections(loader);
 }

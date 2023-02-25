@@ -39,18 +39,10 @@ void loader_free(Database_loader* loader);
 void loader_open(Database_loader*);
 
 /**
- * Loads the database cities into a two dimensional
- * array.
+ * Loads the database.
  * @param loader the database loader.
  */
-void loader_load_cities(Database_loader* loader);
-
-/**
- * Loads the database connections into a two dimensional
- * array.
- * @param loader the database loader.
- */
-void loader_load_connections(Database_loader* loader);
+void loader_load(Database_loader* loader);
 
 /**
  * Returns the two dimensional array of the loader.
