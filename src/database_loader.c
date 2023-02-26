@@ -29,7 +29,7 @@
 /* The database loader structure. */
 struct _Database_loader {
   City** cities;
-  int connections[CITY_NUMBER][CITY_NUMBER];
+  double (*connections)[CITY_NUMBER+1];
   sqlite3 *db;
   char *path;
   char *zErrMsg;
@@ -48,19 +48,9 @@ typedef struct _Data {
 /* Creates a new Database Loader. */
 Database_loader* loader_new() {
   Database_loader* loader = malloc(sizeof(struct _Database_loader));
-  if (!loader)
-    return 0;
   loader->cities = city_array(CITY_NUMBER);
-  if (!loader->cities) {
-    free(loader);
-    return 0;
-  }
+  loader->connections = calloc(1, (CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
   loader->n = calloc(1, sizeof(int));
-  if (!loader->n) {
-    free(loader->cities);
-    free(loader);
-    return 0;
-  }
   return loader;
 }
 
@@ -68,10 +58,16 @@ Database_loader* loader_new() {
 void loader_free(Database_loader* loader) {
   if (loader->cities)
     city_array_free(&(loader->cities), CITY_NUMBER);
+  if (loader->connections)
+    free(loader->connections);
   if (loader->path)
     free(loader->path);
   if (loader->n)
     free(loader->n);
+  if (loader->zErrMsg)
+    sqlite3_free(loader->zErrMsg);
+  if (loader->db)
+    sqlite3_close(loader->db);
   free(loader);
 }
 
@@ -102,7 +98,7 @@ static void fill_cities(Database_loader* loader,
 static void fill_connections(Database_loader* loader,
                              int* i, char** data) {
   *(*(loader->connections + atoi(*(data+*i))) + atoi(*(data+*i+1)))
-    = atoi(*(data+*i+2));
+    = atof(*(data+*i+2));
   *i += 3;
 }
 
@@ -155,5 +151,16 @@ static void loader_load_connections(Database_loader* loader) {
 /* Loads the database. */
 void loader_load(Database_loader* loader) {
   loader_load_cities(loader);
+  *loader->n -= *loader->n;
   loader_load_connections(loader);
+}
+
+/* Returns the adjacency matrix of the loader. */
+double (*loader_adj_matrix(Database_loader* loader))[CITY_NUMBER+1] {
+  return loader->connections;
+}
+
+/* Returns the array of cities of the loader. */
+City** loader_cities(Database_loader* loader) {
+  return loader->cities;
 }

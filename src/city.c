@@ -39,24 +39,13 @@ City* city_new(int id, char* name,
                int x, int y
                ) {
   City* city = malloc(sizeof(struct _City));
-  if (!city)
-    return 0;
   city->id = id;
   city->x = x;
   city->y = y;
   city->country = malloc(strlen(country)+1);
   strcpy(city->country, country);
-  if (!city->country) {
-    free(city);
-    return 0;
-  }
   city->name = malloc(strlen(name)+1);
   strcpy(city->name, name);
-  if (!city->name) {
-    free(city->country);
-    free(city);
-    return 0;
-  }
   return city;
 }
 
@@ -81,7 +70,7 @@ char* city_name(City* city) {
 
 /* Returns an array of cities. */
 City** city_array(int n) {
-  return malloc(n * sizeof(struct _City));
+  return malloc(n * sizeof(City*));
 }
 
 /* Frees the memory used by the array of cities. */
