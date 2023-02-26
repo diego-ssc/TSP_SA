@@ -68,6 +68,11 @@ char* city_name(City* city) {
   return city->name;
 }
 
+/* Returns the name of the city. */
+char* city_country(City* city) {
+  return city->country;
+}
+
 /* Returns an array of cities. */
 City** city_array(int n) {
   return malloc(n * sizeof(City*));
