@@ -26,5 +26,9 @@ int main(int argc, char** argv) {
   Database_loader* loader = loader_new();
   loader_open(loader);
   loader_load(loader);
+  double (*matrix)[1093] = loader_adj_matrix(loader);
+  printf("%0.16f\n", *(*(matrix + 1) + 7));
+  printf("%0.16f\n", *(*(matrix + 1090) + 1092));
   loader_free(loader);
+  return 0;
 }

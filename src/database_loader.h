@@ -45,7 +45,13 @@ void loader_open(Database_loader*);
 void loader_load(Database_loader* loader);
 
 /**
- * Returns the two dimensional array of the loader.
- * @return the two dimensional array of the loader.
+ * Returns the adjacency matrix of the loader.
+ * @return the adjacency matrix of the loader.
  */
-City** loader_matrix(Database_loader* loader);
+double (*loader_adj_matrix(Database_loader* loader))[1092+1];
+
+/**
+ * Returns the array of cities of the loader.
+ * @return the array of cities of the loader.
+ */
+City** loader_cities(Database_loader* loader);
