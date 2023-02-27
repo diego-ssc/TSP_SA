@@ -17,6 +17,8 @@
  * this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <stdlib.h>
+
 #include "heuristic.h"
 #include "normalizer.h"
 
@@ -25,3 +27,19 @@ struct _Normalizer {
   /* The normalized number */
   int n;
 };
+
+/* Creates a new Normalizer. */
+Normalizer* normalizer_new() {
+  Normalizer* normalizer = malloc(sizeof(struct _Normalizer));
+  return normalizer;
+}
+
+/* Frees the memory used by the normalizer. */
+void normalizer_free(Normalizer* normalizer) {
+  free(normalizer);
+}
+
+/* Normalizes the provided number. */
+float normalizer_normalize(Normalizer* normalizer, float n) {
+  return 0.0;
+}
