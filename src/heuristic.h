@@ -48,3 +48,4 @@ typedef struct _TSP TSP;
 #include "database_loader.h"
 #include "normalizer.h"
 #include "report.h"
+#include "tsp.h"

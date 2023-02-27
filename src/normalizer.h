@@ -31,11 +31,12 @@ Normalizer* normalizer_new();
 void normalizer_free(Normalizer* normalizer);
 
 /**
- * Normalizes the provided number.
+ * Normalizes the provided cost.
  * @param normalizer the normalizer.
- * @param n the number to be normalized.
+ * @param n the cost to be normalized.
+ * @return the normalized cost.
  */
-void normalize(Normalizer* normalizer, float *n);
+float normalizer_normalize(Normalizer* normalizer, float n);
 
 /**
  * Returns the normalized number of the normalizer.

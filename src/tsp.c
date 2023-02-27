@@ -17,15 +17,28 @@
  * this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <stdlib.h>
+
 #include "heuristic.h"
 #include "tsp.h"
 
 /* The TSP structure */
 struct _TSP {
-  City* initial_solution;
-  City* current_solution;
-  City* final_solution;
+  City** initial_solution;
+  City** current_solution;
+  City** final_solution;
   Database_loader* loader;
   Normalizer* normalizer;
   Report* report;
 };
+
+/* Creates a new TSP instance. */
+TSP* tsp_new() {
+  TSP* tsp = malloc(sizeof(struct _TSP));
+  return tsp;
+}
+
+/* Computes the cost of a solution. */
+float tsp_tour_cost(TSP* tsp, City** cities) {
+  return 0.0;
+}

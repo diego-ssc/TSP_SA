@@ -35,14 +35,14 @@ void tsp_free(TSP* tsp);
  * @param tsp the TSP instance.
  * @return the initial solution of the TSP instance.
  */
-City* tsp_initial_solution(TSP* tsp);
+City** tsp_initial_solution(TSP* tsp);
 
 /**
  * Returns the final solution of the TSP instance.
  * @param tsp the TSP instance.
  * @return the final solution of the TSP instance.
  */
-City* tsp_final_solution(TSP* tsp);
+City** tsp_final_solution(TSP* tsp);
 
 /**
  * Returns the database loader of the TSP instance.
@@ -70,14 +70,14 @@ Report* tsp_report(TSP* tsp);
  * @param tsp the TSP instance.
  * @param initial the initial solution.
  */
-void tsp_set_initial_solution(TSP* tsp, City* initial);
+void tsp_set_initial_solution(TSP* tsp, City** initial);
 
 /**
  * Sets the final solution of the TSP instance.
  * @param tsp the TSP instance.
  * @param final the final solution.
  */
-void tsp_set_final_solution(TSP* tsp, City* final);
+void tsp_set_final_solution(TSP* tsp, City** final);
 
 /**
  * Sets the database loader of the TSP instance.
@@ -103,6 +103,14 @@ void tsp_set_report(TSP* tsp, Report* report);
 /**
  * Computes the cost of a solution.
  * @param tsp the TSP instance.
+ * @param cities the tour.
  * @return the cost of a solution.
  */
-float tsp_tour_cost(TSP* tsp);
+float tsp_tour_cost(TSP* tsp, City** cities);
+
+/**
+ * Computes the maximum distance of a problem instance.
+ * @param tsp the TSP instance.
+ * @return the maximum distance.
+ */
+float tsp_max_distance(TSP* tsp);
