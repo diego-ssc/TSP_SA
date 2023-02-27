@@ -19,8 +19,12 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "city.h"
+
+#define EARTH_RADIUS 6373000
+#define _USE_MATH_DEFINES
 
 /* The city structure */
 struct _City {
@@ -56,9 +60,24 @@ void city_free(City* city) {
   free(city);
 }
 
-/* Computes the distance between two cities. */
-float city_distance(City* c_1, City* c_2) {
-  return 0.0;
+/* Returns the id of the city. */
+int city_id(City* city) {
+  return city->id;
+}
+
+/* Returns the x coordinate of the city. */
+int city_x_coordinate(City* city) {
+  return city->x;
+}
+
+/* Returns the y coordinate of the city. */
+int city_y_coordinate(City* city) {
+  return city->y;
+}
+
+/* Returns the name of the city. */
+char* city_country(City* city) {
+  return city->country;
 }
 
 /* Returns the name of the city. */
@@ -66,9 +85,19 @@ char* city_name(City* city) {
   return city->name;
 }
 
-/* Returns the name of the city. */
-char* city_country(City* city) {
-  return city->country;
+/* Computes the distance between two cities. */
+float city_distance(City* c_1, City* c_2) {
+  float x_1 = (c_1->x)*M_PI/180;
+  float x_2 = (c_2->x)*M_PI/180;
+  float y_1 = (c_1->y)*M_PI/180;
+  float y_2 = (c_2->y)*M_PI/180;
+
+  float a = pow(sin((y_2 - y_1)/2),2)
+    + cos(y_1) * cos(y_2)
+    * pow(sin((x_2 - x_1)/2),2);
+  float c = 2 * atan2(sqrt(a), sqrt(1-a));
+
+  return EARTH_RADIUS * c;
 }
 
 /* Returns an array of cities. */
