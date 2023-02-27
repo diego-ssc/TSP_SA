@@ -21,11 +21,14 @@
 
 /**
  * Creates a new report.
+ * @param name the name.
+ * @param seed the seed.
  */
 Report* report_new(char* name, int seed);
 
 /**
  * Frees the memory used by the report.
+ * @param report the report.
  */
 void report_free(Report* report);
 
@@ -48,7 +51,7 @@ int report_seed(Report* report);
  * @param report the report.
  * @return the tour of the report.
  */
-City* report_tour(Report* report);
+City** report_tour(Report* report);
 
 /**
  * Returns the cost of the tour's
@@ -64,7 +67,7 @@ int report_cost(Report* report);
  * @param report the report.
  * @param tour the tour.
  */
-void report_set_tour(Report* report, City* tour);
+void report_set_tour(Report* report, City** tour);
 
 /**
  * Sets the normalized cost of the report.

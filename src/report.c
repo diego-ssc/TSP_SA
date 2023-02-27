@@ -17,6 +17,9 @@
  * this program. If not, see <https://www.gnu.org/licenses/>.
  */
 
+#include <string.h>
+#include <stdlib.h>
+
 #include "heuristic.h"
 #include "report.h"
 
@@ -27,3 +30,19 @@ struct _Report {
   City* tour;
   int normalized_cost;
 };
+
+/* Creates a new report. */
+Report* report_new(char* name, int seed) {
+  Report* report = malloc(sizeof(struct _Report));
+  report->name = malloc(strlen(name)+1);
+  strcpy(report->name, name);
+  report->seed = seed;
+  return report;
+}
+
+/* Frees the memory used by the report. */
+void report_free(Report* report) {
+  if (report->name)
+    free(report->name);
+  free(report);
+}

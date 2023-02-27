@@ -76,26 +76,12 @@ char* city_country(City* city);
 char* city_name(City* city);
 
 /**
- * Returns the name of the city.
- * @param city the city.
- * @return the country of the city.
- */
-char* city_country(City* city);
-
-/**
  * Computes the distance between two cities.
  * @param c the first city.
  * @param d the second city.
  * @retuen the distance.
  */
 float city_distance(City* c, City* d);
-
-/**
- * Returns the name of the city.
- * @param city the city.
- * @return the name.
- */
-char* city_name(City* city);
 
 /**
  * Returns an array of cities.

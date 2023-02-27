@@ -36,6 +36,7 @@ struct _Database_loader {
   char *sql;
   int rc;
   int *n;
+  double *max_distance;
 };
 
 /* The callback data structure. */

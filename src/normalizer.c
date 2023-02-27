@@ -18,28 +18,61 @@
  */
 
 #include <stdlib.h>
+#include <math.h>
 
 #include "heuristic.h"
 #include "normalizer.h"
 
+#define CITY_NUMBER 1092
+
 /* The normalizer structure */
 struct _Normalizer {
-  /* The normalized number */
-  int n;
+  int* city_n;
+  int* ids;
+  int* s;
+  double* distances;
+  double (*matrix)[CITY_NUMBER+1];
 };
 
 /* Creates a new Normalizer. */
-Normalizer* normalizer_new() {
+Normalizer* normalizer_new(int city_n, int s, int* ids,
+                           double(*matrix)[CITY_NUMBER+1]) {
   Normalizer* normalizer = malloc(sizeof(struct _Normalizer));
+  normalizer->city_n = calloc(1, sizeof(int));
+  normalizer->s = calloc(1, sizeof(int));
+  normalizer->distances = malloc(sizeof(double)*city_n);
+  normalizer->ids = ids;
+  normalizer->matrix = matrix;
+  *(normalizer->city_n) += city_n;
+  *(normalizer->s) += s;
   return normalizer;
 }
 
 /* Frees the memory used by the normalizer. */
 void normalizer_free(Normalizer* normalizer) {
+  if (normalizer->city_n)
+    free(normalizer->city_n);
+  if (normalizer->s)
+    free(normalizer->s);
   free(normalizer);
 }
 
+static int fequal(const void* n, const void* m) {
+  return fabs(*(double*)n-*(double*)m) < 0.00016;
+}
+
 /* Normalizes the provided number. */
-float normalizer_normalize(Normalizer* normalizer, float n) {
-  return 0.0;
+double normalizer_normalize(Normalizer* normalizer, double n) {
+  int i;
+  double sum = 0.0;
+  for (i = 0; i+1< *normalizer->city_n; i++)
+    *(normalizer->distances + i) =
+      *(*(normalizer->matrix+ *(normalizer->ids + i)) + *(normalizer->ids + i+1));
+
+  qsort(normalizer->distances, *normalizer->city_n, sizeof(double), fequal);
+
+  for (i = *normalizer->city_n -1; i > 0; i--)
+    sum += *(normalizer->distances + i);
+
+  return sum;
 }

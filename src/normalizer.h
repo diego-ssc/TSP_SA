@@ -36,7 +36,7 @@ void normalizer_free(Normalizer* normalizer);
  * @param n the cost to be normalized.
  * @return the normalized cost.
  */
-float normalizer_normalize(Normalizer* normalizer, float n);
+double normalizer_normalize(Normalizer* normalizer, double n);
 
 /**
  * Returns the normalized number of the normalizer.

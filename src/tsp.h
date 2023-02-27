@@ -21,8 +21,18 @@
 
 /**
  * Creates a new TSP instance.
+ * @param n the number of cities.
+ * @param ids the ids of the cities.
  */
-TSP* tsp_new();
+TSP* tsp_new(int n, int* ids);
+
+/**
+ * Creates a new TSP instance.
+ * @param n the number of cities.
+ * @param ids the ids of the cities.
+ * @param seed the requested seed.
+ */
+TSP* tsp_new_s(int n, int* ids, int seed);
 
 /**
  * Frees the memory used by the tsp instance.
@@ -36,6 +46,13 @@ void tsp_free(TSP* tsp);
  * @return the initial solution of the TSP instance.
  */
 City** tsp_initial_solution(TSP* tsp);
+
+/**
+ * Returns the current solution of the TSP instance.
+ * @param tsp the TSP instance.
+ * @return the current solution of the TSP instance.
+ */
+City** tsp_current_solution(TSP* tsp);
 
 /**
  * Returns the final solution of the TSP instance.
@@ -71,6 +88,13 @@ Report* tsp_report(TSP* tsp);
  * @param initial the initial solution.
  */
 void tsp_set_initial_solution(TSP* tsp, City** initial);
+
+/**
+ * Sets the current solution of the TSP instance.
+ * @param tsp the TSP instance.
+ * @param current the current solution.
+ */
+void tsp_set_current_solution(TSP* tsp, City** current);
 
 /**
  * Sets the final solution of the TSP instance.
@@ -109,8 +133,18 @@ void tsp_set_report(TSP* tsp, Report* report);
 float tsp_tour_cost(TSP* tsp, City** cities);
 
 /**
+ * Computes the weight of an edge between
+ * two cities.
+ * @param tsp the TSP instance.
+ * @param c_1 the first city.
+ * @param c_2 the second city.
+ * @return the weight.
+ */
+double weight_function(TSP* tsp, City* c_1, City* c_2);
+
+/**
  * Computes the maximum distance of a problem instance.
  * @param tsp the TSP instance.
  * @return the maximum distance.
  */
-float tsp_max_distance(TSP* tsp);
+double tsp_max_distance(TSP* tsp);
