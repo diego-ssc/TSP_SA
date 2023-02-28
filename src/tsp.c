@@ -20,14 +20,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 
 #include "heuristic.h"
 #include "tsp.h"
 
 #define CITY_NUMBER 1092
-
-#define MAX_DISTANCE_40    4947749.059999999590218
-#define MAX_DISTANCE_150   4979370.000000000000000000
 
 /* The TSP structure */
 struct _TSP {
@@ -47,7 +45,8 @@ struct _TSP {
 TSP* tsp_new(int n, int* ids) {
   TSP* tsp = malloc(sizeof(struct _TSP));
   tsp->n = n;
-  tsp->ids = malloc(sizeof(int)*n);
+  tsp->ids = calloc(1,sizeof(int)*n);
+  memcpy(tsp->ids, ids, tsp->n * sizeof(int));
   tsp->initial_solution = city_array(n);
   tsp->current_solution = city_array(n);
   tsp->final_solution = city_array(n);
@@ -185,10 +184,12 @@ double weight_function(TSP* tsp, City* c_1, City* c_2) {
 double tsp_max_distance(TSP* tsp) {
   int* a = tsp->ids;
   double (*m)[CITY_NUMBER+1] = loader_adj_matrix(tsp->loader);
-  int i;
+  int i,j;
   double max = 0.0;
   int n = tsp->n;
-  for (i = 0; i+1 < n; ++i)
-    max = max < *(*(m+ *(a+i)) + *(a+i+1)) ? *(*(m+ *(a+i)) + *(a+i+1)) : max;
+  for (i = 0; i < n; ++i)
+    for (j = i+1; j < n; ++j)
+      max = max < *(*(m+ *(a+i)) + *(a+j)) ? *(*(m+ *(a+i)) + *(a+j)) : max;
+
   return max;
 }

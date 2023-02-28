@@ -11,6 +11,8 @@
 #define EVAL_150           6249022.603226478
 #define NORMALIZER_40      180088219.480000019073486
 #define NORMALIZER_150     721914154.580000042915344
+#define MAX_DISTANCE_40    4947749.059999999590218
+#define MAX_DISTANCE_150   4979370.000000000000000000
 
 static int instance[2][150] = {
   {1,2,3,4,5,6,7,54,163,164,165,168,172,186,327,329,331,332,
@@ -53,10 +55,9 @@ typedef struct {
 /* Sets up a city test case. */
 static void test_city_set_up(Test_city* test_city,
                              gconstpointer data) {
-  int n = 0; /* Dummy integer for constructor. */
   test_city->normalizer = normalizer_new();
-  test_city->tsp_40 = tsp_new(40, &n);
-  test_city->tsp_150 = tsp_new(150, &n);
+  test_city->tsp_40 = tsp_new(40, (int*)instance);
+  test_city->tsp_150 = tsp_new(150, (int*)instance[1]);
   test_city->loader = loader_new();
   loader_open(test_city->loader);
   loader_load(test_city->loader);
@@ -75,22 +76,13 @@ static void test_city_tear_down(Test_city* test_city,
     free(test_city->tsp_150);
 }
 
-/* Tests the distance between two cities */
-static void test_city_distance(Test_city* test_city,
+/* Tests the max distance between in a TSP instance */
+static void test_city_max_distance(Test_city* test_city,
                                gconstpointer data) {
-  City** cities = loader_cities(test_city->loader);
-  double distance = 0.0;
-  int i;
-  for (i = 0; i+1 < 40; ++i)
-    distance += city_distance(*(cities+(instance[0][i])-1), *(cities+(instance[0][i+1])-1));
-  /* Compare distance between two random cities in S */
-  /* g_assert_cmpfloat_with_epsilon(distance,MAX_DISTANCE_40,0.00016); */
-
-  distance = 0.0;
-  for (i = 0; i+1 < 150; ++i)
-    distance += city_distance(*(cities+(instance[1][i])-1), *(cities+(instance[1][i+1])-1));
-
-  /* g_assert_cmpfloat_with_epsilon(distance, MAX_DISTANCE_150, 0.00016); */
+  g_assert_cmpfloat_with_epsilon(tsp_max_distance(test_city->tsp_40),
+                                 MAX_DISTANCE_40,0.00016);
+  g_assert_cmpfloat_with_epsilon(tsp_max_distance(test_city->tsp_150),
+                                 MAX_DISTANCE_150,0.00016);
 }
 
 /* Tests the distance between two cities */
@@ -149,9 +141,9 @@ int main(int argc, char** argv) {
   Test_env *test_env = test_env_new();
   printf("Seed: %d", test_env->seed);
 
-  g_test_add("/city/test_city_distance", Test_city, test_env,
+  g_test_add("/city/test_city_max_distance", Test_city, test_env,
              test_city_set_up,
-             test_city_distance,
+             test_city_max_distance,
              test_city_tear_down);
   g_test_add("/city/test_city_cost", Test_city, test_env,
              test_city_set_up,
