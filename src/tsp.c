@@ -162,9 +162,15 @@ void tsp_set_report(TSP* tsp, Report* report) {
   tsp->report = report;
 }
 
-/* Computes the cost of a solution. */
-float tsp_tour_cost(TSP* tsp, City** cities) {
-  return 0.0;
+double tsp_initial_tour_cost(TSP* tsp) {
+  int* a = tsp->ids;
+  City** cities = loader_cities(tsp->loader);
+  int i;
+  double cost = 0.0;
+  int n = tsp->n;
+  for (i = 0; i+1 < n; ++i)
+    cost += weight_function(tsp, *(cities + *(a+i)), *(cities + *(a+i+1)));
+  return cost;
 }
 
 /* Returns if the edge in G exists; 0, otherwise. */
