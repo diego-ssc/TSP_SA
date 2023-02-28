@@ -21,6 +21,8 @@
 #include <string.h>
 #include <math.h>
 
+#include <stdio.h>
+
 #include "city.h"
 
 #define EARTH_RADIUS 6373000
@@ -102,14 +104,16 @@ float city_distance(City* c_1, City* c_2) {
 
 /* Returns an array of cities. */
 City** city_array(int n) {
-  return malloc(n * sizeof(City*));
+  return calloc(1,n * sizeof(City*));
 }
 
 /* Frees the memory used by the array of cities. */
 void city_array_free(City*** cities, int n) {
   int a = n;
   while ((n--))
-    city_free(*((*cities) + a-(n+1)));
+    if (*((*cities) + a-(n+1)))
+      city_free(*((*cities) + a-(n+1)));
+
   free(*cities);
 }
 

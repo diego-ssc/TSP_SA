@@ -125,12 +125,11 @@ void tsp_set_normalizer(TSP* tsp, Normalizer* normalizer);
 void tsp_set_report(TSP* tsp, Report* report);
 
 /**
- * Computes the cost of a solution.
+ * Computes the cost of the initial solution.
  * @param tsp the TSP instance.
- * @param cities the tour.
- * @return the cost of a solution.
+ * @return the cost.
  */
-float tsp_tour_cost(TSP* tsp, City** cities);
+double tsp_initial_tour_cost(TSP* tsp);
 
 /**
  * Computes the weight of an edge between
