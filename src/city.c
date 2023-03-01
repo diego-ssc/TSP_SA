@@ -21,8 +21,6 @@
 #include <string.h>
 #include <math.h>
 
-#include <stdio.h>
-
 #include "city.h"
 
 #define EARTH_RADIUS 6373000
@@ -31,8 +29,8 @@
 /* The city structure */
 struct _City {
   int id;
-  int x;
-  int y;
+  double x;
+  double y;
   char* country;
   char* name;
 };
@@ -40,7 +38,7 @@ struct _City {
 /* Creates a new City. */
 City* city_new(int id, char* name,
                char* country,
-               int x, int y
+               double x, double y
                ) {
   City* city = malloc(sizeof(struct _City));
   city->id = id;
@@ -68,12 +66,12 @@ int city_id(City* city) {
 }
 
 /* Returns the x coordinate of the city. */
-int city_x_coordinate(City* city) {
+double city_x_coordinate(City* city) {
   return city->x;
 }
 
 /* Returns the y coordinate of the city. */
-int city_y_coordinate(City* city) {
+double city_y_coordinate(City* city) {
   return city->y;
 }
 
@@ -88,17 +86,17 @@ char* city_name(City* city) {
 }
 
 /* Computes the distance between two cities. */
-float city_distance(City* c_1, City* c_2) {
-  float x_1 = (c_1->x)*M_PI/180;
-  float x_2 = (c_2->x)*M_PI/180;
-  float y_1 = (c_1->y)*M_PI/180;
-  float y_2 = (c_2->y)*M_PI/180;
+double city_distance(City* c_1, City* c_2) {
+  double x_1 = (c_1->x)*M_PI/180;
+  double x_2 = (c_2->x)*M_PI/180;
+  double y_1 = (c_1->y)*M_PI/180;
+  double y_2 = (c_2->y)*M_PI/180;
 
-  float a = pow(sin((y_2 - y_1)/2),2)
-    + cos(y_1) * cos(y_2)
-    * pow(sin((x_2 - x_1)/2),2);
-  float c = 2 * atan2(sqrt(a), sqrt(1-a));
+  double a = pow(sin((y_2 - y_1)/2.),2.)
+    +(cos(y_1) * cos(y_2)
+      * pow(sin((x_2 - x_1)/2.),2.));
 
+  double c = 2 * atan2(sqrt(a), sqrt(1-a));
   return EARTH_RADIUS * c;
 }
 

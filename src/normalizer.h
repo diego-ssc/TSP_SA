@@ -19,10 +19,16 @@
 
 #pragma once
 
+#define CITY_NUMBER 1092
+
 /**
  * Creates a new Normalizer.
+ * @param city_n the number of cities.
+ * @param ids the ids of the cities.
+ * @param matrix the adjacency matrix.
  */
-Normalizer* normalizer_new();
+Normalizer* normalizer_new(int city_n, int* ids,
+                           double(*matrix)[CITY_NUMBER+1]);
 
 /**
  * Frees the memory used by the normalizer.
@@ -33,14 +39,6 @@ void normalizer_free(Normalizer* normalizer);
 /**
  * Normalizes the provided cost.
  * @param normalizer the normalizer.
- * @param n the cost to be normalized.
  * @return the normalized cost.
  */
-double normalizer_normalize(Normalizer* normalizer, double n);
-
-/**
- * Returns the normalized number of the normalizer.
- * @param normalizer the normalizer.
- * @return the normalized number of the normalizer.
- */
-int normalizer_number(Normalizer* normalizer);
+double normalizer_normalize(Normalizer* normalizer);

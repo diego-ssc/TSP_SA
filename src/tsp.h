@@ -147,3 +147,17 @@ double weight_function(TSP* tsp, City* c_1, City* c_2);
  * @return the maximum distance.
  */
 double tsp_max_distance(TSP* tsp);
+
+/**
+ * Normalizes the tour weights.
+ * @param tsp the TSP instance.
+ * @return the normalized number.
+ */
+double tsp_normalize(TSP* tsp);
+
+/**
+ * Computes the cost function.
+ * @param tsp the TSP instance.
+ * @return the cost.
+ */
+double cost_function(TSP* tsp);
