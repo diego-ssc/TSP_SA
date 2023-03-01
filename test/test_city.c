@@ -44,10 +44,11 @@ static Test_env* test_env_new() {
   return test_env;
 }
 
+/* Create constructor without loader for TSP */
+/* Delete normalizer entirely. */
 /* Test city. */
 typedef struct {
   Database_loader* loader;
-  Normalizer* normalizer;
   TSP* tsp_40;
   TSP* tsp_150;
 } Test_city;
@@ -55,7 +56,6 @@ typedef struct {
 /* Sets up a city test case. */
 static void test_city_set_up(Test_city* test_city,
                              gconstpointer data) {
-  test_city->normalizer = normalizer_new();
   test_city->tsp_40 = tsp_new(40, (int*)instance);
   test_city->tsp_150 = tsp_new(150, (int*)instance[1]);
   test_city->loader = loader_new();
@@ -68,69 +68,51 @@ static void test_city_tear_down(Test_city* test_city,
                                 gconstpointer data) {
   if (test_city->loader)
     loader_free(test_city->loader);
-  if (test_city->normalizer)
-    free(test_city->normalizer);
   if (test_city->tsp_40)
-    free(test_city->tsp_40);
+    tsp_free(test_city->tsp_40);
   if (test_city->tsp_150)
-    free(test_city->tsp_150);
+    tsp_free(test_city->tsp_150);
 }
 
-/* Tests the max distance between in a TSP instance */
+/* Tests the max distance in a TSP instance */
 static void test_city_max_distance(Test_city* test_city,
-                               gconstpointer data) {
+                                   gconstpointer data) {
   g_assert_cmpfloat_with_epsilon(tsp_max_distance(test_city->tsp_40),
                                  MAX_DISTANCE_40,0.00016);
   g_assert_cmpfloat_with_epsilon(tsp_max_distance(test_city->tsp_150),
                                  MAX_DISTANCE_150,0.00016);
 }
 
-/* Tests the distance between two cities */
-static void test_city_cost(Test_city* test_city,
-                           gconstpointer data) {
-  City** cities = loader_cities(test_city->loader);
-  City** cities_1 = city_array(40);
-  City** cities_2 = city_array(150);
-  TSP* tsp_40 = test_city->tsp_40;
-  TSP* tsp_150 = test_city->tsp_150;
-  int i;
-  for (i = 0; i < 40; ++i)
-    *(cities_1 + i) = *(cities + instance[0][i]);
-
-  /* g_assert_cmpfloat_with_epsilon(tsp_tour_cost(tsp_40, cities_1), */
-  /*                                EVAL_40,0.00016); */
-  for (i = 0; i < 150; ++i)
-    *(cities_2 + i) = *(cities + instance[1][i]);
-
-  /* g_assert_cmpfloat_with_epsilon(tsp_tour_cost(tsp_150, cities_2), */
-  /*                                EVAL_150,0.00016); */
+/* Tests the natural distance between two cities. */
+static void test_city_distance(Test_city* test_city,
+                               gconstpointer data) {
+  g_assert_cmpfloat_with_epsilon(city_distance(*(loader_cities(test_city->loader) + 1),
+                                               *(loader_cities(test_city->loader) + 7)),
+                                 *(*(loader_adj_matrix(test_city->loader)+ 1) + 7),0.016);
+  g_assert_cmpfloat_with_epsilon(city_distance(*(loader_cities(test_city->loader) + 17),
+                                               *(loader_cities(test_city->loader) + 559)),
+                                 *(*(loader_adj_matrix(test_city->loader)+ 17) + 559),0.016);
+  g_assert_cmpfloat_with_epsilon(city_distance(*(loader_cities(test_city->loader) + 1090),
+                                               *(loader_cities(test_city->loader) + 1092)),
+                                 *(*(loader_adj_matrix(test_city->loader)+ 1090) + 1092),0.016);
 }
 
 /* Tests the normalized cost of a tour. */
 static void test_city_normalizer(Test_city* test_city,
                                  gconstpointer data) {
-  Normalizer* normalizer = test_city->normalizer;
-  TSP* tsp_40 = test_city->tsp_40;
-  TSP* tsp_150 = test_city->tsp_150;
-  City** cities = loader_cities(test_city->loader);
-  City** cities_1 = city_array(40);
-  City** cities_2 = city_array(150);
-  int i;
-  for (i = 0; i < 40; ++i)
-    *(cities_1 + i) = *(cities + instance[0][i]);
-  for (i = 0; i < 150; ++i)
-    *(cities_2 + i) = *(cities + instance[1][i]);
-  /* float n = normalizer_normalize(normalizer, tsp_tour_cost(tsp_40, cities_1)); */
-  float n = 0.0;
-  
-  g_assert_cmpfloat_with_epsilon(n, NORMALIZER_40, 0.00016);
+  g_assert_cmpfloat_with_epsilon(tsp_normalize(test_city->tsp_40),
+                                 NORMALIZER_40, 0.00016);
+  g_assert_cmpfloat_with_epsilon(tsp_normalize(test_city->tsp_150),
+                                 NORMALIZER_150, 0.00016);
+}
 
-  /* n = normalizer_normalize(normalizer, tsp_tour_cost(tsp_150, cities_1)); */
-
-  g_assert_cmpfloat_with_epsilon(n, NORMALIZER_150, 0.00016);
-
-  city_array_free(&cities_1,40);
-  city_array_free(&cities_2,150);
+/* Tests the distance between two cities. */
+static void test_city_cost(Test_city* test_city,
+                           gconstpointer data) {
+  g_assert_cmpfloat_with_epsilon(cost_function(test_city->tsp_40),
+                                 EVAL_40,0.00016);
+  g_assert_cmpfloat_with_epsilon(cost_function(test_city->tsp_150),
+                                 EVAL_150,0.00016);
 }
 
 int main(int argc, char** argv) {
@@ -144,13 +126,17 @@ int main(int argc, char** argv) {
              test_city_set_up,
              test_city_max_distance,
              test_city_tear_down);
-  g_test_add("/city/test_city_cost", Test_city, test_env,
+  g_test_add("/city/test_city_distance", Test_city, test_env,
              test_city_set_up,
-             test_city_cost,
+             test_city_distance,
              test_city_tear_down);
   g_test_add("/city/test_city_normalizer", Test_city, test_env,
              test_city_set_up,
              test_city_normalizer,
+             test_city_tear_down);
+  g_test_add("/city/test_city_cost", Test_city, test_env,
+             test_city_set_up,
+             test_city_cost,
              test_city_tear_down);
   return g_test_run();
 }

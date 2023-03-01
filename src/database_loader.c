@@ -89,7 +89,7 @@ static int callback(void *data, int numCol,
 static void fill_cities(Database_loader* loader,
                         int* i, char** data) {
   City* city = city_new(atoi(*(data+*i)), *(data+*i+1), *(data+*i+2),
-                        atoi(*(data+*i+4)), atoi(*(data+*i+5)));
+                        atof(*(data+*i+5)), atof(*(data+*i+4)));
   city_array_set_element(&(loader->cities),&city, *loader->n + 1);
   *i += 6;
   ++*loader->n;
@@ -99,6 +99,8 @@ static void fill_cities(Database_loader* loader,
 static void fill_connections(Database_loader* loader,
                              int* i, char** data) {
   *(*(loader->connections + atoi(*(data+*i))) + atoi(*(data+*i+1)))
+    = atof(*(data+*i+2));
+  *(*(loader->connections + atoi(*(data+*i+1))) + atoi(*(data+*i)))
     = atof(*(data+*i+2));
   *i += 3;
 }

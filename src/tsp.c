@@ -20,6 +20,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <time.h>
+#include <math.h>
 #include <string.h>
 
 #include "heuristic.h"
@@ -34,6 +35,7 @@ struct _TSP {
   City** final_solution;
   Database_loader* loader;
   Normalizer* normalizer;
+  double* distances;
   Report* report;
   char* report_name;
   int seed;
@@ -53,7 +55,9 @@ TSP* tsp_new(int n, int* ids) {
   tsp->loader = loader_new();
   loader_open(tsp->loader);
   loader_load(tsp->loader);
-  tsp->normalizer = normalizer_new();
+  tsp->normalizer = normalizer_new
+    (n, ids, loader_adj_matrix(tsp->loader));
+  tsp->distances = malloc(sizeof(double)*n*(n-1)/2);
   srandom(time(0));
   long int r = random();
   tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
@@ -73,7 +77,9 @@ TSP* tsp_new_s(int n, int* ids, int seed) {
   tsp->loader = loader_new();
   loader_open(tsp->loader);
   loader_load(tsp->loader);
-  tsp->normalizer = normalizer_new();
+  tsp->normalizer = normalizer_new
+    (n, ids, loader_adj_matrix(tsp->loader));
+  tsp->distances = malloc(sizeof(double)*n);
   tsp->seed = seed;
   srandom(tsp->seed);
   long int r = random();
@@ -96,9 +102,13 @@ void tsp_free(TSP* tsp) {
   if (tsp->loader)
     loader_free(tsp->loader);
   if (tsp->normalizer)
-    free(tsp->normalizer);
+    normalizer_free(tsp->normalizer);
+  if (tsp->distances)
+    free(tsp->distances);
+  if (tsp->report_name)
+    free(tsp->report_name);
   if (tsp->report)
-    free(tsp->report);
+    report_free(tsp->report);
   free(tsp);
 }
 
@@ -162,6 +172,7 @@ void tsp_set_report(TSP* tsp, Report* report) {
   tsp->report = report;
 }
 
+/* Computes the cost of the initial solution. */
 double tsp_initial_tour_cost(TSP* tsp) {
   int* a = tsp->ids;
   City** cities = loader_cities(tsp->loader);
@@ -198,4 +209,43 @@ double tsp_max_distance(TSP* tsp) {
       max = max < *(*(m+ *(a+i)) + *(a+j)) ? *(*(m+ *(a+i)) + *(a+j)) : max;
 
   return max;
+}
+
+/* Determines the order of double numbers. */
+static int fequal(const void* n, const void* m) {
+  return *(double*)n-*(double*)m < 0;
+}
+
+/* Normalizes the tour weights. */
+double tsp_normalize(TSP* tsp) {
+  int i,j,k=0,n=tsp->n;
+  int* ids = tsp->ids;
+  City** cities = loader_cities(tsp_database_loader(tsp));
+  double (*m)[CITY_NUMBER + 1] = loader_adj_matrix(tsp_database_loader(tsp));
+  double sum = 0.0;
+
+  for (i = 0; i < n; ++i)
+    for (j = i+1; j < n; ++j)
+      if (edge_exists(tsp, *(cities + *(ids+i)), *(cities + *(ids+j)))) {
+        *(tsp->distances + k) =  *(*(m + *(ids+i))+ *(ids+j));
+        ++k;
+      }
+
+  qsort(tsp->distances, tsp->n * (tsp->n-1)/2, sizeof(double), fequal);
+  for (i = 0; i < tsp->n-1; i++)
+    sum += *(tsp->distances + i);
+
+  return sum;
+}
+
+/* Computes the cost function. */
+double cost_function(TSP* tsp) {
+  City** cities = loader_cities(tsp_database_loader(tsp));
+  int* ids = tsp->ids;
+  int i;
+  double sum = 0.0;
+  for (i = 0; i+1 < tsp->n; ++i)
+    sum += weight_function(tsp, *(cities + *(ids+i)), *(cities + *(ids+i+1)));
+
+  return sum/tsp_normalize(tsp);
 }

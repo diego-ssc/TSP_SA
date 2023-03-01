@@ -31,7 +31,7 @@
  */
 City* city_new(int id, char* name,
                char* country,
-               int x, int y
+               double x, double y
                );
 
 /**
@@ -52,14 +52,14 @@ int city_id(City* city);
  * @param city the city.
  * @return the x coordinate of the city.
  */
-int city_x_coordinate(City* city);
+double city_x_coordinate(City* city);
 
 /**
  * Returns the y coordinate of the city.
  * @param city the city.
  * @return the y coordinate of the city.
  */
-int city_y_coordinate(City* city);
+double city_y_coordinate(City* city);
 
 /**
  * Returns the country of the city.
@@ -81,7 +81,7 @@ char* city_name(City* city);
  * @param d the second city.
  * @retuen the distance.
  */
-float city_distance(City* c, City* d);
+double city_distance(City* c, City* d);
 
 /**
  * Returns an array of cities.
