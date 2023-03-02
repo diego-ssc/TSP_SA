@@ -47,27 +47,27 @@ char* report_name(Report* report);
 int report_seed(Report* report);
 
 /**
- * Returns the tour of the report.
+ * Returns the path of the report.
  * @param report the report.
- * @return the tour of the report.
+ * @return the path of the report.
  */
-City** report_tour(Report* report);
+City** report_path(Report* report);
 
 /**
- * Returns the cost of the tour's
+ * Returns the cost of the path's
  * report.
  * @param report the report.
- * @return the cost of the tour's
+ * @return the cost of the path's
  * report.
  */
 int report_cost(Report* report);
 
 /**
- * Sets the tour of a report.
+ * Sets the path of a report.
  * @param report the report.
- * @param tour the tour.
+ * @param path the path.
  */
-void report_set_tour(Report* report, City** tour);
+void report_set_path(Report* report, City** path);
 
 /**
  * Sets the normalized cost of the report.

@@ -19,39 +19,4 @@
 
 #pragma once
 
-/**
- * The City opaque structure.
- */
-typedef struct _City City;
-
-/**
- * The Database Loader opaque structure.
- */
-typedef struct _Database_loader Database_loader;
-
-/**
- * The Normalizer opaque structure.
- */
-typedef struct _Normalizer Normalizer;
-
-/**
- * The Report opaque structure.
- */
-typedef struct _Report Report;
-
-/**
- * The TSP opaque structure.
- */
-typedef struct _TSP TSP;
-
-/**
- * The Path opaque structure.
- */
-typedef struct _Path Path;
-
-#include "city.h"
-#include "database_loader.h"
-#include "normalizer.h"
-#include "report.h"
-#include "path.h"
-#include "tsp.h"
+Path* path_new();

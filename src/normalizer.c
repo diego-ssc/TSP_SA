@@ -57,8 +57,9 @@ void normalizer_free(Normalizer* normalizer) {
   free(normalizer);
 }
 
+/* Determines the order of double numbers. */
 static int fequal(const void* n, const void* m) {
-  return fabs(*(double*)n-*(double*)m) < 0.00016;
+  return *(double*)n-*(double*)m < 0;
 }
 
 /* Normalizes the provided number. */
