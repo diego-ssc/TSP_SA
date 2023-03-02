@@ -27,7 +27,7 @@
 struct _Report {
   char* name;
   int seed;
-  City* tour;
+  City* path;
   int normalized_cost;
 };
 

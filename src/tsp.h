@@ -129,7 +129,7 @@ void tsp_set_report(TSP* tsp, Report* report);
  * @param tsp the TSP instance.
  * @return the cost.
  */
-double tsp_initial_tour_cost(TSP* tsp);
+double tsp_initial_path_cost(TSP* tsp);
 
 /**
  * Computes the weight of an edge between
@@ -149,7 +149,7 @@ double weight_function(TSP* tsp, City* c_1, City* c_2);
 double tsp_max_distance(TSP* tsp);
 
 /**
- * Normalizes the tour weights.
+ * Normalizes the path weights.
  * @param tsp the TSP instance.
  * @return the normalized number.
  */

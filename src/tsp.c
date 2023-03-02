@@ -173,7 +173,7 @@ void tsp_set_report(TSP* tsp, Report* report) {
 }
 
 /* Computes the cost of the initial solution. */
-double tsp_initial_tour_cost(TSP* tsp) {
+double tsp_initial_path_cost(TSP* tsp) {
   int* a = tsp->ids;
   City** cities = loader_cities(tsp->loader);
   int i;
@@ -216,7 +216,7 @@ static int fequal(const void* n, const void* m) {
   return *(double*)n-*(double*)m < 0;
 }
 
-/* Normalizes the tour weights. */
+/* Normalizes the path weights. */
 double tsp_normalize(TSP* tsp) {
   int i,j,k=0,n=tsp->n;
   int* ids = tsp->ids;
