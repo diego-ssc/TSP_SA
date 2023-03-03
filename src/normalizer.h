@@ -23,12 +23,12 @@
 
 /**
  * Creates a new Normalizer.
- * @param city_n the number of cities.
+ * @param n the number of cities.
  * @param ids the ids of the cities.
- * @param matrix the adjacency matrix.
+ * @param loader the database loader.
  */
-Normalizer* normalizer_new(int city_n, int* ids,
-                           double(*matrix)[CITY_NUMBER+1]);
+Normalizer* normalizer_new(int n, int* ids,
+                           Database_loader* loader);
 
 /**
  * Frees the memory used by the normalizer.
@@ -42,3 +42,10 @@ void normalizer_free(Normalizer* normalizer);
  * @return the normalized cost.
  */
 double normalizer_normalize(Normalizer* normalizer);
+
+/**
+ * Returns the database loader.
+ * @param normalizer the normalizer.
+ * @return the database loader.
+ */
+Database_loader* normalizer_loader(Normalizer* normalizer);
