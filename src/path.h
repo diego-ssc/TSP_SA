@@ -19,4 +19,18 @@
 
 #pragma once
 
+/**
+ * Creates a new Path.
+ */
 Path* path_new();
+
+/**
+ * Frees the memory used by the path.
+ * @param path the path.
+ */
+void path_free(Path* path);
+
+/**
+ * Tells if edge in the graph exists.
+ */
+/* int edge_exists(City* city, City* city); */

@@ -29,53 +29,54 @@
 
 /* The normalizer structure */
 struct _Normalizer {
-  int* city_n;
+  int n;
   int* ids;
-  int* s;
   double* distances;
-  double (*matrix)[CITY_NUMBER+1];
+  Database_loader* loader;
 };
 
 /* Creates a new Normalizer. */
-Normalizer* normalizer_new(int city_n, int* ids,
-                           double(*matrix)[CITY_NUMBER+1]) {
+Normalizer* normalizer_new(int n, int* ids,
+                           Database_loader* loader) {
   Normalizer* normalizer = malloc(sizeof(struct _Normalizer));
-  normalizer->city_n = calloc(1, sizeof(int));
-  normalizer->distances = malloc(sizeof(double)*city_n);
+  normalizer->distances = malloc(sizeof(double)*n*(n-1)/2);
   normalizer->ids = ids;
-  normalizer->matrix = matrix;
-  *(normalizer->city_n) += city_n;
+  normalizer->loader = loader;
   return normalizer;
 }
 
 /* Frees the memory used by the normalizer. */
 void normalizer_free(Normalizer* normalizer) {
-  if (normalizer->city_n)
-    free(normalizer->city_n);
   if (normalizer->distances)
     free(normalizer->distances);
   free(normalizer);
 }
 
-/* Determines the order of double numbers. */
-static int fequal(const void* n, const void* m) {
-  return *(double*)n-*(double*)m < 0;
-}
+/* /\* Determines the order of double numbers. *\/ */
+/* static int fequal(const void* n, const void* m) { */
+/*   return *(double*)n-*(double*)m < 0; */
+/* } */
 
 /* Normalizes the provided number. */
 double normalizer_normalize(Normalizer* normalizer) {
-  int i;
-  double sum = 0.0;
-  for (i = 0; i+1< *normalizer->city_n; i++) {
-    *(normalizer->distances + i) =
-      *(*(normalizer->matrix+ *(normalizer->ids + i)) + *(normalizer->ids + i+1));
-    printf("In distances: %.16f\n", *(normalizer->distances + i));
-  } 
-    
-  qsort(normalizer->distances, *normalizer->city_n, sizeof(double), fequal);
+  /* int i,j,k=0,n=normalizer->n; */
+  /* int* ids = normalizer->ids; */
+  /* City** cities = loader_cities(normalizer_loader(normalizer)); */
+  /* double (*m)[CITY_NUMBER + 1] = loader_adj_matrix */
+  /*   (normalizer_loader(normalizer)); */
+  /* double sum = 0.0; */
 
-  for (i = *normalizer->city_n -1; i > 0; i--)
-    sum += *(normalizer->distances + i);
+  /* for (i = 0; i < n; ++i) */
+  /*   for (j = i+1; j < n; ++j) */
+  /*     if (edge_exists(tsp, *(cities + *(ids+i)), *(cities + *(ids+j)))) { */
+  /*       *(tsp->distances + k) =  *(*(m + *(ids+i))+ *(ids+j)); */
+  /*       ++k; */
+  /*     } */
 
-  return sum;
+  /* qsort(tsp->distances, tsp->n * (tsp->n-1)/2, sizeof(double), fequal); */
+  /* for (i = 0; i < tsp->n-1; i++) */
+  /*   sum += *(tsp->distances + i); */
+
+  /* return sum; */
+  return 0.0;
 }
