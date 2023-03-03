@@ -71,3 +71,36 @@ double path_cost_sum(Path* path);
  * @return the cost.
  */
 double path_cost_function(Path* path);
+
+/**
+ * Randomizes the initial path.
+ * @param path the path.
+ */
+void path_randomize(Path* path);
+
+/**
+ * Swaps two cities in the path.
+ * @param path the path.
+ */
+void path_swap(Path* path);
+
+/**
+ * Returns the city array.
+ * @param path the path.
+ * @return the array.
+ */
+City** path_array(Path* path);
+
+/**
+ * Returns the array of ids.
+ * @param path the path.
+ * @return the array.
+ */
+int* path_ids(Path* path);
+
+/**
+ * Returns the array of randomized ids.
+ * @param path the path.
+ * @return the array.
+ */
+int* path_ids_r(Path* path);
