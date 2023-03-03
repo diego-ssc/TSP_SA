@@ -94,15 +94,15 @@ int main(int argc, char** argv) {
   setlocale(LC_ALL, "");
   g_test_init(&argc, &argv, NULL);
 
-  g_test_add("/city/test_path_max_distance", Test_path, NULL,
+  g_test_add("/path/test_path_max_distance", Test_path, NULL,
              test_path_set_up,
              test_path_max_distance,
              test_path_tear_down);
-  g_test_add("/city/test_path_normalizer", Test_path, NULL,
+  g_test_add("/path/test_path_normalizer", Test_path, NULL,
              test_path_set_up,
              test_path_normalizer,
              test_path_tear_down);
-  g_test_add("/city/test_path_cost_function", Test_path, NULL,
+  g_test_add("/path/test_path_cost_function", Test_path, NULL,
              test_path_set_up,
              test_path_cost_function,
              test_path_tear_down);
