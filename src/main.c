@@ -31,11 +31,11 @@ int main(int argc, char** argv) {
   /* printf("%.12f :: %.12f\n", *(*(m + 1) + 7), city_distance(*(cities + 1), *(cities + 7))); */
   /* loader_free(loader); */
 
-  int inst[] = {1,2,3,4,5,6,7,54,163,164,165,168,172,186,327,329,331,332,
-                333,483,489,490,491,492,493,496,653,654,656,657,815,816,
-                817,820,978,979,980,981,982,984};
-  TSP* tsp = tsp_new(40, inst);
-  printf("Cost function: %.16f\n ", cost_function(tsp));
-  tsp_free(tsp);
+  /* int inst[] = {1,2,3,4,5,6,7,54,163,164,165,168,172,186,327,329,331,332, */
+  /*               333,483,489,490,491,492,493,496,653,654,656,657,815,816, */
+  /*               817,820,978,979,980,981,982,984}; */
+  /* TSP* tsp = tsp_new(40, inst); */
+  /* printf("Cost function: %.16f\n ", cost_function(tsp)); */
+  /* tsp_free(tsp); */
   return 0;
 }

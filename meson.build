@@ -14,8 +14,8 @@ src = [
   'src/database_loader.c',
   'src/report.c',
   'src/tsp.c',
-  'src/normalizer.c',
-  'src/city.c'
+  'src/city.c',
+  'src/path.c'
 ]
 
 includes = include_directories('src/')
@@ -30,7 +30,7 @@ exe = executable('TSP_SA', src,
                  install : true)
 
 # tests
-checks = [ 'city' ]
+checks = [ 'city', 'path' ]
 foreach check : checks
   check_sources = [ 'test/test_' + check + '.c' ]
   check_check = executable('test_' + check, check_sources,

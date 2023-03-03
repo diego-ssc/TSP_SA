@@ -5,7 +5,7 @@ to find solutions to the Travelling Salesman Problem.
 Run:
 
 ```
-meson build
+meson setup build
 ```
 
 and:
@@ -34,4 +34,8 @@ sqlite3
 
 ```
 glib
+```
+
+```
+math.h
 ```

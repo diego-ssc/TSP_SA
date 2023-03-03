@@ -69,13 +69,6 @@ City** tsp_final_solution(TSP* tsp);
 Database_loader* tsp_database_loader(TSP* tsp);
 
 /**
- * Returns the normalizer of the TSP instance.
- * @param tsp the TSP instance.
- * @return the normalizer of the TSP instance.
- */
-Normalizer* tsp_normalizer(TSP* tsp);
-
-/**
  * Returns the report of the TSP instance.
  * @param tsp the TSP instance.
  * @return the report of the TSP instance.
@@ -111,53 +104,8 @@ void tsp_set_final_solution(TSP* tsp, City** final);
 void tsp_set_database_loader(TSP* tsp, Database_loader* loader);
 
 /**
- * Sets the normalizer of the TSP instance.
- * @param tsp the TSP instance.
- * @param normalizer the normalizer.
- */
-void tsp_set_normalizer(TSP* tsp, Normalizer* normalizer);
-
-/**
  * Sets the report of the TSP instance.
  * @param tsp the TSP instance.
  * @param report the report.
  */
 void tsp_set_report(TSP* tsp, Report* report);
-
-/**
- * Computes the cost of the initial solution.
- * @param tsp the TSP instance.
- * @return the cost.
- */
-double tsp_initial_path_cost(TSP* tsp);
-
-/**
- * Computes the weight of an edge between
- * two cities.
- * @param tsp the TSP instance.
- * @param c_1 the first city.
- * @param c_2 the second city.
- * @return the weight.
- */
-double weight_function(TSP* tsp, City* c_1, City* c_2);
-
-/**
- * Computes the maximum distance of a problem instance.
- * @param tsp the TSP instance.
- * @return the maximum distance.
- */
-double tsp_max_distance(TSP* tsp);
-
-/**
- * Normalizes the path weights.
- * @param tsp the TSP instance.
- * @return the normalized number.
- */
-double tsp_normalize(TSP* tsp);
-
-/**
- * Computes the cost function.
- * @param tsp the TSP instance.
- * @return the cost.
- */
-double cost_function(TSP* tsp);
