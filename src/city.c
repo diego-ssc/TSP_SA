@@ -26,7 +26,7 @@
 #define EARTH_RADIUS 6373000
 #define _USE_MATH_DEFINES
 
-/* The city structure */
+/* The city structure. */
 struct _City {
   int id;
   double x;

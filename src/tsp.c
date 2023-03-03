@@ -34,7 +34,6 @@ struct _TSP {
   City** current_solution;
   City** final_solution;
   Database_loader* loader;
-  Normalizer* normalizer;
   double* distances;
   Report* report;
   char* report_name;
@@ -55,8 +54,6 @@ TSP* tsp_new(int n, int* ids) {
   tsp->loader = loader_new();
   loader_open(tsp->loader);
   loader_load(tsp->loader);
-  tsp->normalizer = normalizer_new
-    (n, ids, loader_adj_matrix(tsp->loader));
   tsp->distances = malloc(sizeof(double)*n*(n-1)/2);
   srandom(time(0));
   long int r = random();
@@ -77,8 +74,6 @@ TSP* tsp_new_s(int n, int* ids, int seed) {
   tsp->loader = loader_new();
   loader_open(tsp->loader);
   loader_load(tsp->loader);
-  tsp->normalizer = normalizer_new
-    (n, ids, loader_adj_matrix(tsp->loader));
   tsp->distances = malloc(sizeof(double)*n);
   tsp->seed = seed;
   srandom(tsp->seed);
@@ -101,8 +96,6 @@ void tsp_free(TSP* tsp) {
     free(tsp->final_solution);
   if (tsp->loader)
     loader_free(tsp->loader);
-  if (tsp->normalizer)
-    normalizer_free(tsp->normalizer);
   if (tsp->distances)
     free(tsp->distances);
   if (tsp->report_name)
@@ -132,11 +125,6 @@ Database_loader* tsp_database_loader(TSP* tsp) {
   return tsp->loader;
 }
 
-/* Returns the normalizer of the TSP instance. */
-Normalizer* tsp_normalizer(TSP* tsp) {
-  return tsp->normalizer;
-}
-
 /* Returns the report of the TSP instance. */
 Report* tsp_report(TSP* tsp) {
   return tsp->report;
@@ -148,7 +136,7 @@ void tsp_set_initial_solution(TSP* tsp, City** initial) {
 }
 
 /* Sets the final solution of the TSP instance. */
-void tsp_set_final_current_solution(TSP* tsp, City** current) {
+void tsp_set_current_solution(TSP* tsp, City** current) {
   tsp->current_solution = current;
 }
 
@@ -162,90 +150,7 @@ void tsp_set_database_loader(TSP* tsp, Database_loader* loader) {
   tsp->loader = loader;
 }
 
-/* Sets the normalizer of the TSP instance. */
-void tsp_set_normalizer(TSP* tsp, Normalizer* normalizer) {
-  tsp->normalizer = normalizer;
-}
-
 /* Sets the report of the TSP instance. */
 void tsp_set_report(TSP* tsp, Report* report) {
   tsp->report = report;
-}
-
-/* Computes the cost of the initial solution. */
-double tsp_initial_path_cost(TSP* tsp) {
-  int* a = tsp->ids;
-  City** cities = loader_cities(tsp->loader);
-  int i;
-  double cost = 0.0;
-  int n = tsp->n;
-  for (i = 0; i+1 < n; ++i)
-    cost += weight_function(tsp, *(cities + *(a+i)), *(cities + *(a+i+1)));
-  return cost;
-}
-
-/* Returns if the edge in G exists; 0, otherwise. */
-static int edge_exists(TSP* tsp, City* c_1, City* c_2) {
-  double (*matrix)[CITY_NUMBER+1] = loader_adj_matrix(tsp->loader);
-  return (*(*(matrix + city_id(c_1))+city_id(c_2))) != 0.0;
-}
-
-/* Computes the weight of an edge between two cities. */
-double weight_function(TSP* tsp, City* c_1, City* c_2) {
-  return edge_exists(tsp, c_1, c_2) ?
-    *(*(loader_adj_matrix(tsp->loader) + city_id(c_1))+city_id(c_2))
-    : city_distance(c_1, c_2) * tsp_max_distance(tsp);
-}
-
-/* Computes the maximum distance of a problem instance. */
-double tsp_max_distance(TSP* tsp) {
-  int* a = tsp->ids;
-  double (*m)[CITY_NUMBER+1] = loader_adj_matrix(tsp->loader);
-  int i,j;
-  double max = 0.0;
-  int n = tsp->n;
-  for (i = 0; i < n; ++i)
-    for (j = i+1; j < n; ++j)
-      max = max < *(*(m+ *(a+i)) + *(a+j)) ? *(*(m+ *(a+i)) + *(a+j)) : max;
-
-  return max;
-}
-
-/* Determines the order of double numbers. */
-static int fequal(const void* n, const void* m) {
-  return *(double*)n-*(double*)m < 0;
-}
-
-/* Normalizes the path weights. */
-double tsp_normalize(TSP* tsp) {
-  int i,j,k=0,n=tsp->n;
-  int* ids = tsp->ids;
-  City** cities = loader_cities(tsp_database_loader(tsp));
-  double (*m)[CITY_NUMBER + 1] = loader_adj_matrix(tsp_database_loader(tsp));
-  double sum = 0.0;
-
-  for (i = 0; i < n; ++i)
-    for (j = i+1; j < n; ++j)
-      if (edge_exists(tsp, *(cities + *(ids+i)), *(cities + *(ids+j)))) {
-        *(tsp->distances + k) =  *(*(m + *(ids+i))+ *(ids+j));
-        ++k;
-      }
-
-  qsort(tsp->distances, tsp->n * (tsp->n-1)/2, sizeof(double), fequal);
-  for (i = 0; i < tsp->n-1; i++)
-    sum += *(tsp->distances + i);
-
-  return sum;
-}
-
-/* Computes the cost function. */
-double cost_function(TSP* tsp) {
-  City** cities = loader_cities(tsp_database_loader(tsp));
-  int* ids = tsp->ids;
-  int i;
-  double sum = 0.0;
-  for (i = 0; i+1 < tsp->n; ++i)
-    sum += weight_function(tsp, *(cities + *(ids+i)), *(cities + *(ids+i+1)));
-
-  return sum/tsp_normalize(tsp);
 }

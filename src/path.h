@@ -21,8 +21,13 @@
 
 /**
  * Creates a new Path.
+ * @param cities the initial permutation.
+ * @param n the number of cities.
+ * @param ids the ids of the cities.
+ * @param matrix the adjacency amtrix.
  */
-Path* path_new();
+Path* path_new(City** cities, int n, int* ids,
+               double (*matrix)[CITY_NUMBER+1]);
 
 /**
  * Frees the memory used by the path.
@@ -31,6 +36,38 @@ Path* path_new();
 void path_free(Path* path);
 
 /**
- * Tells if edge in the graph exists.
+ * Normalizes the path weights.
+ * @param path the path.
+ * @return the normalized number.
  */
-/* int edge_exists(City* city, City* city); */
+double path_normalize(Path* path);
+
+/**
+ * Computes the weight of an edge between two cities.
+ * @param path the path.
+ * @param c_1 the first city.
+ * @param c_2 the second city.
+ * @return the weight.
+ */
+double path_weight_function(Path* path, City* c_1, City* c_2);
+
+/**
+ * Computes the maximum distance of a problem instance.
+ * @param path the path.
+ * @return the maximum distance.
+ */
+double path_max_distance(Path* path);
+
+/**
+ * Computes the sum of the costs.
+ * @param path the path.
+ * @return the cost sum.
+ */
+double path_cost_sum(Path* path);
+
+/**
+ * Computes the cost function.
+ * @param path the path.
+ * @return the cost.
+ */
+double path_cost_function(Path* path);
