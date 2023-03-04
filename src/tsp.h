@@ -109,3 +109,16 @@ void tsp_set_database_loader(TSP* tsp, Database_loader* loader);
  * @param report the report.
  */
 void tsp_set_report(TSP* tsp, Report* report);
+
+/**
+ * Computes the set of solutions.
+ * @param tsp the tsp instance.
+ * @return the average of the accepted solutions and last
+ * accepted solution.
+ */
+double* compute_set(TSP* tsp);
+
+/**
+ * Computes the threshild acc
+ */
+void threshold_accepting(TSP* tsp);

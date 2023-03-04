@@ -157,6 +157,8 @@ void path_randomize(Path* path) {
   }
   for (i = 0; i < n; ++i)
     *(path->r_path+i) = *(cities + *(ids_r + i));
+
+  path->cost_sum = path_cost_sum(path);
 }
 
 /* Swaps two cities in the path. */
@@ -169,17 +171,17 @@ void path_swap(Path* path) {
   while (i == j)
     i = random()%n, j = random()%n;
 
-  if (*(r_path+i-1))
+  if (i-1 >= 0)
     a = path_weight_function(path, *(r_path+i-1),
                              *(r_path+i));
-  if (*(r_path+i+1))
+  if (i+1 < n)
     b = path_weight_function(path, *(r_path+i),
                              *(r_path+i+1));
 
-  if (*(r_path+j-1))
+  if (j-1 >= 0)
     c = path_weight_function(path, *(r_path+j-1),
                              *(r_path+j));
-  if (*(r_path+j+1))
+  if (j+1 < n)
     d = path_weight_function(path, *(r_path+j),
                              *(r_path+j+1));
   path->cost_sum -= (a+b+c+d);
@@ -192,17 +194,17 @@ void path_swap(Path* path) {
 
   *(r_path + j) = temp;
   *(ids_r + j) = temp_i;
-  if (*(r_path+i-1))
+  if (i-1 >= 0)
     a = path_weight_function(path, *(r_path+i-1),
                              *(r_path+i));
-  if (*(r_path+i+1))
+  if (i+1 < n)
     b = path_weight_function(path, *(r_path+i),
                              *(r_path+i+1));
 
-  if (*(r_path+j-1))
+  if (j-1 >= 0)
     c = path_weight_function(path, *(r_path+j-1),
                              *(r_path+j));
-  if (*(r_path+j+1))
+  if (j+1 < n)
     d = path_weight_function(path, *(r_path+j),
                              *(r_path+j+1));
   path->cost_sum += (a+b+c+d);
