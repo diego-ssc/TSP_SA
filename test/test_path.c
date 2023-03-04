@@ -90,6 +90,22 @@ static void test_path_cost_function(Test_path* test_path,
                                  EVAL_150,0.00016);
 }
 
+static void test_path_swap(Test_path* test_path,
+                           gconstpointer data) {
+  Path* path = test_path->path_40;
+  path_randomize(path);
+  g_assert_cmpfloat_with_epsilon(path_cost_function(path),
+                                 path_cost_sum(path)/path_normalize(path),
+                                 0.00016);
+  int a = 40;
+  while (a--) {
+    path_swap(path);
+    g_assert_cmpfloat_with_epsilon(path_cost_function(path),
+                                   path_cost_sum(path)/path_normalize(path),
+                                   0.00016);
+  }
+}
+
 int main(int argc, char** argv) {
   setlocale(LC_ALL, "");
   g_test_init(&argc, &argv, NULL);
@@ -105,6 +121,10 @@ int main(int argc, char** argv) {
   g_test_add("/path/test_path_cost_function", Test_path, NULL,
              test_path_set_up,
              test_path_cost_function,
+             test_path_tear_down);
+  g_test_add("/path/test_path_swap", Test_path, NULL,
+             test_path_set_up,
+             test_path_swap,
              test_path_tear_down);
   return g_test_run();
 }

@@ -5,7 +5,7 @@
  *
  * This program is free software: you can redistribute it and/or modify it under
  * the terms of the GNU General Public License as published by the Free Software
- * Foundation, either version 3 of the License, or (at your option) any later
+ * Foundation, Either Version 3 Of The License, Or (At Your Option) Any Later
  * version.
  *
  * This program is distributed in the hope that it will be useful, but WITHOUT
@@ -155,27 +155,27 @@ void tsp_set_report(TSP* tsp, Report* report) {
   tsp->report = report;
 }
 
-/* /\* En clase sa *\/ */
-/* /\* Computes the set of solutions. *\/ */
-/* double* compute_set(TSP* tsp) { */
-/*   int t = tsp->t; */
-/*   Path* sol = tsp->sol, *n; */
-/*   double* set = tsp->set; */
+/* En clase sa */
+/* Computes the set of solutions. */
+double* compute_set(TSP* tsp) {
+  int t = tsp->t;
+  Path* sol = tsp->sol, *n;
+  double* set = tsp->set;
   
-/*   int c = 0, m = tsp->m; */
-/*   double r = 0.0; */
+  int c = 0, m = tsp->m;
+  double r = 0.0;
 
-/*   while (c < tsp->l && m--) { */
-/*     n = path_neighbour(sol); */
-/*     c++; */
-/*     r += path_cost_function(); */
-/*   } */
-/*   *set = r/tsp->l; */
-/*   *(set+1) = n; */
+  while (c < tsp->l && m--) {
+    n = path_neighbour(sol);
+    c++;
+    r += path_cost_function();
+  }
+  *set = r/tsp->l;
+  *(set+1) = n;
   
-/*   return set; */
-/* } */
+  return set;
+}
 
-/* void threshold_accepting(TSP* tsp) { */
+void threshold_accepting(TSP* tsp) {
   
-/* } */
+}
