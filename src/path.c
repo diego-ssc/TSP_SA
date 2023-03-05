@@ -20,6 +20,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#include <stdio.h>
+
 #include "heuristic.h"
 #include "path.h"
 
@@ -30,17 +32,25 @@ struct _Path {
   int* ids, *ids_r;
   double* distances;
   double cost_sum;
+  double max_distance;
   double (*matrix)[CITY_NUMBER+1];
   double (*filled_matrix)[CITY_NUMBER+1];
 };
 
 /* Fills the path array. */
-static void fill_path_array(Path* path) {
-  int *ids = path->ids;
-  int i;
-  for (i = 0; i < path->n; ++i)
-    *(path->r_path + i) = *(path->cities + *(ids + i));
-}
+static void fill_path_array(Path* path);
+
+/* Computes the maximum distance of the path. */
+static double c_path_max_distance(Path*);
+
+/* Tells if the edge in the graph exists. */
+static int edge_exists(Path* path, City* c_1, City* c_2);
+
+/* Computes the maximum distance of the path. */
+static double c_path_max_distance(Path* path);
+
+/* Determines the order of double numbers. */
+static int fequal(const void* n, const void* m);
 
 /* Creates a new Path. */
 Path* path_new(City** cities, int n, int* ids,
@@ -55,6 +65,7 @@ Path* path_new(City** cities, int n, int* ids,
   path->ids_r = calloc(1,sizeof(int)*n);
   memcpy(path->ids_r, path->ids, n*sizeof(int));
   path->matrix = matrix;
+  path->max_distance = c_path_max_distance(path);
   path->cost_sum = path_cost_sum(path);
   path->distances = malloc(sizeof(double)*n*(n-1)/2);
   return path;
@@ -73,17 +84,7 @@ void path_free(Path* path) {
   free(path);
 }
 
-/* Tells if the edge in the graph exists. */
-static int edge_exists(Path* path, City* c_1, City* c_2) {
-  return (*(*(path->matrix + city_id(c_1))+city_id(c_2))) != 0.0;
-}
-
-/* Determines the order of double numbers. */
-static int fequal(const void* n, const void* m) {
-  return *(double*)n-*(double*)m < 0;
-}
-
-/* Normalizes the provided number. */
+/* Normalizes the path weights. */
 double path_normalize(Path* path) {
   int i,j,k=0,n=path->n;
   int* ids = path->ids_r;
@@ -112,20 +113,6 @@ double path_weight_function(Path* path, City* c_1, City* c_2) {
     : city_distance(c_1, c_2) * path_max_distance(path);
 }
 
-/* Computes the maximum distance of a problem instance. */
-double path_max_distance(Path* path) {
-  int* a = path->ids_r;
-  double (*m)[CITY_NUMBER+1] = path->matrix;
-  int i,j;
-  double max = 0.0;
-  int n = path->n;
-  for (i = 0; i < n; ++i)
-    for (j = i+1; j < n; ++j)
-      max = max < *(*(m+ *(a+i)) + *(a+j)) ? *(*(m+ *(a+i)) + *(a+j)) : max;
-
-  return max;
-}
-
 /* Computes the sum of the costs. */
 double path_cost_sum(Path* path) {
   City** r_path = path->r_path;
@@ -134,7 +121,7 @@ double path_cost_sum(Path* path) {
   int n = path->n;
   for (i = 0; i+1 < n; ++i)
     cost += path_weight_function(path, *(r_path + i),
-                                 *(r_path + i+1));  
+                                 *(r_path + i+1));
   return cost;
 }
 
@@ -223,4 +210,41 @@ int* path_ids(Path* path) {
 /* Returns the array of randomized ids. */
 int* path_ids_r(Path* path) {
   return path->ids_r;
+}
+
+/* Returns the maximum distance of the path. */
+double path_max_distance(Path* path) {
+  return path->max_distance;
+}
+
+/* Fills the path array. */
+static void fill_path_array(Path* path) {
+  int *ids = path->ids;
+  int i;
+  for (i = 0; i < path->n; ++i)
+    *(path->r_path + i) = *(path->cities + *(ids + i));
+}
+
+/* Tells if the edge in the graph exists. */
+static int edge_exists(Path* path, City* c_1, City* c_2) {
+  return (*(*(path->matrix + city_id(c_1))+city_id(c_2))) != 0.0;
+}
+
+/* Computes the maximum distance of the path. */
+static double c_path_max_distance(Path* path) {
+  int* a = path->ids_r;
+  double (*m)[CITY_NUMBER+1] = path->matrix;
+  int i,j;
+  double max = 0.0;
+  int n = path->n;
+  for (i = 0; i < n; ++i)
+    for (j = i+1; j < n; ++j)
+      max = max < *(*(m+ *(a+i)) + *(a+j)) ? *(*(m+ *(a+i)) + *(a+j)) : max;
+
+  return max;
+}
+
+/* Determines the order of double numbers. */
+static int fequal(const void* n, const void* m) {
+  return *(double*)n-*(double*)m < 0;
 }

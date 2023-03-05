@@ -7,6 +7,8 @@
 #include "heuristic.h"
 
 /* Instance values. */
+#define NUM_CITIES_1       40
+#define NUM_CITIES_2       150
 #define MAX_ID             1092
 #define EVAL_40            4129508.339517763
 #define EVAL_150           6249022.603226478
@@ -45,10 +47,10 @@ static void test_path_set_up(Test_path* test_path,
   loader_open(test_path->loader);
   loader_load(test_path->loader);
   test_path->path_40 = path_new(loader_cities(test_path->loader),
-                                40, (int*)instance,
+                                NUM_CITIES_1, (int*)instance,
                                 loader_adj_matrix(test_path->loader));
   test_path->path_150 = path_new(loader_cities(test_path->loader),
-                                 150, (int*)instance[1],
+                                 NUM_CITIES_2, (int*)instance[1],
                                  loader_adj_matrix(test_path->loader));
 }
 
@@ -92,16 +94,29 @@ static void test_path_cost_function(Test_path* test_path,
 
 static void test_path_swap(Test_path* test_path,
                            gconstpointer data) {
-  Path* path = test_path->path_40;
-  path_randomize(path);
-  g_assert_cmpfloat_with_epsilon(path_cost_function(path),
-                                 path_cost_sum(path)/path_normalize(path),
+  int n = NUM_CITIES_1, m = NUM_CITIES_2;
+  path_randomize(test_path->path_40);
+  g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_40),
+                                 path_cost_sum(test_path->path_40)/
+                                 path_normalize(test_path->path_40),
                                  0.00016);
-  int a = 40;
-  while (a--) {
-    path_swap(path);
-    g_assert_cmpfloat_with_epsilon(path_cost_function(path),
-                                   path_cost_sum(path)/path_normalize(path),
+  while (n--) {
+    path_swap(test_path->path_40);
+    g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_40),
+                                   path_cost_sum(test_path->path_40)/
+                                   path_normalize(test_path->path_40),
+                                   0.00016);
+  }
+  path_randomize(test_path->path_150);
+  g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_150),
+                                 path_cost_sum(test_path->path_150)/
+                                 path_normalize(test_path->path_150),
+                                 0.00016);
+  while (m--) {
+    path_swap(test_path->path_150);
+    g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_150),
+                                   path_cost_sum(test_path->path_150)/
+                                   path_normalize(test_path->path_150),
                                    0.00016);
   }
 }
