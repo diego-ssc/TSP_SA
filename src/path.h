@@ -52,13 +52,6 @@ double path_normalize(Path* path);
 double path_weight_function(Path* path, City* c_1, City* c_2);
 
 /**
- * Computes the maximum distance of a problem instance.
- * @param path the path.
- * @return the maximum distance.
- */
-double path_max_distance(Path* path);
-
-/**
  * Computes the sum of the costs.
  * @param path the path.
  * @return the cost sum.
@@ -104,3 +97,10 @@ int* path_ids(Path* path);
  * @return the array.
  */
 int* path_ids_r(Path* path);
+
+/**
+ * Returns the maximum distance of the path.
+ * @param path the path.
+ * @return the maximum distance.
+ */
+double path_max_distance(Path* path);
