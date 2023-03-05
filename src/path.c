@@ -20,8 +20,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include <stdio.h>
-
 #include "heuristic.h"
 #include "path.h"
 
@@ -33,6 +31,7 @@ struct _Path {
   double* distances;
   double cost_sum;
   double max_distance;
+  double normalized_v;
   double (*matrix)[CITY_NUMBER+1];
   double (*filled_matrix)[CITY_NUMBER+1];
 };
@@ -52,6 +51,9 @@ static double c_path_max_distance(Path* path);
 /* Determines the order of double numbers. */
 static int fequal(const void* n, const void* m);
 
+/* Computes the normalized path weights. */
+static double c_path_normalize(Path* path);
+
 /* Creates a new Path. */
 Path* path_new(City** cities, int n, int* ids,
                double (*matrix)[CITY_NUMBER+1]) {
@@ -68,6 +70,7 @@ Path* path_new(City** cities, int n, int* ids,
   path->max_distance = c_path_max_distance(path);
   path->cost_sum = path_cost_sum(path);
   path->distances = malloc(sizeof(double)*n*(n-1)/2);
+  path->normalized_v = c_path_normalize(path);
   return path;
 }
 
@@ -82,28 +85,6 @@ void path_free(Path* path) {
   if (path->distances)
     free(path->distances);
   free(path);
-}
-
-/* Normalizes the path weights. */
-double path_normalize(Path* path) {
-  int i,j,k=0,n=path->n;
-  int* ids = path->ids_r;
-  City** cities = path->cities;
-  double* distances = path->distances;
-  double sum = 0.0;
-
-  for (i = 0; i < n; ++i)
-    for (j = i+1; j < n; ++j)
-      if (edge_exists(path, *(cities + *(ids+i)), *(cities + *(ids+j)))) {
-        *(distances + k) =  *(*(path->matrix + *(ids+i))+ *(ids+j));
-        ++k;
-      }
-
-  qsort(distances, n * (n-1)/2, sizeof(double), fequal);
-  for (i = 0; i < n-1; i++)
-    sum += *(distances + i);
-
-  return sum;
 }
 
 /* Computes the weight of an edge between two cities. */
@@ -123,6 +104,11 @@ double path_cost_sum(Path* path) {
     cost += path_weight_function(path, *(r_path + i),
                                  *(r_path + i+1));
   return cost;
+}
+
+/* Normalizes the path weights. */
+double path_normalize(Path* path) {
+  return path->normalized_v;
 }
 
 /* Computes the cost function. */
@@ -247,4 +233,26 @@ static double c_path_max_distance(Path* path) {
 /* Determines the order of double numbers. */
 static int fequal(const void* n, const void* m) {
   return *(double*)n-*(double*)m < 0;
+}
+
+/* Computes the normalized path weights. */
+static double c_path_normalize(Path* path) {
+  int i,j,k=0,n=path->n;
+  int* ids = path->ids_r;
+  City** cities = path->cities;
+  double* distances = path->distances;
+  double sum = 0.0;
+
+  for (i = 0; i < n; ++i)
+    for (j = i+1; j < n; ++j)
+      if (edge_exists(path, *(cities + *(ids+i)), *(cities + *(ids+j)))) {
+        *(distances + k) =  *(*(path->matrix + *(ids+i))+ *(ids+j));
+        ++k;
+      }
+
+  qsort(distances, n * (n-1)/2, sizeof(double), fequal);
+  for (i = 0; i < n-1; i++)
+    sum += *(distances + i);
+
+  return sum;
 }
