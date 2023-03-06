@@ -33,26 +33,22 @@ struct _Path {
   double max_distance;
   double normalized_v;
   double (*matrix)[CITY_NUMBER+1];
-  double (*filled_matrix)[CITY_NUMBER+1];
 };
 
 /* Fills the path array. */
-static void fill_path_array(Path* path);
+static void fill_path_array(Path*);
 
 /* Computes the maximum distance of the path. */
 static double c_path_max_distance(Path*);
 
 /* Tells if the edge in the graph exists. */
-static int edge_exists(Path* path, City* c_1, City* c_2);
-
-/* Computes the maximum distance of the path. */
-static double c_path_max_distance(Path* path);
+static int edge_exists(Path*, City*, City*);
 
 /* Determines the order of double numbers. */
-static int fequal(const void* n, const void* m);
+static int fequal(const void*, const void*);
 
 /* Computes the normalized path weights. */
-static double c_path_normalize(Path* path);
+static double c_path_normalize(Path*);
 
 /* Creates a new Path. */
 Path* path_new(City** cities, int n, int* ids,
@@ -63,7 +59,6 @@ Path* path_new(City** cities, int n, int* ids,
   path->ids = ids;
   path->n = n;
   fill_path_array(path);
-  path->filled_matrix = calloc(1,sizeof(double[CITY_NUMBER+1])*(CITY_NUMBER+1));
   path->ids_r = calloc(1,sizeof(int)*n);
   memcpy(path->ids_r, path->ids, n*sizeof(int));
   path->matrix = matrix;
@@ -79,9 +74,7 @@ void path_free(Path* path) {
   if (path->ids_r)
     free(path->ids_r);
   if (path->r_path)
-    free(path->r_path);
-  if (path->filled_matrix)
-    free(path->filled_matrix);
+    free(path->r_path);  
   if (path->distances)
     free(path->distances);
   free(path);
@@ -255,4 +248,24 @@ static double c_path_normalize(Path* path) {
     sum += *(distances + i);
 
   return sum;
+}
+
+/* Returns the number of cities in the path. */
+int path_n(Path* path) {
+  return path->n;
+}
+
+/* Returns a neighbour of the path. */
+Path* path_neighbour(Path* path) {
+  Path* n = path_new(path->cities, path->n,
+                     path->ids, path->matrix);
+  path_swap(n);
+  return n;
+}
+
+/* Returns a copy of the path. */
+Path* path_copy(Path* path) {
+  Path* n = path_new(path->cities, path->n,
+                     path->ids, path->matrix);
+  return n;
 }

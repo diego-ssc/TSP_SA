@@ -15,7 +15,8 @@ src = [
   'src/report.c',
   'src/tsp.c',
   'src/city.c',
-  'src/path.c'
+  'src/path.c',
+  'src/sa.c'
 ]
 
 includes = include_directories('src/')

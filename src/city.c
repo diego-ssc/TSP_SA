@@ -108,14 +108,19 @@ City** city_array(int n) {
 /* Frees the memory used by the array of cities. */
 void city_array_free(City*** cities, int n) {
   int a = n;
-  while ((n--))
-    if (*((*cities) + a-(n+1)))
-      city_free(*((*cities) + a-(n+1)));
-
+  while (n--)
+    if (*((*cities) + a-(n+1))) 
+      city_free(*((*cities) + a-(n+1)));    
   free(*cities);
 }
 
 /* Sets the i-th element of a cities array. */
 void city_array_set_element(City*** city_1, City** city_2, int i) {
   *((*city_1) + i) = *city_2;
+}
+
+/* Copies a city. */
+City* city_copy(City* city) {
+  return city_new(city->id, city->name, city->country,
+                  city->x, city->y);
 }
