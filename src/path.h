@@ -104,3 +104,24 @@ int* path_ids_r(Path* path);
  * @return the maximum distance.
  */
 double path_max_distance(Path* path);
+
+/**
+ * Returns the number of cities in the path.
+ * @param path the path.
+ * @return the number.
+ */
+int path_n(Path* path);
+
+/**
+ * Returns a neighbour of the path.
+ * @param path the path.
+ * @return the neighbour.
+ */
+Path* path_neighbour(Path* path);
+
+/**
+ * Returns a copy of the path.
+ * @param path the path.
+ * @return the copied path.
+ */
+Path* path_copy(Path* path);

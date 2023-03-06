@@ -103,3 +103,10 @@ void city_array_free(City*** cities, int n);
  * @param i the index.
  */
 void city_array_set_element(City*** city_1, City** city_2, int i);
+
+/**
+ * Copies a city.
+ * @param city the city.
+ * @return the copy of the city.
+ */
+City* city_copy(City* city);

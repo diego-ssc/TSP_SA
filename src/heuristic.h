@@ -44,10 +44,21 @@ typedef struct _TSP TSP;
 /**
  * The Path opaque structure.
  */
+typedef struct _SA SA;
+
+/**
+ * The Path opaque structure.
+ */
 typedef struct _Path Path;
+
+/**
+ * The Batch opaque structure.
+ */
+typedef struct _Batch Batch;
 
 #include "city.h"
 #include "database_loader.h"
 #include "report.h"
 #include "path.h"
 #include "tsp.h"
+#include "sa.h"

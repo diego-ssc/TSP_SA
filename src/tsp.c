@@ -30,94 +30,61 @@
 
 /* The TSP structure */
 struct _TSP {
-  City** initial_solution;
-  City** current_solution;
-  City** final_solution;
+  /*The best solution */
+  Path* path;
+  /* The database loader. */
   Database_loader* loader;
-  double* distances;
+  /* The results report. */
   Report* report;
+  /* The report name. */
   char* report_name;
+  /* The seed. */
   int seed;
+  /* The number of cities in this instance. */
   int n;
+  /* The ids of the cities in this instance. */
   int *ids;
+  /* The filled adjacency matrix. */
+  double (*fm)[CITY_NUMBER+1];
 };
 
 /* Creates a new TSP instance. */
-TSP* tsp_new(int n, int* ids) {
+TSP* tsp_new(int n, int* ids, int seed) {
   TSP* tsp = malloc(sizeof(struct _TSP));
   tsp->n = n;
   tsp->ids = calloc(1,sizeof(int)*n);
-  memcpy(tsp->ids, ids, tsp->n * sizeof(int));
-  tsp->initial_solution = city_array(n);
-  tsp->current_solution = city_array(n);
-  tsp->final_solution = city_array(n);
   tsp->loader = loader_new();
   loader_open(tsp->loader);
   loader_load(tsp->loader);
-  tsp->distances = malloc(sizeof(double)*n*(n-1)/2);
-  srandom(time(0));
-  long int r = random();
-  tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
-  sprintf(tsp->report_name,"%ld",r);
-  tsp->report = report_new(tsp->report_name, r);
-  return tsp;
-}
-
-/* Creates a new TSP instance. */
-TSP* tsp_new_s(int n, int* ids, int seed) {
-  TSP* tsp = malloc(sizeof(struct _TSP));
-  tsp->n = n;
-  tsp->ids = malloc(sizeof(int)*n);
-  tsp->initial_solution = city_array(n);
-  tsp->current_solution = city_array(n);
-  tsp->final_solution = city_array(n);
-  tsp->loader = loader_new();
-  loader_open(tsp->loader);
-  loader_load(tsp->loader);
-  tsp->distances = malloc(sizeof(double)*n);
+  tsp->path = path_new(loader_cities(tsp->loader), n, ids,
+                       loader_adj_matrix(tsp->loader));
   tsp->seed = seed;
-  srandom(tsp->seed);
   long int r = random();
+  memcpy(tsp->ids, ids, tsp->n * sizeof(int));
+  seed ? srandom(seed) : srandom(time(0));
   tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
   sprintf(tsp->report_name,"%ld",r);
   tsp->report = report_new(tsp->report_name, r);
+  tsp->fm = malloc((CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
+  tsp_fill_matrix(tsp);
   return tsp;
 }
 
 /* Frees the memory used by the tsp instance. */
 void tsp_free(TSP* tsp) {
+  if (tsp->path)
+    path_free(tsp->path);
+  if (tsp->fm)
+    free(tsp->fm);
   if (tsp->ids)
     free(tsp->ids);
-  if (tsp->initial_solution)
-    free(tsp->initial_solution);
-  if (tsp->current_solution)
-    free(tsp->current_solution);
-  if (tsp->final_solution)
-    free(tsp->final_solution);
   if (tsp->loader)
     loader_free(tsp->loader);
-  if (tsp->distances)
-    free(tsp->distances);
   if (tsp->report_name)
     free(tsp->report_name);
   if (tsp->report)
     report_free(tsp->report);
   free(tsp);
-}
-
-/* Returns the initial solution of the TSP instance. */
-City** tsp_initial_solution(TSP* tsp) {
-  return tsp->initial_solution;
-}
-
-/* Returns the current solution of the TSP instance. */
-City** tsp_current_solution(TSP* tsp) {
-  return tsp->current_solution;
-}
-
-/* Returns the final solution of the TSP instance. */
-City** tsp_final_solution(TSP* tsp) {
-  return tsp->final_solution;
 }
 
 /* Returns the database loader of the TSP instance. */
@@ -130,19 +97,24 @@ Report* tsp_report(TSP* tsp) {
   return tsp->report;
 }
 
-/* Sets the initial solution of the TSP instance. */
-void tsp_set_initial_solution(TSP* tsp, City** initial) {
-  tsp->initial_solution = initial;
+/* Returns the adjacency matrix of the TSP instance. */
+double (*tsp_adj_matrix(TSP* tsp))[CITY_NUMBER+1] {
+  return tsp->fm;
 }
 
-/* Sets the final solution of the TSP instance. */
-void tsp_set_current_solution(TSP* tsp, City** current) {
-  tsp->current_solution = current;
+/* Returns the ids array of the TSP instance. */
+int* tsp_ids(TSP* tsp) {
+  return tsp->ids;
 }
 
-/* Sets the final solution of the TSP instance. */
-void tsp_set_final_solution(TSP* tsp, City** final) {
-  tsp->final_solution = final;
+/* Returns the number of cities in the TSP instance. */
+int tsp_city_number(TSP* tsp) {
+  return tsp->n;  
+}
+
+/* Sets the best solution of the TSP instance. */
+void tsp_set_solution(TSP* tsp, Path* path) {
+  tsp->path = path;
 }
 
 /* Sets the database loader of the TSP instance. */
@@ -155,27 +127,16 @@ void tsp_set_report(TSP* tsp, Report* report) {
   tsp->report = report;
 }
 
-/* /\* En clase sa *\/ */
-/* /\* Computes the set of solutions. *\/ */
-/* double* compute_set(TSP* tsp) { */
-/*   int t = tsp->t; */
-/*   Path* sol = tsp->sol, *n; */
-/*   double* set = tsp->set; */
-  
-/*   int c = 0, m = tsp->m; */
-/*   double r = 0.0; */
-
-/*   while (c < tsp->l && m--) { */
-/*     n = path_neighbour(sol); */
-/*     c++; */
-/*     r += path_cost_function(); */
-/*   } */
-/*   *set = r/tsp->l; */
-/*   *(set+1) = n; */
-  
-/*   return set; */
-/* } */
-
-/* void threshold_accepting(TSP* tsp) { */
-  
-/* } */
+/* Fills the nonexistent values of the adjacency matrix. */
+void tsp_fill_matrix(TSP* tsp) {
+  int i,j;
+  double n;
+  double (*fm)[CITY_NUMBER+1] = tsp->fm;
+  City** cities = loader_cities(tsp->loader);
+  for (i = 1; i < CITY_NUMBER+1; ++i)
+    for (j = i+1; j < CITY_NUMBER+1; ++j) {
+      n = path_weight_function(tsp->path, *(cities + i), *(cities + j));
+      *(*(fm + i)+ j) = n;
+      *(*(fm + j)+ i) = n;
+    }
+}
