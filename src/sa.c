@@ -23,11 +23,14 @@
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        4444
+/* #define T        8 */
+#define T        14
 #define M        2000
 #define L        1200
-#define EPSILON  2222
-#define PHI      0.82
+#define EPSILON  0.002
+#define PHI      0.95
+
+#define BEST     0.263713276
 
 /* The Batch structure. */
 struct _Batch {
@@ -115,6 +118,7 @@ void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
   double cost;
+  double b = 10000;
   while (sa->t > sa->epsilon) {
     q = p + 1;
 
@@ -125,19 +129,23 @@ void threshold_accepting(SA* sa) {
       batch = compute_batch(sa);
       p = batch->mean;
       cost = path_cost_function(batch->path);
+      b = b > cost ? cost : b;
       printf("Accepted: %.16f\n", cost);
       printf("[");
       for (int i = 0; i < path_n(batch->path); ++i)
         if (i+1 < path_n(batch->path))
-          printf("%d,", *(path_ids_r(batch->path)+i));
+          /* printf("%d,", *(path_ids_r(batch->path)+i)); */
+          printf("%d,", city_id(*(path_array(batch->path)+i)));
         else
-          printf("%d]\n", *(path_ids_r(batch->path)+i));
+          /* printf("%d]\n", *(path_ids_r(batch->path)+i)); */
+          printf("%d]\n", city_id(*(path_array(batch->path)+i)));
       /* if (path_cost_function(batch->path) < path_cost_function(sa->final)) { */
       /*   printf("Accepted: %.16f\n", path_cost_function(batch->path)); */
       /*   fflush(stdout); */
       /* } */
     }
-
+    
     sa->t *= sa->phi;
   }
+  printf("\nBest: %.16f\n", b);
 }
