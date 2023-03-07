@@ -134,7 +134,7 @@ void path_swap(Path* path) {
   int* ids_r = path->ids_r;
   double a = 0., b = 0., c = 0., d = 0.;
 
-  while (i == j)
+  while (i == j && (i < 0 || j < 0))
     i = random()%n, j = random()%n;
 
   if (i-1 >= 0)
