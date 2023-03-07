@@ -92,6 +92,7 @@ static void test_path_cost_function(Test_path* test_path,
                                  EVAL_150,0.00016);
 }
 
+/* The the path swapping. */
 static void test_path_swap(Test_path* test_path,
                            gconstpointer data) {
   int n = NUM_CITIES_1, m = NUM_CITIES_2;
@@ -121,6 +122,23 @@ static void test_path_swap(Test_path* test_path,
   }
 }
 
+static void test_path_de_swap(Test_path* test_path,
+                              gconstpointer data) {
+  int n = NUM_CITIES_1, m = NUM_CITIES_2;
+  path_randomize(test_path->path_40);
+  /* while (n--) { */
+  /*   path_swap(test_path->path_40); */
+  /*   g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_40), */
+  /*                                  path_cost_sum(test_path->path_40)/ */
+  /*                                  path_normalize(test_path->path_40), */
+  /*                                  0.00016); */
+  /* } */
+  Path* copy = path_copy(test_path->path_40);
+  path_swap(test_path->path_40);
+  path_de_swap(test_path->path_40);
+  /* g_assert(path_array(copy), path_array(test_path->path_40)); */
+}
+
 int main(int argc, char** argv) {
   setlocale(LC_ALL, "");
   g_test_init(&argc, &argv, NULL);
@@ -140,6 +158,10 @@ int main(int argc, char** argv) {
   g_test_add("/path/test_path_swap", Test_path, NULL,
              test_path_set_up,
              test_path_swap,
+             test_path_tear_down);
+  g_test_add("/path/test_path_de_swap", Test_path, NULL,
+             test_path_set_up,
+             test_path_de_swap,
              test_path_tear_down);
   return g_test_run();
 }

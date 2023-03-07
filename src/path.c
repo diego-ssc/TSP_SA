@@ -19,6 +19,7 @@
 
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
 
 #include "heuristic.h"
 #include "path.h"
@@ -33,6 +34,7 @@ struct _Path {
   double max_distance;
   double normalized_v;
   double (*matrix)[CITY_NUMBER+1];
+  int i,j;
 };
 
 /* Fills the path array. */
@@ -49,6 +51,12 @@ static int fequal(const void*, const void*);
 
 /* Computes the normalized path weights. */
 static double c_path_normalize(Path*);
+
+/* Computes the random indexes used by swap function. */
+static void random_indexes(Path*);
+
+/* Computes the path swapping. */
+static void c_path_swap(Path*);
 
 /* Creates a new Path. */
 Path* path_new(City** cities, int n, int* ids,
@@ -74,7 +82,7 @@ void path_free(Path* path) {
   if (path->ids_r)
     free(path->ids_r);
   if (path->r_path)
-    free(path->r_path);  
+    free(path->r_path);
   if (path->distances)
     free(path->distances);
   free(path);
@@ -129,13 +137,23 @@ void path_randomize(Path* path) {
 
 /* Swaps two cities in the path. */
 void path_swap(Path* path) {
+  random_indexes(path);
+  c_path_swap(path);
+}
+
+/* Swaps two cities in the path. */
+void path_de_swap(Path* path) {
+  c_path_swap(path);
+}
+
+/* Computes the path swapping. */
+static void c_path_swap(Path* path) {
   City** r_path = path->r_path, *temp;
-  int i = 0,j = 0, n = path->n, temp_i;
+  int i = path->i;
+  int j = path->j;
+  int temp_i, n = path->n;
   int* ids_r = path->ids_r;
   double a = 0., b = 0., c = 0., d = 0.;
-
-  while (i == j && (i < 0 || j < 0))
-    i = random()%n, j = random()%n;
 
   if (i-1 >= 0)
     a = path_weight_function(path, *(r_path+i-1),
@@ -174,6 +192,14 @@ void path_swap(Path* path) {
     d = path_weight_function(path, *(r_path+j),
                              *(r_path+j+1));
   path->cost_sum += (a+b+c+d);
+}
+
+/* Computes the random indexes used by swap function. */
+static void random_indexes(Path* path) {
+  path->i = 0;
+  path->j = 0;
+  while (path->i == path->j)
+    path->i = random()%(path->n), path->j = random()%(path->n);
 }
 
 /* Returns the city array. */
@@ -257,10 +283,8 @@ int path_n(Path* path) {
 
 /* Returns a neighbour of the path. */
 Path* path_neighbour(Path* path) {
-  Path* n = path_new(path->cities, path->n,
-                     path->ids, path->matrix);
-  path_swap(n);
-  return n;
+  path_swap(path);
+  return path;
 }
 
 /* Returns a copy of the path. */
@@ -268,4 +292,22 @@ Path* path_copy(Path* path) {
   Path* n = path_new(path->cities, path->n,
                      path->ids, path->matrix);
   return n;
+}
+
+/* Returns if the paths are equal. */
+int path_equals(Path* p_1, Path* p_2) {
+  if (!p_1 || !p_2)
+    return 0;
+  if (p_1->n != p_1->n)
+    return 0;
+  if (p_1->cost_sum != p_1->cost_sum)
+    return 0;
+  if (p_1->max_distance != p_1->max_distance)
+    return 0;
+  if (p_1->normalized_v != p_1->normalized_v)
+    return 0;
+  int i;
+  return 0;
+  /* for(i = 0; i < p_1->n; ++i) */
+    
 }

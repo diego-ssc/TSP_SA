@@ -78,6 +78,12 @@ void path_randomize(Path* path);
 void path_swap(Path* path);
 
 /**
+ * Swaps two cities in the path.
+ * @param path the path.
+ */
+void path_de_swap(Path* path);
+
+/**
  * Returns the city array.
  * @param path the path.
  * @return the array.
@@ -125,3 +131,11 @@ Path* path_neighbour(Path* path);
  * @return the copied path.
  */
 Path* path_copy(Path* path);
+
+/**
+ * Returns if the paths are equal.
+ * @param p_1 the first path.
+ * @param p_2 the second path.
+ * @return 0, if not equal; 1, otherwise.
+ */
+int path_equals(Path* p_1, Path* p_2);

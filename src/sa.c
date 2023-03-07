@@ -52,7 +52,7 @@ struct _SA {
      if no better solution is found.       */
   int m;
   /* Accepted solutions average and last
-     accepted solution */
+     accepted solution. */
   Batch* batch;
   /* The number of iterations the computing of
      a batch should take.*/
@@ -95,18 +95,19 @@ Batch* compute_batch(SA* sa) {
   Batch* batch = sa->batch;
 
   int c = 0, m = sa->m;
-  double r = 0.0;
+  double r = 0.0, cost;
 
   while (c < sa->l && m--) {
+    cost = path_cost_function(sa->sol);
     n = path_neighbour(sa->sol);
-    if (path_cost_function(n) <= path_cost_function(sa->sol) + t) {
+    if (path_cost_function(n) <= cost + t) {
       path_free(sa->sol);
       sa->sol = n;
       c++;
       r += path_cost_function(n);
     }
-    else
-      path_free(n);
+    /* else */
+    /*   path_free(n); */
   }
   batch->mean = r/sa->l;
   batch->path = n;
@@ -131,14 +132,15 @@ void threshold_accepting(SA* sa) {
       cost = path_cost_function(batch->path);
       b = b > cost ? cost : b;
       printf("Accepted: %.16f\n", cost);
-      printf("[");
-      for (int i = 0; i < path_n(batch->path); ++i)
-        if (i+1 < path_n(batch->path))
-          /* printf("%d,", *(path_ids_r(batch->path)+i)); */
-          printf("%d,", city_id(*(path_array(batch->path)+i)));
-        else
-          /* printf("%d]\n", *(path_ids_r(batch->path)+i)); */
-          printf("%d]\n", city_id(*(path_array(batch->path)+i)));
+      /* printf("["); */
+      /* for (int i = 0; i < path_n(batch->path); ++i) */
+      /*   if (i+1 < path_n(batch->path)) */
+      /*     /\* printf("%d,", *(path_ids_r(batch->path)+i)); *\/ */
+      /*     printf("%d,", city_id(*(path_array(batch->path)+i))); */
+      /*   else */
+      /*     /\* printf("%d]\n", *(path_ids_r(batch->path)+i)); *\/ */
+      /*     printf("%d]\n", city_id(*(path_array(batch->path)+i))); */
+      
       /* if (path_cost_function(batch->path) < path_cost_function(sa->final)) { */
       /*   printf("Accepted: %.16f\n", path_cost_function(batch->path)); */
       /*   fflush(stdout); */
