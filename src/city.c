@@ -130,14 +130,14 @@ int city_cmp(City* c_1, City* c_2) {
   if (!c_1 || !c_2)
     return 0;
   if (c_1->id != c_2->id)
+    return 0;                    
+  if (abs(c_1->x - c_2->x) >= 0.00016)
     return 0;
-  if (c_1->x != c_2->x)
+  if (abs(c_1->y - c_2->y) >= 0.00016)
     return 0;
-  if (c_1->y != c_2->y)
+  if (strcmp(c_1->country, c_2->country) != 0)
     return 0;
-  if (!strcmp(c_1->country, c_1->country))
-    return 0;
-  if (!strcmp(c_1->name, c_1->name))
+  if (strcmp(c_1->name, c_2->name) != 0)
     return 0;
   return 1;
 }

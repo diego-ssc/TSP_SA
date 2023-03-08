@@ -40,7 +40,7 @@ void path_free(Path* path);
  * @param path the path.
  * @return the normalized number.
  */
-double path_normalize(Path* path);
+long double path_normalize(Path* path);
 
 /**
  * Computes the weight of an edge between two cities.
@@ -63,7 +63,7 @@ double path_cost_sum(Path* path);
  * @param path the path.
  * @return the cost.
  */
-double path_cost_function(Path* path);
+long double path_cost_function(Path* path);
 
 /**
  * Randomizes the initial path.
@@ -95,7 +95,7 @@ City** path_array(Path* path);
  * @param path the path.
  ^ @return the sum of the costs.
  */
-double path_sum(Path* path);
+long double* path_sum(Path* path);
 
 /**
  * Returns the array of ids.
@@ -103,13 +103,6 @@ double path_sum(Path* path);
  * @return the array.
  */
 int* path_ids(Path* path);
-
-/**
- * Returns the array of randomized ids.
- * @param path the path.
- * @return the array.
- */
-int* path_ids_r(Path* path);
 
 /**
  * Returns the maximum distance of the path.
