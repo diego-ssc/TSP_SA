@@ -33,9 +33,26 @@ static int instance[2][150] = {
    982,984,985,986,988,990,991,995,999,1001,1003,1037,1038,1073,1075}
 };
 
+/* Test environment. */
+typedef struct {
+  int seed;
+  Database_loader* loader;
+} Test_env;
+
+/* Test environment constructor. */
+static Test_env* test_env_new() {
+  Test_env *test_env = malloc(sizeof(Test_env));
+  test_env->loader = loader_new();
+  loader_open(test_env->loader);
+  loader_load(test_env->loader);
+  test_env->seed = time(0);
+  srandom(test_env->seed);
+  return test_env;
+}
+
 /* Test path. */
 typedef struct {
-  Database_loader* loader;
+  /* Database_loader* loader; */
   Path* path_40;
   Path* path_150;
 } Test_path;
@@ -43,22 +60,21 @@ typedef struct {
 /* Sets up a city test case. */
 static void test_path_set_up(Test_path* test_path,
                              gconstpointer data) {
-  test_path->loader = loader_new();
-  loader_open(test_path->loader);
-  loader_load(test_path->loader);
-  test_path->path_40 = path_new(loader_cities(test_path->loader),
+  Database_loader* loader = ((Test_env*)data)->loader;
+  /* test_path->loader = loader_new(); */
+  /* loader_open(test_path->loader); */
+  /* loader_load(test_path->loader); */
+  test_path->path_40 = path_new(loader_cities(loader),
                                 NUM_CITIES_1, (int*)instance,
-                                loader_adj_matrix(test_path->loader));
-  test_path->path_150 = path_new(loader_cities(test_path->loader),
+                                loader_adj_matrix(loader));
+  test_path->path_150 = path_new(loader_cities(loader),
                                  NUM_CITIES_2, (int*)instance[1],
-                                 loader_adj_matrix(test_path->loader));
+                                 loader_adj_matrix(loader));
 }
 
 /* Tears down a city test case. */
 static void test_path_tear_down(Test_path* test_path,
                                 gconstpointer data) {
-  if (test_path->loader)
-    loader_free(test_path->loader);
   if (test_path->path_40)
     path_free(test_path->path_40);
   if (test_path->path_150)
@@ -85,14 +101,11 @@ static void test_path_normalizer(Test_path* test_path,
 
 /* Tests the distance between two cities. */
 static void test_path_cost_function(Test_path* test_path,
-                           gconstpointer data) {
-  g_assert_cmpfloat_with_epsilon(path_cost_sum(test_path->path_40)/
-                                 path_normalize(test_path->path_40),
+                                    gconstpointer data) {
+  g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_40),
                                  EVAL_40,0.00016);
-  /* g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_40), */
-  /*                                EVAL_40,0.00016); */
-  /* g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_150), */
-  /*                                EVAL_150,0.00016); */
+  g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_150),
+                                 EVAL_150,0.00016);
 }
 
 /* The the path swapping. */
@@ -127,7 +140,7 @@ static void test_path_swap(Test_path* test_path,
 
 static void test_path_de_swap(Test_path* test_path,
                               gconstpointer data) {
-  int n = NUM_CITIES_1, m = NUM_CITIES_2;
+  /* int n = NUM_CITIES_1, m = NUM_CITIES_2; */
   path_randomize(test_path->path_40);
   /* while (n--) { */
   /*   path_swap(test_path->path_40); */
@@ -137,32 +150,38 @@ static void test_path_de_swap(Test_path* test_path,
   /*                                  0.00016); */
   /* } */
   Path* copy = path_copy(test_path->path_40);
+  printf("Original[randomized]:\n%s\nCopy[randomized]:\n%s\n",
+         path_to_str(test_path->path_40),
+         path_to_str(copy));
   path_swap(test_path->path_40);
   path_de_swap(test_path->path_40);
   g_assert(path_cmp(test_path->path_40, copy));
+  path_free(copy);
 }
 
 int main(int argc, char** argv) {
   setlocale(LC_ALL, "");
   g_test_init(&argc, &argv, NULL);
 
-  g_test_add("/path/test_path_max_distance", Test_path, NULL,
+  Test_env* test_env = test_env_new();
+
+  g_test_add("/path/test_path_max_distance", Test_path, test_env,
              test_path_set_up,
              test_path_max_distance,
              test_path_tear_down);
-  g_test_add("/path/test_path_normalizer", Test_path, NULL,
+  g_test_add("/path/test_path_normalizer", Test_path, test_env,
              test_path_set_up,
              test_path_normalizer,
              test_path_tear_down);
-  g_test_add("/path/test_path_cost_function", Test_path, NULL,
+  g_test_add("/path/test_path_cost_function", Test_path, test_env,
              test_path_set_up,
              test_path_cost_function,
              test_path_tear_down);
-  g_test_add("/path/test_path_swap", Test_path, NULL,
+  g_test_add("/path/test_path_swap", Test_path, test_env,
              test_path_set_up,
              test_path_swap,
              test_path_tear_down);
-  g_test_add("/path/test_path_de_swap", Test_path, NULL,
+  g_test_add("/path/test_path_de_swap", Test_path, test_env,
              test_path_set_up,
              test_path_de_swap,
              test_path_tear_down);

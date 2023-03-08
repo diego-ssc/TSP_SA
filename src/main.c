@@ -29,11 +29,15 @@ int main(int argc, char** argv) {
   /* SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.); */
   Path* path = path_new(loader_cities(tsp_database_loader(tsp)), 40, inst,
                         loader_adj_matrix(tsp_database_loader(tsp)));
+  printf("Path cost function: %.16f\n", path_cost_function(path));
   printf("%s\n", path_to_str(path));
   path_swap(path);
   printf("%s\n", path_to_str(path));
+  path_de_swap(path);
+  printf("%s\n", path_to_str(path));
+  path_free(path);
   /* threshold_accepting(sa); */
   /* sa_free(sa); */
-  /* tsp_free(tsp); */
+  tsp_free(tsp);
   return 0;
 }
