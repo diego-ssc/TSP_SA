@@ -109,8 +109,8 @@ City** city_array(int n) {
 void city_array_free(City*** cities, int n) {
   int a = n;
   while (n--)
-    if (*((*cities) + a-(n+1))) 
-      city_free(*((*cities) + a-(n+1)));    
+    if (*((*cities) + a-(n+1)))
+      city_free(*((*cities) + a-(n+1)));
   free(*cities);
 }
 
@@ -123,4 +123,21 @@ void city_array_set_element(City*** city_1, City** city_2, int i) {
 City* city_copy(City* city) {
   return city_new(city->id, city->name, city->country,
                   city->x, city->y);
+}
+
+/* Compares two cities. */
+int city_cmp(City* c_1, City* c_2) {
+  if (!c_1 || !c_2)
+    return 0;
+  if (c_1->id != c_2->id)
+    return 0;
+  if (c_1->x != c_2->x)
+    return 0;
+  if (c_1->y != c_2->y)
+    return 0;
+  if (!strcmp(c_1->country, c_1->country))
+    return 0;
+  if (!strcmp(c_1->name, c_1->name))
+    return 0;
+  return 1;
 }

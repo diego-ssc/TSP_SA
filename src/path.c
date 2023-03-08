@@ -114,7 +114,7 @@ double path_normalize(Path* path) {
 
 /* Computes the cost function. */
 double path_cost_function(Path* path) {
-  return path->cost_sum/path_normalize(path);
+  return path->cost_sum/path->normalized_v;
 }
 
 /* Randomizes the initial path. */
@@ -207,6 +207,11 @@ City** path_array(Path* path) {
   return path->r_path;
 }
 
+/* Returns the sum of the costs of the cities. */
+int path_sum(Path* path) {
+  return path->cost_sum;
+}
+
 /* Returns the array of ids. */
 int* path_ids(Path* path) {
   return path->ids;
@@ -295,10 +300,10 @@ Path* path_copy(Path* path) {
 }
 
 /* Returns if the paths are equal. */
-int path_equals(Path* p_1, Path* p_2) {
+int path_cmp(Path* p_1, Path* p_2) {
   if (!p_1 || !p_2)
     return 0;
-  if (p_1->n != p_1->n)
+  if (p_1->n != p_2->n)
     return 0;
   if (p_1->cost_sum != p_1->cost_sum)
     return 0;
@@ -307,7 +312,27 @@ int path_equals(Path* p_1, Path* p_2) {
   if (p_1->normalized_v != p_1->normalized_v)
     return 0;
   int i;
-  return 0;
-  /* for(i = 0; i < p_1->n; ++i) */
-    
+  for(i = 0; i < p_1->n; ++i) {
+    if (*(p_1->ids_r+i) != *(p_2->ids_r+i))
+      return 0;
+    if (city_cmp( *(p_1->r_path+i),
+                  *(p_2->r_path+i)))
+      return 0;
+  }
+  return 1;
+}
+
+/* Returns the string representation of the path */
+char* path_to_str(Path* path) {
+  int i;
+  char* str = malloc(sizeof(int)*path->n*2+2);
+  City** cities = path->r_path;
+  sprintf(str, "%s", "[");
+  for (i = 0; i < path->n; ++i) {
+    sprintf(&str[strlen(str)], "%d", city_id(*(cities+i)));
+    if (i+1 < path->n)
+      sprintf(&str[strlen(str)], "%s", ",");
+  }
+  strcat(str, "]");
+  return str;
 }

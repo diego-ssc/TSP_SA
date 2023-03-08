@@ -26,9 +26,14 @@ int main(int argc, char** argv) {
                 333,483,489,490,491,492,493,496,653,654,656,657,815,816,
                 817,820,978,979,980,981,982,984};
   TSP* tsp = tsp_new(40, inst, 4444);
-  SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.);
-  threshold_accepting(sa);
-  sa_free(sa);
-  tsp_free(tsp);
+  /* SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.); */
+  Path* path = path_new(loader_cities(tsp_database_loader(tsp)), 40, inst,
+                        loader_adj_matrix(tsp_database_loader(tsp)));
+  printf("%s\n", path_to_str(path));
+  path_swap(path);
+  printf("%s\n", path_to_str(path));
+  /* threshold_accepting(sa); */
+  /* sa_free(sa); */
+  /* tsp_free(tsp); */
   return 0;
 }
