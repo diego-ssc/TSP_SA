@@ -91,6 +91,13 @@ void path_de_swap(Path* path);
 City** path_array(Path* path);
 
 /**
+ * Returns the sum of the costs of the cities.
+ * @param path the path.
+ ^ @return the sum of the costs.
+ */
+int path_sum(Path* path);
+
+/**
  * Returns the array of ids.
  * @param path the path.
  * @return the array.
@@ -133,9 +140,16 @@ Path* path_neighbour(Path* path);
 Path* path_copy(Path* path);
 
 /**
- * Returns if the paths are equal.
+ * Compates two paths.
  * @param p_1 the first path.
  * @param p_2 the second path.
- * @return 0, if not equal; 1, otherwise.
+ * @return 0, if the paths are not equal; 1, otherwise.
  */
-int path_equals(Path* p_1, Path* p_2);
+int path_cmp(Path* p_1, Path* p_2);
+
+/**
+ * Returns the string representation of the path
+ * @param path the path.
+ * @return the string representation.
+ */
+char* path_to_str(Path* path);

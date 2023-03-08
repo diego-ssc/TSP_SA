@@ -110,3 +110,11 @@ void city_array_set_element(City*** city_1, City** city_2, int i);
  * @return the copy of the city.
  */
 City* city_copy(City* city);
+
+/**
+ * Compares two cities.
+ * @param c_1 the first city.
+ * @param c_2 the second city.
+ * @return 0, if the cities are not equal; 1, otherwise.
+ */
+int city_cmp(City* c_1, City* c_2);
