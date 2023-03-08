@@ -35,6 +35,7 @@ struct _Path {
   double normalized_v;
   double (*matrix)[CITY_NUMBER+1];
   int i,j;
+  char* str;
 };
 
 /* Fills the path array. */
@@ -74,6 +75,7 @@ Path* path_new(City** cities, int n, int* ids,
   path->cost_sum = path_cost_sum(path);
   path->distances = malloc(sizeof(double)*n*(n-1)/2);
   path->normalized_v = c_path_normalize(path);
+  path->str = malloc(sizeof(int)*path->n*2+2);
   return path;
 }
 
@@ -85,6 +87,8 @@ void path_free(Path* path) {
     free(path->r_path);
   if (path->distances)
     free(path->distances);
+  if (path->str)
+    free(path->str);
   free(path);
 }
 
@@ -97,13 +101,14 @@ double path_weight_function(Path* path, City* c_1, City* c_2) {
 
 /* Computes the sum of the costs. */
 double path_cost_sum(Path* path) {
-  City** r_path = path->r_path;
+  int* ids = path->ids_r;
+  City** cities = path->cities;
   int i;
   double cost = 0.0;
   int n = path->n;
   for (i = 0; i+1 < n; ++i)
-    cost += path_weight_function(path, *(r_path + i),
-                                 *(r_path + i+1));
+    cost += path_weight_function(path, *(cities + *(ids+i)),
+                                 *(cities + *(ids+i+1)));
   return cost;
 }
 
@@ -208,7 +213,7 @@ City** path_array(Path* path) {
 }
 
 /* Returns the sum of the costs of the cities. */
-int path_sum(Path* path) {
+double path_sum(Path* path) {
   return path->cost_sum;
 }
 
@@ -305,18 +310,19 @@ int path_cmp(Path* p_1, Path* p_2) {
     return 0;
   if (p_1->n != p_2->n)
     return 0;
-  if (p_1->cost_sum != p_1->cost_sum)
+  if (p_1->cost_sum != p_2->cost_sum)
     return 0;
-  if (p_1->max_distance != p_1->max_distance)
+  if (p_1->max_distance != p_2->max_distance)
     return 0;
-  if (p_1->normalized_v != p_1->normalized_v)
+  if (p_1->normalized_v != p_2->normalized_v)
     return 0;
   int i;
   for(i = 0; i < p_1->n; ++i) {
     if (*(p_1->ids_r+i) != *(p_2->ids_r+i))
       return 0;
-    if (city_cmp( *(p_1->r_path+i),
-                  *(p_2->r_path+i)))
+
+    if (city_cmp(*(p_1->r_path+i),
+                 *(p_2->r_path+i)))
       return 0;
   }
   return 1;
@@ -325,7 +331,7 @@ int path_cmp(Path* p_1, Path* p_2) {
 /* Returns the string representation of the path */
 char* path_to_str(Path* path) {
   int i;
-  char* str = malloc(sizeof(int)*path->n*2+2);
+  char* str = path->str;
   City** cities = path->r_path;
   sprintf(str, "%s", "[");
   for (i = 0; i < path->n; ++i) {
