@@ -28,11 +28,11 @@
 struct _Path {
   City** cities, **r_path;
   int n;
-  int* ids, *ids_r;
+  int* ids;
   double* distances;
-  double cost_sum;
+  long double* cost_sum;
   double max_distance;
-  double normalized_v;
+  long double normalized_v;
   double (*matrix)[CITY_NUMBER+1];
   int i,j;
   char* str;
@@ -51,7 +51,7 @@ static int edge_exists(Path*, City*, City*);
 static int fequal(const void*, const void*);
 
 /* Computes the normalized path weights. */
-static double c_path_normalize(Path*);
+static long double c_path_normalize(Path*);
 
 /* Computes the random indexes used by swap function. */
 static void random_indexes(Path*);
@@ -68,11 +68,10 @@ Path* path_new(City** cities, int n, int* ids,
   path->ids = ids;
   path->n = n;
   fill_path_array(path);
-  path->ids_r = calloc(1,sizeof(int)*n);
-  memcpy(path->ids_r, path->ids, n*sizeof(int));
   path->matrix = matrix;
   path->max_distance = c_path_max_distance(path);
-  path->cost_sum = path_cost_sum(path);
+  path->cost_sum = malloc(sizeof(long double));
+  *path->cost_sum = path_cost_sum(path);
   path->distances = malloc(sizeof(double)*n*(n-1)/2);
   path->normalized_v = c_path_normalize(path);
   path->str = malloc(sizeof(int)*path->n*2+2);
@@ -81,14 +80,14 @@ Path* path_new(City** cities, int n, int* ids,
 
 /* Frees the memory used by the path. */
 void path_free(Path* path) {
-  if (path->ids_r)
-    free(path->ids_r);
   if (path->r_path)
     free(path->r_path);
   if (path->distances)
     free(path->distances);
   if (path->str)
     free(path->str);
+  if (path->cost_sum)
+    free(path->cost_sum);
   free(path);
 }
 
@@ -101,7 +100,7 @@ double path_weight_function(Path* path, City* c_1, City* c_2) {
 
 /* Computes the sum of the costs. */
 double path_cost_sum(Path* path) {
-  int* ids = path->ids_r;
+  int* ids = path->ids;
   City** cities = path->cities;
   int i;
   double cost = 0.0;
@@ -113,19 +112,19 @@ double path_cost_sum(Path* path) {
 }
 
 /* Normalizes the path weights. */
-double path_normalize(Path* path) {
+long double path_normalize(Path* path) {
   return path->normalized_v;
 }
 
 /* Computes the cost function. */
-double path_cost_function(Path* path) {
-  return path->cost_sum/path->normalized_v;
+long double path_cost_function(Path* path) {
+  return *path->cost_sum/path->normalized_v;
 }
 
 /* Randomizes the initial path. */
 void path_randomize(Path* path) {
   int i, r, temp, n = path->n;
-  int *ids_r = path->ids_r;
+  int *ids_r = path->ids;
   City** cities = path->cities;
 
   for (i = 0; i < n; ++i) {
@@ -137,7 +136,7 @@ void path_randomize(Path* path) {
   for (i = 0; i < n; ++i)
     *(path->r_path+i) = *(cities + *(ids_r + i));
 
-  path->cost_sum = path_cost_sum(path);
+  *path->cost_sum = path_cost_sum(path);
 }
 
 /* Swaps two cities in the path. */
@@ -157,8 +156,8 @@ static void c_path_swap(Path* path) {
   int i = path->i;
   int j = path->j;
   int temp_i, n = path->n;
-  int* ids_r = path->ids_r;
-  double a = 0., b = 0., c = 0., d = 0.;
+  int* ids_r = path->ids;
+  long double a = 0., b = 0., c = 0., d = 0.;
 
   if (i-1 >= 0)
     a = path_weight_function(path, *(r_path+i-1),
@@ -173,7 +172,7 @@ static void c_path_swap(Path* path) {
   if (j+1 < n)
     d = path_weight_function(path, *(r_path+j),
                              *(r_path+j+1));
-  path->cost_sum -= (a+b+c+d);
+  *path->cost_sum -= (a+b+c+d);
 
   a = 0., b = 0., c = 0., d = 0.;
   temp = *(r_path + i);
@@ -196,7 +195,8 @@ static void c_path_swap(Path* path) {
   if (j+1 < n)
     d = path_weight_function(path, *(r_path+j),
                              *(r_path+j+1));
-  path->cost_sum += (a+b+c+d);
+
+  *path->cost_sum += (a+b+c+d);
 }
 
 /* Computes the random indexes used by swap function. */
@@ -213,18 +213,13 @@ City** path_array(Path* path) {
 }
 
 /* Returns the sum of the costs of the cities. */
-double path_sum(Path* path) {
+long double* path_sum(Path* path) {
   return path->cost_sum;
 }
 
 /* Returns the array of ids. */
 int* path_ids(Path* path) {
   return path->ids;
-}
-
-/* Returns the array of randomized ids. */
-int* path_ids_r(Path* path) {
-  return path->ids_r;
 }
 
 /* Returns the maximum distance of the path. */
@@ -247,7 +242,7 @@ static int edge_exists(Path* path, City* c_1, City* c_2) {
 
 /* Computes the maximum distance of the path. */
 static double c_path_max_distance(Path* path) {
-  int* a = path->ids_r;
+  int* a = path->ids;
   double (*m)[CITY_NUMBER+1] = path->matrix;
   int i,j;
   double max = 0.0;
@@ -265,12 +260,12 @@ static int fequal(const void* n, const void* m) {
 }
 
 /* Computes the normalized path weights. */
-static double c_path_normalize(Path* path) {
+static long double c_path_normalize(Path* path) {
   int i,j,k=0,n=path->n;
-  int* ids = path->ids_r;
+  int* ids = path->ids;
   City** cities = path->cities;
   double* distances = path->distances;
-  double sum = 0.0;
+  long double sum = 0.0;
 
   for (i = 0; i < n; ++i)
     for (j = i+1; j < n; ++j)
@@ -310,19 +305,18 @@ int path_cmp(Path* p_1, Path* p_2) {
     return 0;
   if (p_1->n != p_2->n)
     return 0;
-  if (p_1->cost_sum != p_2->cost_sum)
+  if (abs(*p_1->cost_sum - *p_2->cost_sum) >= 0.00016)
     return 0;
-  if (p_1->max_distance != p_2->max_distance)
+  if (abs(p_1->max_distance - p_2->max_distance) >= 0.00016)
     return 0;
-  if (p_1->normalized_v != p_2->normalized_v)
+  if (abs(p_1->normalized_v - p_2->normalized_v) >= 0.00016)
     return 0;
   int i;
   for(i = 0; i < p_1->n; ++i) {
-    if (*(p_1->ids_r+i) != *(p_2->ids_r+i))
+    if (*(p_1->ids+i) != *(p_2->ids+i))
       return 0;
-
-    if (city_cmp(*(p_1->r_path+i),
-                 *(p_2->r_path+i)))
+    if (!city_cmp(*(p_1->r_path+i),
+                  *(p_2->r_path+i)))
       return 0;
   }
   return 1;

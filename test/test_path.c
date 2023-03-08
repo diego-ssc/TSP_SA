@@ -45,7 +45,7 @@ static Test_env* test_env_new() {
   test_env->loader = loader_new();
   loader_open(test_env->loader);
   loader_load(test_env->loader);
-  test_env->seed = time(0);
+  test_env->seed = time(0);//4
   srandom(test_env->seed);
   return test_env;
 }
@@ -61,9 +61,6 @@ typedef struct {
 static void test_path_set_up(Test_path* test_path,
                              gconstpointer data) {
   Database_loader* loader = ((Test_env*)data)->loader;
-  /* test_path->loader = loader_new(); */
-  /* loader_open(test_path->loader); */
-  /* loader_load(test_path->loader); */
   test_path->path_40 = path_new(loader_cities(loader),
                                 NUM_CITIES_1, (int*)instance,
                                 loader_adj_matrix(loader));
@@ -140,23 +137,25 @@ static void test_path_swap(Test_path* test_path,
 
 static void test_path_de_swap(Test_path* test_path,
                               gconstpointer data) {
-  /* int n = NUM_CITIES_1, m = NUM_CITIES_2; */
+  int n = NUM_CITIES_1, m = NUM_CITIES_2;
+  Path* copy;
   path_randomize(test_path->path_40);
-  /* while (n--) { */
-  /*   path_swap(test_path->path_40); */
-  /*   g_assert_cmpfloat_with_epsilon(path_cost_function(test_path->path_40), */
-  /*                                  path_cost_sum(test_path->path_40)/ */
-  /*                                  path_normalize(test_path->path_40), */
-  /*                                  0.00016); */
-  /* } */
-  Path* copy = path_copy(test_path->path_40);
-  printf("Original[randomized]:\n%s\nCopy[randomized]:\n%s\n",
-         path_to_str(test_path->path_40),
-         path_to_str(copy));
-  path_swap(test_path->path_40);
-  path_de_swap(test_path->path_40);
-  g_assert(path_cmp(test_path->path_40, copy));
-  path_free(copy);
+  while (n--) {
+    copy = path_copy(test_path->path_40);
+    path_swap(test_path->path_40);
+    path_de_swap(test_path->path_40);
+    g_assert(path_cmp(test_path->path_40, copy));
+    path_free(copy);
+  }
+
+  path_randomize(test_path->path_150);
+  while (m--) {
+    copy = path_copy(test_path->path_150);
+    path_swap(test_path->path_150);
+    path_de_swap(test_path->path_150);
+    g_assert(path_cmp(test_path->path_150, copy));
+    path_free(copy);
+  }
 }
 
 int main(int argc, char** argv) {

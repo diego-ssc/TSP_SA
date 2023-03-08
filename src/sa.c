@@ -19,13 +19,14 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <float.h>
 
 #include "heuristic.h"
 #include "sa.h"
 
 /* #define T        8 */
 #define T        14
-#define M        2000
+#define M        122000
 #define L        1200
 #define EPSILON  0.002
 #define PHI      0.95
@@ -41,13 +42,11 @@ struct _Batch {
 /* The Simulated Annealing structure. */
 struct _SA {
   /* The temperature */
-  double t;
+  long double t;
   double epsilon;
   double phi;
   /* The current solution */
   Path* sol;
-  /* The final solution */
-  Path* final;
   /* Maximum iterations of `compute_batch`
      if no better solution is found.       */
   int m;
@@ -57,6 +56,8 @@ struct _SA {
   /* The number of iterations the computing of
      a batch should take.*/
   int l;
+  /* The string representation of the best path. */
+  char* str;
 };
 
 
@@ -67,50 +68,46 @@ SA* sa_new(TSP* tsp, double t, int m,
   sa->batch = malloc(sizeof(struct _Batch));
   sa->sol = path_new(loader_cities(tsp_database_loader(tsp)), tsp_city_number(tsp),
                      tsp_ids(tsp), tsp_adj_matrix(tsp));
-  sa->final = path_new(loader_cities(tsp_database_loader(tsp)), tsp_city_number(tsp),
-                     tsp_ids(tsp), tsp_adj_matrix(tsp));
   sa->t = t ? t : T;
   sa->m = m ? m : M;
   sa->l = l ? l : L;
   sa->epsilon = epsilon ? epsilon : EPSILON;
   sa->phi = phi ? phi : PHI;
+  sa->str = malloc(sizeof(int)*tsp_city_number(tsp)*2+2);
   return sa;
 }
 
 /* Frees the memory used by the simulated annealing heuristic. */
 void sa_free(SA* sa) {
+  if (sa->str)
+    free(sa->str);
   if (sa->batch)
     free(sa->batch);
   if (sa->sol)
     path_free(sa->sol);
-  if (sa->final)
-    path_free(sa->final);
   free(sa);
 }
 
 /* Computes the set of solutions. */
 Batch* compute_batch(SA* sa) {
-  int t = sa->t;
-  Path* n = 0;
+  long double t = sa->t;
   Batch* batch = sa->batch;
 
   int c = 0, m = sa->m;
-  double r = 0.0, cost;
+  double r = 0.0;
+  long double cost;
 
   while (c < sa->l && m--) {
     cost = path_cost_function(sa->sol);
-    n = path_neighbour(sa->sol);
-    if (path_cost_function(n) <= cost + t) {
-      path_free(sa->sol);
-      sa->sol = n;
+    path_swap(sa->sol);
+    if (path_cost_function(sa->sol) <= cost + t) {
       c++;
-      r += path_cost_function(n);
-    }
-    /* else */
-    /*   path_free(n); */
+      r += path_cost_function(sa->sol);
+    } else
+      path_de_swap(sa->sol);
   }
   batch->mean = r/sa->l;
-  batch->path = n;
+  batch->path = sa->sol;
 
   return batch;
 }
@@ -118,36 +115,28 @@ Batch* compute_batch(SA* sa) {
 void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
-  double cost;
-  double b = 10000;
+  long double cost;
+  long double b = 1000000000;
+  path_randomize(sa->sol);
   while (sa->t > sa->epsilon) {
-    q = p + 1;
+    q = DBL_MAX;
 
-    printf("T: %0.16f\n", sa->t);
-    fflush(stdout);
+    printf("T: %0.16Lf\n", sa->t);
+    /* fflush(stdout); */
     while (p <= q) {
       q = p;
       batch = compute_batch(sa);
       p = batch->mean;
       cost = path_cost_function(batch->path);
-      b = b > cost ? cost : b;
-      printf("Accepted: %.16f\n", cost);
-      /* printf("["); */
-      /* for (int i = 0; i < path_n(batch->path); ++i) */
-      /*   if (i+1 < path_n(batch->path)) */
-      /*     /\* printf("%d,", *(path_ids_r(batch->path)+i)); *\/ */
-      /*     printf("%d,", city_id(*(path_array(batch->path)+i))); */
-      /*   else */
-      /*     /\* printf("%d]\n", *(path_ids_r(batch->path)+i)); *\/ */
-      /*     printf("%d]\n", city_id(*(path_array(batch->path)+i))); */
+      printf("Accepted: %.16Lf\n", cost);
       
-      /* if (path_cost_function(batch->path) < path_cost_function(sa->final)) { */
-      /*   printf("Accepted: %.16f\n", path_cost_function(batch->path)); */
-      /*   fflush(stdout); */
-      /* } */
+      if (b > cost) {
+        sprintf(sa->str, "%s", path_to_str(batch->path));
+        b = cost;
+      }
     }
-    
     sa->t *= sa->phi;
   }
-  printf("\nBest: %.16f\n", b);
+  printf("\nBest: %.16Lf\n", b);
+  printf("%s\n", sa->str);
 }

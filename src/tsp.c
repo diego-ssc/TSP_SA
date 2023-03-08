@@ -99,7 +99,7 @@ Report* tsp_report(TSP* tsp) {
 
 /* Returns the adjacency matrix of the TSP instance. */
 double (*tsp_adj_matrix(TSP* tsp))[CITY_NUMBER+1] {
-  return tsp->fm;
+  return loader_adj_matrix(tsp->loader);
 }
 
 /* Returns the ids array of the TSP instance. */
@@ -109,7 +109,7 @@ int* tsp_ids(TSP* tsp) {
 
 /* Returns the number of cities in the TSP instance. */
 int tsp_city_number(TSP* tsp) {
-  return tsp->n;  
+  return tsp->n;
 }
 
 /* Sets the best solution of the TSP instance. */
@@ -131,11 +131,14 @@ void tsp_set_report(TSP* tsp, Report* report) {
 void tsp_fill_matrix(TSP* tsp) {
   int i,j;
   double n;
+  double (*m)[CITY_NUMBER+1] = loader_adj_matrix(tsp_database_loader(tsp));
   double (*fm)[CITY_NUMBER+1] = tsp->fm;
   City** cities = loader_cities(tsp->loader);
   for (i = 1; i < CITY_NUMBER+1; ++i)
     for (j = i+1; j < CITY_NUMBER+1; ++j) {
-      n = path_weight_function(tsp->path, *(cities + i), *(cities + j));
+        n = *(*(m+ i)+ j) == 0.0 ? city_distance(*(cities + i), *(cities + j)) *
+          path_max_distance(tsp->path) : *(*(m+ i)+ j);
+
       *(*(fm + i)+ j) = n;
       *(*(fm + j)+ i) = n;
     }
