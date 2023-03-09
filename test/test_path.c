@@ -9,7 +9,6 @@
 /* Instance values. */
 #define NUM_CITIES_1       40
 #define NUM_CITIES_2       150
-#define MAX_ID             1092
 #define EVAL_40            4129508.339517763
 #define EVAL_150           6249022.603226478
 #define NORMALIZER_40      180088219.480000019073486
@@ -52,7 +51,6 @@ static Test_env* test_env_new() {
 
 /* Test path. */
 typedef struct {
-  /* Database_loader* loader; */
   Path* path_40;
   Path* path_150;
 } Test_path;

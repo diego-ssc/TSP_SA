@@ -32,7 +32,7 @@ struct _Path {
   double* distances;
   long double* cost_sum;
   double max_distance;
-  long double normalized_v;
+  double normalized_v;
   double (*matrix)[CITY_NUMBER+1];
   int i,j;
   char* str;
@@ -51,7 +51,7 @@ static int edge_exists(Path*, City*, City*);
 static int fequal(const void*, const void*);
 
 /* Computes the normalized path weights. */
-static long double c_path_normalize(Path*);
+static double c_path_normalize(Path*);
 
 /* Computes the random indexes used by swap function. */
 static void random_indexes(Path*);
@@ -112,7 +112,7 @@ double path_cost_sum(Path* path) {
 }
 
 /* Normalizes the path weights. */
-long double path_normalize(Path* path) {
+double path_normalize(Path* path) {
   return path->normalized_v;
 }
 
@@ -153,8 +153,8 @@ void path_de_swap(Path* path) {
 /* Computes the path swapping. */
 static void c_path_swap(Path* path) {
   City** r_path = path->r_path, *temp;
-  int i = path->i;
-  int j = path->j;
+  int i = 30;//path->i;
+  int j = 38;//path->j;
   int temp_i, n = path->n;
   int* ids_r = path->ids;
   long double a = 0., b = 0., c = 0., d = 0.;
@@ -260,12 +260,12 @@ static int fequal(const void* n, const void* m) {
 }
 
 /* Computes the normalized path weights. */
-static long double c_path_normalize(Path* path) {
+static double c_path_normalize(Path* path) {
   int i,j,k=0,n=path->n;
   int* ids = path->ids;
   City** cities = path->cities;
   double* distances = path->distances;
-  long double sum = 0.0;
+  double sum = 0.0;
 
   for (i = 0; i < n; ++i)
     for (j = i+1; j < n; ++j)
@@ -273,7 +273,6 @@ static long double c_path_normalize(Path* path) {
         *(distances + k) =  *(*(path->matrix + *(ids+i))+ *(ids+j));
         ++k;
       }
-
   qsort(distances, n * (n-1)/2, sizeof(double), fequal);
   for (i = 0; i < n-1; i++)
     sum += *(distances + i);
