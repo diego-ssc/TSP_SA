@@ -40,7 +40,7 @@ void path_free(Path* path);
  * @param path the path.
  * @return the normalized number.
  */
-long double path_normalize(Path* path);
+double path_normalize(Path* path);
 
 /**
  * Computes the weight of an edge between two cities.
