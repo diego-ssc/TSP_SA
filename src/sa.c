@@ -19,12 +19,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include <float.h>
 
 #include "heuristic.h"
 #include "sa.h"
 
-/* #define T        8 */
 #define T        14
 #define M        122000
 #define L        1200
@@ -100,10 +98,11 @@ Batch* compute_batch(SA* sa) {
   while (c < sa->l && m--) {
     cost = path_cost_function(sa->sol);
     path_swap(sa->sol);
-    if (path_cost_function(sa->sol) <= cost + t) {
+    if (path_cost_function(sa->sol) <= (cost + t)) {
       c++;
       r += path_cost_function(sa->sol);
-    } else
+    }
+    else
       path_de_swap(sa->sol);
   }
   batch->mean = r/sa->l;
@@ -115,11 +114,11 @@ Batch* compute_batch(SA* sa) {
 void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
-  long double cost;
-  long double b = 1000000000;
+  register long double cost;
+  register long double b = 1000000000;
   path_randomize(sa->sol);
   while (sa->t > sa->epsilon) {
-    q = DBL_MAX;
+    q = p+1.;
 
     printf("T: %0.16Lf\n", sa->t);
     /* fflush(stdout); */

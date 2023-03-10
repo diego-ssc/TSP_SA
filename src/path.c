@@ -153,8 +153,8 @@ void path_de_swap(Path* path) {
 /* Computes the path swapping. */
 static void c_path_swap(Path* path) {
   City** r_path = path->r_path, *temp;
-  int i = 30;//path->i;
-  int j = 38;//path->j;
+  int i = path->i;
+  int j = path->j;
   int temp_i, n = path->n;
   int* ids_r = path->ids;
   long double a = 0., b = 0., c = 0., d = 0.;

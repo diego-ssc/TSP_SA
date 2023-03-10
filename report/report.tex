@@ -1,0 +1,74 @@
+\documentclass[a4paper]{article}
+
+\usepackage{pgf}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{titling}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{qtree}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{times}
+\usepackage{dsfont}
+\usepackage{titling}
+\usepackage{svg}
+\svgpath{../data/plot}
+
+
+\pretitle{\begin{center}\linespread{1}}
+  \posttitle{\end{center}\vspace{0.14cm}}
+\preauthor{\begin{center}\Large}
+  \postauthor{\end{center}}
+
+\setlength{\droptitle}{-10em}
+\title {\textbf {\Large{El problema del agente viajero}}\protect\\
+  \large{\textbf{Recocido Simulado}}\protect\\ \vspace{0.4cm}
+  \normalsize{\textbf{Seminario de Ciencias de la Computaci\'on B}} \protect\\ \vspace{0.2cm}
+  \normalsize{Canek Pel\'aez Vald\'es}}
+\date{}
+\author{\normalsize Sánchez Correa Diego Sebastián}
+
+\begin{document}
+\allowdisplaybreaks
+\maketitle
+
+\section{Heur\'istica}
+\section{Dise\~no}
+\section{Implementaci\'on}
+\section{Experimentaci\'on}
+
+\begin{table}[h!]
+  \begin{center}
+    \begin{tabular}{||l|c||}
+      \hline
+      \textit{Par\'ametro} & \textit{Valor}\\
+      \hline
+      Semilla & 102 \\
+      Temperatura & 14 \\
+      M & 122000 \\
+      L & 1200 \\
+      \'Epsilon & 0.002 \\
+      Phi & 0.95 \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+
+
+\begin{figure}[h!tbp]
+  \hspace*{-1.6cm}
+  \includesvg[scale=1]{results_1}  
+\end{figure}
+
+
+\begin{figure}[h!tbp]
+  \hspace*{-1.6cm}
+  \includesvg[scale=1]{results_2}  
+\end{figure}
+
+\section{Bibliograf\'ia}
+
+
+\end{document}
