@@ -1,4 +1,5 @@
 #include <glib.h>
+#include <glib/gi18n.h>
 #include <locale.h>
 #include <stdlib.h>
 #include <time.h>
@@ -44,7 +45,7 @@ static Test_env* test_env_new() {
   test_env->loader = loader_new();
   loader_open(test_env->loader);
   loader_load(test_env->loader);
-  test_env->seed = time(0);//4
+  test_env->seed = time(0);
   srandom(test_env->seed);
   return test_env;
 }
