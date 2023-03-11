@@ -19,13 +19,14 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <float.h>
 
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        14
-#define M        122000
-#define L        1200
+#define T        800000//800000//100000//28//14
+#define M        12000
+#define L        700//2000//1200//12000//6800//1200
 #define EPSILON  0.002
 #define PHI      0.95
 
@@ -34,7 +35,8 @@
 /* The Batch structure. */
 struct _Batch {
   double mean;
-  Path* path;
+  char* str;
+  long double cost;
 };
 
 /* The Simulated Annealing structure. */
@@ -56,8 +58,16 @@ struct _SA {
   int l;
   /* The string representation of the best path. */
   char* str;
+  int n;
 };
 
+/* Frees the memory used by the batch. */
+void batch_free(Batch* batch) {
+  if (batch->str)
+    free(batch->str);
+  if (batch)
+    free(batch);
+}
 
 /* Creates a new Simulated Annealing Heuristic. */
 SA* sa_new(TSP* tsp, double t, int m,
@@ -71,7 +81,9 @@ SA* sa_new(TSP* tsp, double t, int m,
   sa->l = l ? l : L;
   sa->epsilon = epsilon ? epsilon : EPSILON;
   sa->phi = phi ? phi : PHI;
+  sa->batch->str = calloc(1,sizeof(int)*tsp_city_number(tsp)*2+2);
   sa->str = malloc(sizeof(int)*tsp_city_number(tsp)*2+2);
+  sa->n = tsp_city_number(tsp);
   return sa;
 }
 
@@ -79,6 +91,8 @@ SA* sa_new(TSP* tsp, double t, int m,
 void sa_free(SA* sa) {
   if (sa->str)
     free(sa->str);
+  if (sa->batch->str)
+    free(sa->batch->str);
   if (sa->batch)
     free(sa->batch);
   if (sa->sol)
@@ -89,8 +103,10 @@ void sa_free(SA* sa) {
 /* Computes the set of solutions. */
 Batch* compute_batch(SA* sa) {
   long double t = sa->t;
-  Batch* batch = sa->batch;
-
+  Batch* batch = calloc(1,sizeof(struct _Batch));;
+  batch->str = calloc(1,sizeof(int)*sa->n*2+2);;
+  batch->cost = DBL_MAX;
+  
   int c = 0, m = sa->m;
   double r = 0.0;
   long double cost;
@@ -99,14 +115,16 @@ Batch* compute_batch(SA* sa) {
     cost = path_cost_function(sa->sol);
     path_swap(sa->sol);
     if (path_cost_function(sa->sol) <= (cost + t)) {
+      printf("E:%.16Lf\n", path_cost_function(sa->sol));
       c++;
+      batch->cost = path_cost_function(sa->sol);
+      sprintf(batch->str, "%s", path_to_str(sa->sol));
       r += path_cost_function(sa->sol);
     }
     else
       path_de_swap(sa->sol);
   }
   batch->mean = r/sa->l;
-  batch->path = sa->sol;
 
   return batch;
 }
@@ -114,25 +132,21 @@ Batch* compute_batch(SA* sa) {
 void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
-  register long double cost;
-  register long double b = 1000000000;
+  register long double b = DBL_MAX;
   path_randomize(sa->sol);
   while (sa->t > sa->epsilon) {
-    q = p+1.;
+    q = DBL_MAX;
 
-    printf("T: %0.16Lf\n", sa->t);
-    /* fflush(stdout); */
+    /* printf("T: %0.16Lf\n", sa->t); */
     while (p <= q) {
       q = p;
       batch = compute_batch(sa);
       p = batch->mean;
-      cost = path_cost_function(batch->path);
-      printf("Accepted: %.16Lf\n", cost);
-      
-      if (b > cost) {
-        sprintf(sa->str, "%s", path_to_str(batch->path));
-        b = cost;
+      if (batch->cost < b) {
+        b = batch->cost;
+        sprintf(sa->str, "%s", batch->str);
       }
+      batch_free(batch);
     }
     sa->t *= sa->phi;
   }

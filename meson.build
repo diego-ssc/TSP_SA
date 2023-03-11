@@ -2,6 +2,7 @@ project('TSP_SA', 'c',
         version : '0.1')
 
 add_global_arguments('-lsqlite3',
+                     '-O3',
                      language : 'c') #-g
 
 cc = meson.get_compiler('c')
