@@ -121,6 +121,22 @@ void loader_open(Database_loader* loader) {
   }
 }
 
+/* Opens the database. [Testing purpose] */
+void loader_open_t(Database_loader* loader, char* path) {
+  loader->path = realpath(path, 0);
+
+  if (access(loader->path, F_OK) == 0) {
+    loader->rc = sqlite3_open(loader->path, &(loader->db));
+    if (loader->rc) {
+      fprintf(stderr, "Can't open database: %s\n",
+              sqlite3_errmsg(loader->db));
+      exit(1);
+    }
+  } else {
+    fprintf(stderr, "Database not found\n");
+  }
+}
+
 /* Loads the database cities into a two dimensional array. */
 static void loader_load_cities(Database_loader* loader) {
   Data *data = malloc(sizeof(struct _Data));

@@ -72,18 +72,26 @@ void batch_free(Batch* batch) {
 /* Creates a new Simulated Annealing Heuristic. */
 SA* sa_new(TSP* tsp, double t, int m,
            int l, double epsilon, double phi) {
-  SA* sa = malloc(sizeof(struct _SA));
-  sa->batch = malloc(sizeof(struct _Batch));
-  sa->sol = path_new(loader_cities(tsp_database_loader(tsp)), tsp_city_number(tsp),
-                     tsp_ids(tsp), tsp_adj_matrix(tsp));
-  sa->t = t ? t : T;
-  sa->m = m ? m : M;
-  sa->l = l ? l : L;
-  sa->epsilon = epsilon ? epsilon : EPSILON;
-  sa->phi = phi ? phi : PHI;
-  sa->batch->str = calloc(1,sizeof(int)*tsp_city_number(tsp)*2+2);
+  /* Heap allocation. */
+  SA* sa  = malloc(sizeof(struct _SA));
+  sa->sol = path_new(loader_cities(tsp_database_loader(tsp)),
+                     tsp_city_number(tsp), tsp_ids(tsp),
+                     tsp_adj_matrix(tsp));
   sa->str = malloc(sizeof(int)*tsp_city_number(tsp)*2+2);
+
+  /* Batch 'constructor'. */
+  sa->batch      = malloc(sizeof(struct _Batch));
+  sa->batch->str = malloc(sizeof(int)*tsp_city_number(tsp)*2+2);
+
+  /* Attribute copy. */
   sa->n = tsp_city_number(tsp);
+
+  /* Parameters. */
+  sa->t       = t ? t : T;
+  sa->m       = m ? m : M;
+  sa->l       = l ? l : L;
+  sa->epsilon = epsilon ? epsilon : EPSILON;
+  sa->phi     = phi ? phi : PHI;
   return sa;
 }
 
@@ -106,7 +114,7 @@ Batch* compute_batch(SA* sa) {
   Batch* batch = calloc(1,sizeof(struct _Batch));;
   batch->str = calloc(1,sizeof(int)*sa->n*2+2);;
   batch->cost = DBL_MAX;
-  
+
   int c = 0, m = sa->m;
   double r = 0.0;
   long double cost;

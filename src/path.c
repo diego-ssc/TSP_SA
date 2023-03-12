@@ -62,19 +62,27 @@ static void c_path_swap(Path*);
 /* Creates a new Path. */
 Path* path_new(City** cities, int n, int* ids,
                double (*matrix)[CITY_NUMBER+1]) {
-  Path* path = malloc(sizeof(struct _Path));
+  /* Heap allocated. */
+  Path* path      = malloc(sizeof(struct _Path));
+  path->cost_sum  = calloc(1,sizeof(long double));
+  path->distances = calloc(1,sizeof(double)*n*(n-1)/2);
+  path->str       = malloc(sizeof(int)*n*2+2);
+  path->r_path    = city_array(n);
+
+  /* Pointer copy. */
   path->cities = cities;
-  path->r_path = city_array(n);
-  path->ids = ids;
   path->n = n;
-  fill_path_array(path);
+  path->ids = ids;
   path->matrix = matrix;
+
+  /* Linear operations. */
   path->max_distance = c_path_max_distance(path);
-  path->cost_sum = malloc(sizeof(long double));
-  *path->cost_sum = path_cost_sum(path);
-  path->distances = malloc(sizeof(double)*n*(n-1)/2);
+  *path->cost_sum    = path_cost_sum(path);
   path->normalized_v = c_path_normalize(path);
-  path->str = malloc(sizeof(int)*path->n*2+2);
+
+  /* Heap memory intialization. */
+  fill_path_array(path);
+
   return path;
 }
 

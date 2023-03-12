@@ -50,23 +50,33 @@ struct _TSP {
 
 /* Creates a new TSP instance. */
 TSP* tsp_new(int n, int* ids, int seed) {
-  TSP* tsp = malloc(sizeof(struct _TSP));
-  tsp->n = n;
-  tsp->ids = calloc(1,sizeof(int)*n);
-  tsp->loader = loader_new();
+  /* Random number generator. */
+  seed ? srandom(seed) : srandom(time(0));
+  long int r = random();
+
+  /* Heap allocation. */
+  TSP* tsp         = malloc(sizeof( struct _TSP));
+  tsp->ids         = calloc(1,sizeof(int)*n);
+  tsp->loader      = loader_new();
+  tsp->path        = path_new(loader_cities(tsp->loader), n, ids,
+                              loader_adj_matrix(tsp->loader));
+  tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
+  tsp->fm          = malloc((CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
+  tsp->report      = report_new(tsp->report_name, r);
+
+  /* Database intialization. */
   loader_open(tsp->loader);
   loader_load(tsp->loader);
-  tsp->path = path_new(loader_cities(tsp->loader), n, ids,
-                       loader_adj_matrix(tsp->loader));
+
+  /* Value copies. */
+  tsp->n = n;
   tsp->seed = seed;
-  long int r = random();
-  memcpy(tsp->ids, ids, tsp->n * sizeof(int));
-  seed ? srandom(seed) : srandom(time(0));
-  tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
+
+  /* Heap memory intialization. */
   sprintf(tsp->report_name,"%ld",r);
-  tsp->report = report_new(tsp->report_name, r);
-  tsp->fm = malloc((CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
+  memcpy(tsp->ids, ids, tsp->n * sizeof(int));
   tsp_fill_matrix(tsp);
+
   return tsp;
 }
 
