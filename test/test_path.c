@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <stdio.h>
+#include <unistd.h>
 
 #include "heuristic.h"
 
@@ -162,7 +163,11 @@ int main(int argc, char** argv) {
   g_test_init(&argc, &argv, NULL);
 
   Test_env* test_env = test_env_new();
-
+  char* buff = malloc (sizeof(char)*252);
+  
+  printf("Current dir: %s\n", getcwd(buff, sizeof(char)*252));
+  free(buff);
+  
   g_test_add("/path/test_path_max_distance", Test_path, test_env,
              test_path_set_up,
              test_path_max_distance,

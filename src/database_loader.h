@@ -39,6 +39,13 @@ void loader_free(Database_loader* loader);
 void loader_open(Database_loader*);
 
 /**
+ * Opens the database. [Testing purpose]
+ * @param loader the database loader.
+ * @param path the database path.
+ */
+void loader_open_t(Database_loader* loader, char* path);
+
+/**
  * Loads the database.
  * @param loader the database loader.
  */
