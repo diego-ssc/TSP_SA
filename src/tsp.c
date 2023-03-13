@@ -46,6 +46,8 @@ struct _TSP {
   int *ids;
   /* The filled adjacency matrix. */
   double (*fm)[CITY_NUMBER+1];
+  /* RNG buffer. */
+  struct drand48_data* buffer;
 };
 
 /* Creates a new TSP instance. */
@@ -57,9 +59,8 @@ TSP* tsp_new(int n, int* ids, unsigned int seed) {
 
   /* Random number generator. */
   tsp->seed        = seed;
-  long int r       = rand_r(&seed);
-  tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
-  
+  tsp->report_name = malloc(snprintf(NULL, 0, "%u", seed)+ 1);
+
   /* Database intialization. */
   tsp->loader = loader_new();
   loader_open(tsp->loader);
@@ -69,13 +70,13 @@ TSP* tsp_new(int n, int* ids, unsigned int seed) {
   tsp->n = n;
 
   /* Heap memory intialization. */
-  sprintf(tsp->report_name,"%ld",r);
+  sprintf(tsp->report_name,"%u", seed);
   memcpy(tsp->ids, ids, tsp->n * sizeof(int));
 
   /* Structure creation. */
   tsp->path   = path_new(loader_cities(tsp->loader), n, ids,
                          tsp->seed, loader_adj_matrix(tsp->loader));
-  tsp->report = report_new(tsp->report_name, r);
+  tsp->report = report_new(tsp->report_name, seed);
 
   tsp_fill_matrix(tsp);
 

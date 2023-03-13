@@ -73,10 +73,10 @@ Path* path_new(City** cities, int n, int* ids,
   /* Pointer copy. */
   path->cities = cities;
   path->n      = n;
-  path->seed   = seed;
   path->ids    = ids;
   path->matrix = matrix;
-
+  path->seed   = seed;
+  
   /* Linear operations. */
   path->max_distance = c_path_max_distance(path);
   *path->cost_sum    = path_cost_sum(path);
@@ -133,10 +133,10 @@ long double path_cost_function(Path* path) {
 
 /* Randomizes the initial path. */
 void path_randomize(Path* path) {
-  int i, r, temp, n = path->n;
+  int i, temp, r, n = path->n;
   int *ids_r = path->ids;
   City** cities = path->cities;
-
+  
   for (i = 0; i < n; ++i) {
     r = rand_r(&path->seed) % n;
     temp = *(ids_r + r);
