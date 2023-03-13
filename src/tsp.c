@@ -39,7 +39,7 @@ struct _TSP {
   /* The report name. */
   char* report_name;
   /* The seed. */
-  int seed;
+  unsigned int seed;
   /* The number of cities in this instance. */
   int n;
   /* The ids of the cities in this instance. */
@@ -49,32 +49,34 @@ struct _TSP {
 };
 
 /* Creates a new TSP instance. */
-TSP* tsp_new(int n, int* ids, int seed) {
-  /* Random number generator. */
-  seed ? srandom(seed) : srandom(time(0));
-  long int r = random();
-
+TSP* tsp_new(int n, int* ids, unsigned int seed) {
   /* Heap allocation. */
   TSP* tsp         = malloc(sizeof( struct _TSP));
   tsp->ids         = calloc(1,sizeof(int)*n);
-  tsp->loader      = loader_new();
-  tsp->path        = path_new(loader_cities(tsp->loader), n, ids,
-                              loader_adj_matrix(tsp->loader));
-  tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
-  tsp->fm          = malloc((CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
-  tsp->report      = report_new(tsp->report_name, r);
+  tsp->fm          = calloc(1,(CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
 
+  /* Random number generator. */
+  tsp->seed        = seed;
+  long int r       = rand_r(&seed);
+  tsp->report_name = malloc(snprintf(NULL, 0, "%ld", r)+ 1);
+  
   /* Database intialization. */
+  tsp->loader = loader_new();
   loader_open(tsp->loader);
   loader_load(tsp->loader);
 
   /* Value copies. */
   tsp->n = n;
-  tsp->seed = seed;
 
   /* Heap memory intialization. */
   sprintf(tsp->report_name,"%ld",r);
   memcpy(tsp->ids, ids, tsp->n * sizeof(int));
+
+  /* Structure creation. */
+  tsp->path   = path_new(loader_cities(tsp->loader), n, ids,
+                         tsp->seed, loader_adj_matrix(tsp->loader));
+  tsp->report = report_new(tsp->report_name, r);
+
   tsp_fill_matrix(tsp);
 
   return tsp;
@@ -120,6 +122,16 @@ int* tsp_ids(TSP* tsp) {
 /* Returns the number of cities in the TSP instance. */
 int tsp_city_number(TSP* tsp) {
   return tsp->n;
+}
+
+/* Returns the path of the TSP instance. */
+Path* tsp_path(TSP* tsp) {
+  return tsp->path;
+}
+
+/* Returns the seed of the TSP instance. */
+unsigned int tsp_seed(TSP* tsp) {
+  return tsp->seed;
 }
 
 /* Sets the best solution of the TSP instance. */

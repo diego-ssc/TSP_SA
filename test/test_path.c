@@ -36,7 +36,7 @@ static int instance[2][150] = {
 
 /* Test environment. */
 typedef struct {
-  int seed;
+  unsigned int seed;
   Database_loader* loader;
 } Test_env;
 
@@ -44,6 +44,7 @@ typedef struct {
 static Test_env* test_env_new() {
   Test_env *test_env = malloc(sizeof(Test_env));
   test_env->loader = loader_new();
+  /* Implement another open method for testing [it fails with meson test] */
   loader_open(test_env->loader);
   loader_load(test_env->loader);
   test_env->seed = time(0);
@@ -60,13 +61,14 @@ typedef struct {
 /* Sets up a city test case. */
 static void test_path_set_up(Test_path* test_path,
                              gconstpointer data) {
-  Database_loader* loader = ((Test_env*)data)->loader;
+  Test_env* test_env = (Test_env*)data;
+  Database_loader* loader = test_env->loader;
   test_path->path_40 = path_new(loader_cities(loader),
                                 NUM_CITIES_1, (int*)instance,
-                                loader_adj_matrix(loader));
+                                test_env->seed, loader_adj_matrix(loader));
   test_path->path_150 = path_new(loader_cities(loader),
                                  NUM_CITIES_2, (int*)instance[1],
-                                 loader_adj_matrix(loader));
+                                 test_env->seed, loader_adj_matrix(loader));
 }
 
 /* Tears down a city test case. */
@@ -137,7 +139,7 @@ static void test_path_swap(Test_path* test_path,
 
 static void test_path_de_swap(Test_path* test_path,
                               gconstpointer data) {
-  int n = NUM_CITIES_1, m = NUM_CITIES_2;
+  int n = NUM_CITIES_1 * NUM_CITIES_1, m = NUM_CITIES_2 * NUM_CITIES_2;
   Path* copy;
   path_randomize(test_path->path_40);
   while (n--) {
@@ -163,11 +165,7 @@ int main(int argc, char** argv) {
   g_test_init(&argc, &argv, NULL);
 
   Test_env* test_env = test_env_new();
-  char* buff = malloc (sizeof(char)*252);
-  
-  printf("Current dir: %s\n", getcwd(buff, sizeof(char)*252));
-  free(buff);
-  
+
   g_test_add("/path/test_path_max_distance", Test_path, test_env,
              test_path_set_up,
              test_path_max_distance,
@@ -188,5 +186,6 @@ int main(int argc, char** argv) {
              test_path_set_up,
              test_path_de_swap,
              test_path_tear_down);
+
   return g_test_run();
 }

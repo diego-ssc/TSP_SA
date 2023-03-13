@@ -24,10 +24,11 @@
  * @param cities the initial permutation.
  * @param n the number of cities.
  * @param ids the ids of the cities.
+ * @param seed the seed for the RNG.
  * @param matrix the adjacency amtrix.
  */
 Path* path_new(City** cities, int n, int* ids,
-               double (*matrix)[CITY_NUMBER+1]);
+               unsigned int seed, double (*matrix)[CITY_NUMBER+1]);
 
 /**
  * Frees the memory used by the path.
