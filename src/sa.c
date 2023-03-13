@@ -24,7 +24,7 @@
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        100000//800000//100000//28//14
+#define T        800000//100000
 #define M        12000
 #define L        1200
 #define EPSILON  0.002
@@ -116,7 +116,7 @@ Batch* compute_batch(SA* sa) {
     cost = path_cost_function(sa->sol);
     path_swap(sa->sol);
     if (path_cost_function(sa->sol) <= (cost + t)) {
-      printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol));
+      /* printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol)); */
       c++;
       r += path_cost_function(sa->sol);
       if (path_cost_function(sa->sol) < batch->cost) {
