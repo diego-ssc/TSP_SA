@@ -24,9 +24,9 @@
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        800000//800000//100000//28//14
+#define T        100000//800000//100000//28//14
 #define M        12000
-#define L        700//2000//1200//12000//6800//1200
+#define L        1200
 #define EPSILON  0.002
 #define PHI      0.95
 
@@ -58,7 +58,10 @@ struct _SA {
   int l;
   /* The string representation of the best path. */
   char* str;
+  /* The number of cities. */
   int n;
+  /* The seed. */
+  unsigned int seed;
 };
 
 /* Frees the memory used by the batch. */
@@ -74,17 +77,12 @@ SA* sa_new(TSP* tsp, double t, int m,
            int l, double epsilon, double phi) {
   /* Heap allocation. */
   SA* sa  = malloc(sizeof(struct _SA));
-  sa->sol = path_new(loader_cities(tsp_database_loader(tsp)),
-                     tsp_city_number(tsp), tsp_ids(tsp),
-                     tsp_adj_matrix(tsp));
+  sa->sol = tsp_path(tsp);
   sa->str = malloc(sizeof(int)*tsp_city_number(tsp)*2+2);
-
-  /* Batch 'constructor'. */
-  sa->batch      = malloc(sizeof(struct _Batch));
-  sa->batch->str = malloc(sizeof(int)*tsp_city_number(tsp)*2+2);
 
   /* Attribute copy. */
   sa->n = tsp_city_number(tsp);
+  sa->seed = tsp_seed(tsp);
 
   /* Parameters. */
   sa->t       = t ? t : T;
@@ -99,20 +97,15 @@ SA* sa_new(TSP* tsp, double t, int m,
 void sa_free(SA* sa) {
   if (sa->str)
     free(sa->str);
-  if (sa->batch->str)
-    free(sa->batch->str);
-  if (sa->batch)
-    free(sa->batch);
-  if (sa->sol)
-    path_free(sa->sol);
   free(sa);
 }
 
 /* Computes the set of solutions. */
 Batch* compute_batch(SA* sa) {
   long double t = sa->t;
-  Batch* batch = calloc(1,sizeof(struct _Batch));;
-  batch->str = calloc(1,sizeof(int)*sa->n*2+2);;
+  /* Batch 'constructor'. */
+  Batch* batch = malloc(sizeof(struct _Batch));
+  batch->str = malloc(sizeof(int)*sa->n*2+2);  
   batch->cost = DBL_MAX;
 
   int c = 0, m = sa->m;
@@ -123,11 +116,13 @@ Batch* compute_batch(SA* sa) {
     cost = path_cost_function(sa->sol);
     path_swap(sa->sol);
     if (path_cost_function(sa->sol) <= (cost + t)) {
-      printf("E:%.16Lf\n", path_cost_function(sa->sol));
+      printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol));
       c++;
-      batch->cost = path_cost_function(sa->sol);
-      sprintf(batch->str, "%s", path_to_str(sa->sol));
       r += path_cost_function(sa->sol);
+      if (path_cost_function(sa->sol) < batch->cost) {
+        batch->cost = path_cost_function(sa->sol);
+        sprintf(batch->str, "%s", path_to_str(sa->sol));
+      }      
     }
     else
       path_de_swap(sa->sol);
@@ -158,6 +153,6 @@ void threshold_accepting(SA* sa) {
     }
     sa->t *= sa->phi;
   }
-  printf("\nBest: %.16Lf\n", b);
+  printf("\nBest[%u]: %.16Lf\n", sa->seed, b);
   printf("%s\n", sa->str);
 }

@@ -25,7 +25,7 @@
  * @param ids the ids of the cities.
  * @param seed the requested seed.
  */
-TSP* tsp_new(int n, int* ids, int seed);
+TSP* tsp_new(int n, int* ids, unsigned int seed);
 
 /**
  * Frees the memory used by the tsp instance.
@@ -60,6 +60,20 @@ int* tsp_ids(TSP* tsp);
  * @return the number of cities.
  */
 int tsp_city_number(TSP* tsp);
+
+/**
+ * Returns the path of the TSP instance.
+ * @param tsp the TSP instance.
+ * @return the path.
+ */
+Path* tsp_path(TSP* tsp);
+
+/**
+ * Returns the seed of the TSP instance.
+ * @param tsp the TSP instance.
+ * @return the seed.
+ */
+unsigned int tsp_seed(TSP* tsp);
 
 /**
  * Returns the report of the TSP instance.

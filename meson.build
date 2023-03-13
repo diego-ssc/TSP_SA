@@ -32,7 +32,7 @@ exe = executable('TSP_SA', src,
                  dependencies: [ sqlite, glib, m_dep, thread_dep ],
                  install : true)
 
-# tests
+#tests
 checks = [ 'city', 'path' ]
 foreach check : checks
   check_sources = [ 'test/test_' + check + '.c' ]

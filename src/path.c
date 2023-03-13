@@ -36,6 +36,7 @@ struct _Path {
   double (*matrix)[CITY_NUMBER+1];
   int i,j;
   char* str;
+  unsigned int seed;
 };
 
 /* Fills the path array. */
@@ -61,7 +62,7 @@ static void c_path_swap(Path*);
 
 /* Creates a new Path. */
 Path* path_new(City** cities, int n, int* ids,
-               double (*matrix)[CITY_NUMBER+1]) {
+               unsigned int seed, double (*matrix)[CITY_NUMBER+1]) {
   /* Heap allocated. */
   Path* path      = malloc(sizeof(struct _Path));
   path->cost_sum  = calloc(1,sizeof(long double));
@@ -71,8 +72,9 @@ Path* path_new(City** cities, int n, int* ids,
 
   /* Pointer copy. */
   path->cities = cities;
-  path->n = n;
-  path->ids = ids;
+  path->n      = n;
+  path->seed   = seed;
+  path->ids    = ids;
   path->matrix = matrix;
 
   /* Linear operations. */
@@ -136,7 +138,7 @@ void path_randomize(Path* path) {
   City** cities = path->cities;
 
   for (i = 0; i < n; ++i) {
-    r = random() % n;
+    r = rand_r(&path->seed) % n;
     temp = *(ids_r + r);
     *(ids_r + r) = *(ids_r + i);
     *(ids_r + i) = temp;
@@ -167,6 +169,7 @@ static void c_path_swap(Path* path) {
   int* ids_r = path->ids;
   long double a = 0., b = 0., c = 0., d = 0.;
 
+
   if (i-1 >= 0)
     a = path_weight_function(path, *(r_path+i-1),
                              *(r_path+i));
@@ -180,6 +183,10 @@ static void c_path_swap(Path* path) {
   if (j+1 < n)
     d = path_weight_function(path, *(r_path+j),
                              *(r_path+j+1));
+
+  if (abs(i-j) == 1)
+    b = 0.;
+
   *path->cost_sum -= (a+b+c+d);
 
   a = 0., b = 0., c = 0., d = 0.;
@@ -204,6 +211,9 @@ static void c_path_swap(Path* path) {
     d = path_weight_function(path, *(r_path+j),
                              *(r_path+j+1));
 
+  if (abs(i-j) == 1)
+    b = 0.;
+
   *path->cost_sum += (a+b+c+d);
 }
 
@@ -212,7 +222,9 @@ static void random_indexes(Path* path) {
   path->i = 0;
   path->j = 0;
   while (path->i == path->j)
-    path->i = random()%(path->n), path->j = random()%(path->n);
+    path->i = rand_r(&path->seed)%(path->n), path->j = rand_r(&path->seed)%(path->n);
+  path->i = path->i < path->j ? path->i : path->j;
+  path->j = path->i > path->j ? path->i : path->j;
 }
 
 /* Returns the city array. */
@@ -301,9 +313,28 @@ Path* path_neighbour(Path* path) {
 
 /* Returns a copy of the path. */
 Path* path_copy(Path* path) {
-  Path* n = path_new(path->cities, path->n,
-                     path->ids, path->matrix);
-  return n;
+  Path* copy      = malloc(sizeof(struct _Path));
+  copy->cost_sum  = calloc(1,sizeof(long double));
+  copy->distances = calloc(1,sizeof(double)*path->n*(path->n-1)/2);
+  copy->str       = malloc(sizeof(int)*path->n*2+2);
+  copy->r_path    = city_array(path->n);
+
+  /* Pointer copy. */
+  copy->cities = path->cities;
+  copy->n      = path->n;
+  copy->seed   = path->seed;
+  copy->ids    = path->ids;
+  copy->matrix = path->matrix;
+
+  /* Value copy. */
+  copy->max_distance = path->max_distance;
+  *copy->cost_sum    = *path->cost_sum;
+  copy->normalized_v = path->normalized_v;
+
+  /* Heap memory intialization. */
+  memcpy(copy->r_path, path->r_path, sizeof(*copy->r_path));
+  
+  return copy;
 }
 
 /* Returns if the paths are equal. */
