@@ -116,37 +116,37 @@ int main(int argc, char** argv) {
                 333,483,489,490,491,492,493,496,653,654,656,657,815,816,
                 817,820,978,979,980,981,982,984};
 
-  /* TSP* tsp = tsp_new(40, inst, 18);//71//66//17//82//52//47841368//584 */
-  /* SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.); */
+  TSP* tsp = tsp_new(40, inst, 2902);
+  SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.);
 
-  /* /\* int inst_1[] = {657,656,2,820,981,979,493,172,186,982,816,7,1,654,3,333,165, *\/ */
-  /* /\*             6,5,491,980,54,483,332,164,978,490,653,815,496,168,329,163, *\/ */
-  /* /\*             489,327,331,984,492,817,4}; *\/ */
-  /* /\* Path* path_1 = path_new(loader_cities(tsp_database_loader(tsp)), 40, inst_1, *\/ */
-  /* /\*                       loader_adj_matrix(tsp_database_loader(tsp))); *\/ */
-  /* /\* printf("Path_1 cost function: %.16Lf\n", path_cost_function(path_1)); *\/ */
-  /* /\* path_free(path_1); *\/ */
+  /* int inst_1[] = {657,656,2,820,981,979,493,172,186,982,816,7,1,654,3,333,165, */
+  /*             6,5,491,980,54,483,332,164,978,490,653,815,496,168,329,163, */
+  /*             489,327,331,984,492,817,4}; */
+  /* Path* path_1 = path_new(loader_cities(tsp_database_loader(tsp)), 40, inst_1, */
+  /*                       loader_adj_matrix(tsp_database_loader(tsp))); */
+  /* printf("Path_1 cost function: %.16Lf\n", path_cost_function(path_1)); */
+  /* path_free(path_1); */
 
-  /* threshold_accepting(sa); */
-  /* sa_free(sa); */
-  /* tsp_free(tsp); */
+  threshold_accepting(sa);
+  sa_free(sa);
+  tsp_free(tsp);
 
-  int i;
-  pthread_t th[1000];
+  /* int i; */
+  /* pthread_t th[1000]; */
 
-  for (i = 0; i < 1000; ++i) {
-    Data* data = data_new(40, inst, i);
-    if (pthread_create(th+i, NULL, heuristic, data)) {
-      fprintf(stderr, "Thread could not be created.");
-      exit(1);
-    }
-  }
+  /* for (i = 0; i < 1000; ++i) { */
+  /*   Data* data = data_new(40, inst, i+2000); */
+  /*   if (pthread_create(th+i, NULL, heuristic, data)) { */
+  /*     fprintf(stderr, "Thread could not be created."); */
+  /*     exit(1); */
+  /*   } */
+  /* } */
 
-  for (i = 0; i < 1000; ++i) {
-    if(pthread_join(*(th+i), NULL)) {
-      fprintf(stderr, "Thread could not be joined.");
-      exit(1);
-    }
-  }
+  /* for (i = 0; i < 1000; ++i) { */
+  /*   if(pthread_join(*(th+i), NULL)) { */
+  /*     fprintf(stderr, "Thread could not be joined."); */
+  /*     exit(1); */
+  /*   } */
+  /* } */
   return 0;
 }
