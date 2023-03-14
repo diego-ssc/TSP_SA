@@ -160,6 +160,13 @@ void path_de_swap(Path* path) {
   c_path_swap(path);
 }
 
+/* Swaps the desired indexes in the path. */
+void path_swap_indexes(Path* path, int i, int j) {
+  path->i = i < j ? i : j;
+  path->j = j > i ? j : i;
+  c_path_swap(path);  
+}
+
 /* Computes the path swapping. */
 static void c_path_swap(Path* path) {
   City** r_path = path->r_path, *temp;
@@ -332,7 +339,7 @@ Path* path_copy(Path* path) {
   copy->normalized_v = path->normalized_v;
 
   /* Heap memory intialization. */
-  memcpy(copy->r_path, path->r_path, sizeof(*copy->r_path));
+  fill_path_array(copy);
   
   return copy;
 }

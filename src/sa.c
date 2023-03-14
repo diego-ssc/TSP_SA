@@ -30,7 +30,8 @@
 #define EPSILON  0.002
 #define PHI      0.95
 
-#define BEST     0.263713276
+#define BEST_40   0.263713276
+#define BEST_150  0.149078160
 
 /* The Batch structure. */
 struct _Batch {
@@ -105,7 +106,7 @@ Batch* compute_batch(SA* sa) {
   long double t = sa->t;
   /* Batch 'constructor'. */
   Batch* batch = malloc(sizeof(struct _Batch));
-  batch->str = malloc(sizeof(int)*sa->n*2+2);  
+  batch->str = malloc(sizeof(int)*sa->n*2+2);
   batch->cost = DBL_MAX;
 
   int c = 0, m = sa->m;
@@ -122,7 +123,7 @@ Batch* compute_batch(SA* sa) {
       if (path_cost_function(sa->sol) < batch->cost) {
         batch->cost = path_cost_function(sa->sol);
         sprintf(batch->str, "%s", path_to_str(sa->sol));
-      }      
+      }
     }
     else
       path_de_swap(sa->sol);
@@ -132,6 +133,7 @@ Batch* compute_batch(SA* sa) {
   return batch;
 }
 
+/* Main routine to accept solutions. */
 void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
@@ -155,4 +157,23 @@ void threshold_accepting(SA* sa) {
   }
   printf("\nBest[%u]: %.16Lf\n", sa->seed, b);
   printf("%s\n", sa->str);
+}
+
+Path* sweep(SA* sa) {
+  int i, j;
+  Path* copy, *path = sa->sol;
+  copy = path_copy(path);
+
+  for (i = 0; i < sa->n; ++i) {
+    for (j = 0; j < sa->n; ++j) {
+      path_swap_indexes(copy, i, j);
+      if (path_cost_function(copy) <= path_cost_function(path)) {
+        free(path);
+        path = path_copy(copy);
+        i=0, j=0;
+      }
+    }
+  }
+
+  return 0;
 }
