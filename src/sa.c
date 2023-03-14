@@ -159,21 +159,34 @@ void threshold_accepting(SA* sa) {
   printf("%s\n", sa->str);
 }
 
+/* Computes the best neighbour of the final solution
+ of the thresold accepting algorithm. */
 Path* sweep(SA* sa) {
   int i, j;
-  Path* copy, *path = sa->sol;
-  copy = path_copy(path);
+  Path* copy, *path, *best;
 
-  for (i = 0; i < sa->n; ++i) {
-    for (j = 0; j < sa->n; ++j) {
-      path_swap_indexes(copy, i, j);
-      if (path_cost_function(copy) <= path_cost_function(path)) {
-        free(path);
-        path = path_copy(copy);
-        i=0, j=0;
+  path = sa->sol;
+  copy = path_copy(path);
+  best = path_copy(path);
+  
+  do {
+    for (i = 0; i < sa->n; ++i) {
+      for (j = 0; j < sa->n; ++j) {
+        path_swap_indexes(copy, i, j);
+        if (path_cost_function(copy) > path_cost_function(path))
+          path_de_swap(copy);
+        else if (path_cost_function(copy) < path_cost_function(path)) {
+          free(best);
+          best = path_copy(copy);
+          path_de_swap(copy);
+        }
       }
     }
-  }
+    if (path_cost_function(best) < path_cost_function(path)) {
+      free(path);
+      path = path_copy(best);
+    }
+  } while (path_cost_function(best) < path_cost_function(path));
 
-  return 0;
+  return path;
 }

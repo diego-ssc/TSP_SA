@@ -46,3 +46,11 @@ Batch* compute_batch(SA* sa);
  * @param sa the heuristic.
  */
 void threshold_accepting(SA* sa);
+
+/**
+ * Computes the best neighbour of the final solution
+ * of the thresold accepting algorithm.
+ * @param sa the heuristic.
+ * @return the best neighbour.
+ */
+Path* sweep(SA* sa);
