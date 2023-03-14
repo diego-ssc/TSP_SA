@@ -85,6 +85,14 @@ void path_swap(Path* path);
 void path_de_swap(Path* path);
 
 /**
+ * Swaps the desired indexes in the path.
+ * @param path the path.
+ * @param i the first index.
+ * @param j the first index.
+ */
+void path_swap_indexes(Path* path, int i, int j);
+
+/**
  * Returns the city array.
  * @param path the path.
  * @return the array.

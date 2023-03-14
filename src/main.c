@@ -145,7 +145,7 @@ int main(int argc, char** argv) {
   pthread_t th[1000];
 
   for (i = 0; i < 1000; ++i) {
-    Data* data = data_new(150, inst, i+2000);
+    Data* data = data_new(150, inst, i+8000);
     if (pthread_create(th+i, NULL, heuristic, data)) {
       fprintf(stderr, "Thread could not be created.");
       exit(1);
