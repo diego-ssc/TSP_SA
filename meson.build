@@ -14,7 +14,6 @@ thread_dep = dependency('threads')
 src = [
   'src/main.c',
   'src/database_loader.c',
-  'src/report.c',
   'src/tsp.c',
   'src/city.c',
   'src/path.c',

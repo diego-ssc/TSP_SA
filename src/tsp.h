@@ -76,14 +76,6 @@ Path* tsp_path(TSP* tsp);
 unsigned int tsp_seed(TSP* tsp);
 
 /**
- * Returns the report of the TSP instance.
- * @param tsp the TSP instance.
- * @return the report of the TSP instance.
- */
-Report* tsp_report(TSP* tsp);
-
-
-/**
  * Sets the best solution of the TSP instance.
  * @param tsp the TSP instance.
  * @param current the current solution.
@@ -96,13 +88,6 @@ void tsp_set_solution(TSP* tsp, Path* path);
  * @param loader the database loader.
  */
 void tsp_set_database_loader(TSP* tsp, Database_loader* loader);
-
-/**
- * Sets the report of the TSP instance.
- * @param tsp the TSP instance.
- * @param report the report.
- */
-void tsp_set_report(TSP* tsp, Report* report);
 
 /**
  * Fills the nonexistent values of the adjacency matrix.

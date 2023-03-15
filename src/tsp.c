@@ -34,10 +34,6 @@ struct _TSP {
   Path* path;
   /* The database loader. */
   Database_loader* loader;
-  /* The results report. */
-  Report* report;
-  /* The report name. */
-  char* report_name;
   /* The seed. */
   unsigned int seed;
   /* The number of cities in this instance. */
@@ -59,7 +55,6 @@ TSP* tsp_new(int n, int* ids, unsigned int seed) {
 
   /* Random number generator. */
   tsp->seed        = seed;
-  tsp->report_name = malloc(snprintf(NULL, 0, "%u", seed)+ 1);
 
   /* Database intialization. */
   tsp->loader = loader_new();
@@ -70,13 +65,11 @@ TSP* tsp_new(int n, int* ids, unsigned int seed) {
   tsp->n = n;
 
   /* Heap memory intialization. */
-  sprintf(tsp->report_name,"%u", seed);
   memcpy(tsp->ids, ids, tsp->n * sizeof(int));
 
   /* Structure creation. */
   tsp->path   = path_new(loader_cities(tsp->loader), n, ids,
                          tsp->seed, loader_adj_matrix(tsp->loader));
-  tsp->report = report_new(tsp->report_name, seed);
 
   tsp_fill_matrix(tsp);
 
@@ -93,21 +86,12 @@ void tsp_free(TSP* tsp) {
     free(tsp->ids);
   if (tsp->loader)
     loader_free(tsp->loader);
-  if (tsp->report_name)
-    free(tsp->report_name);
-  if (tsp->report)
-    report_free(tsp->report);
   free(tsp);
 }
 
 /* Returns the database loader of the TSP instance. */
 Database_loader* tsp_database_loader(TSP* tsp) {
   return tsp->loader;
-}
-
-/* Returns the report of the TSP instance. */
-Report* tsp_report(TSP* tsp) {
-  return tsp->report;
 }
 
 /* Returns the adjacency matrix of the TSP instance. */
@@ -143,11 +127,6 @@ void tsp_set_solution(TSP* tsp, Path* path) {
 /* Sets the database loader of the TSP instance. */
 void tsp_set_database_loader(TSP* tsp, Database_loader* loader) {
   tsp->loader = loader;
-}
-
-/* Sets the report of the TSP instance. */
-void tsp_set_report(TSP* tsp, Report* report) {
-  tsp->report = report;
 }
 
 /* Fills the nonexistent values of the adjacency matrix. */

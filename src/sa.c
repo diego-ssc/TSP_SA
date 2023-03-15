@@ -28,7 +28,7 @@
 #define T        8//100000
 #define M        12000
 #define L        1200//6200//1200  ///2000
-#define EPSILON  0.002 // 
+#define EPSILON  0.002 //
 #define PHI      0.95
 #define P        0.86//0.5
 #define N        1000
@@ -142,11 +142,7 @@ Batch* compute_batch(SA* sa) {
     cost = path_cost_function(sa->sol);
     path_swap(sa->sol);
     if (path_cost_function(sa->sol) <= (cost + t)) {
-<<<<<<< HEAD
-      printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol));
-=======
       /* printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol)); */
->>>>>>> b1398913cfacdb2fa91e04aaf95996a1119182ee
       c++;
       r += path_cost_function(sa->sol);
       if (path_cost_function(sa->sol) < path_cost_function(batch->path)) {
@@ -260,12 +256,13 @@ long double initial_temperature(SA* sa) {
 static double accepted_percentage(SA* sa) {
   int c = 0, i;
   Path* n;
-  for (i = 0; i < sa->n; ++i) {
+  for (i = 0; i < N; ++i) {
     n = path_copy(sa->sol);
     path_swap(sa->sol);
     if (path_cost_function(sa->sol) <= path_cost_function(n) + sa->t)
       c++;
-    path_de_swap(sa->sol);
+    else
+      path_de_swap(sa->sol);
     path_free(n);
   }
   return (double)c/sa->n;
