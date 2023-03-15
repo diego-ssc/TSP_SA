@@ -30,7 +30,7 @@ struct _Path {
   int n;
   int* ids;
   double* distances;
-  long double* cost_sum;
+  long double cost_sum;
   double max_distance;
   double normalized_v;
   double (*matrix)[CITY_NUMBER+1];
@@ -60,30 +60,34 @@ static void random_indexes(Path*);
 /* Computes the path swapping. */
 static void c_path_swap(Path*);
 
+/* Copies the ids of one path to another. */
+static void copy_ids(Path*, int*);
+
 /* Creates a new Path. */
 Path* path_new(City** cities, int n, int* ids,
                unsigned int seed, double (*matrix)[CITY_NUMBER+1]) {
   /* Heap allocated. */
   Path* path      = malloc(sizeof(struct _Path));
-  path->cost_sum  = calloc(1,sizeof(long double));
   path->distances = calloc(1,sizeof(double)*n*(n-1)/2);
   path->str       = malloc(sizeof(int)*n*2+2);
   path->r_path    = city_array(n);
+  path->ids       = calloc(1, sizeof(int)*n);
 
   /* Pointer copy. */
   path->cities = cities;
   path->n      = n;
-  path->ids    = ids;
   path->matrix = matrix;
   path->seed   = seed;
-  
-  /* Linear operations. */
-  path->max_distance = c_path_max_distance(path);
-  *path->cost_sum    = path_cost_sum(path);
-  path->normalized_v = c_path_normalize(path);
+
 
   /* Heap memory intialization. */
+  copy_ids(path, ids);
   fill_path_array(path);
+
+  /* Linear operations. */
+  path->max_distance = c_path_max_distance(path);
+  path->cost_sum     = path_cost_sum(path);
+  path->normalized_v = c_path_normalize(path);
 
   return path;
 }
@@ -96,8 +100,8 @@ void path_free(Path* path) {
     free(path->distances);
   if (path->str)
     free(path->str);
-  if (path->cost_sum)
-    free(path->cost_sum);
+  if (path->ids)
+    free(path->ids);
   free(path);
 }
 
@@ -128,7 +132,7 @@ double path_normalize(Path* path) {
 
 /* Computes the cost function. */
 long double path_cost_function(Path* path) {
-  return *path->cost_sum/path->normalized_v;
+  return path->cost_sum/path->normalized_v;
 }
 
 /* Randomizes the initial path. */
@@ -136,7 +140,7 @@ void path_randomize(Path* path) {
   int i, temp, r, n = path->n;
   int *ids_r = path->ids;
   City** cities = path->cities;
-  
+
   for (i = 0; i < n; ++i) {
     r = rand_r(&path->seed) % n;
     temp = *(ids_r + r);
@@ -146,7 +150,7 @@ void path_randomize(Path* path) {
   for (i = 0; i < n; ++i)
     *(path->r_path+i) = *(cities + *(ids_r + i));
 
-  *path->cost_sum = path_cost_sum(path);
+  path->cost_sum = path_cost_sum(path);
 }
 
 /* Swaps two cities in the path. */
@@ -164,7 +168,7 @@ void path_de_swap(Path* path) {
 void path_swap_indexes(Path* path, int i, int j) {
   path->i = i < j ? i : j;
   path->j = j > i ? j : i;
-  c_path_swap(path);  
+  c_path_swap(path);
 }
 
 /* Computes the path swapping. */
@@ -194,7 +198,7 @@ static void c_path_swap(Path* path) {
   if (abs(i-j) == 1)
     b = 0.;
 
-  *path->cost_sum -= (a+b+c+d);
+  path->cost_sum -= (a+b+c+d);
 
   a = 0., b = 0., c = 0., d = 0.;
   temp = *(r_path + i);
@@ -221,7 +225,7 @@ static void c_path_swap(Path* path) {
   if (abs(i-j) == 1)
     b = 0.;
 
-  *path->cost_sum += (a+b+c+d);
+  path->cost_sum += (a+b+c+d);
 }
 
 /* Computes the random indexes used by swap function. */
@@ -240,7 +244,7 @@ City** path_array(Path* path) {
 }
 
 /* Returns the sum of the costs of the cities. */
-long double* path_sum(Path* path) {
+long double path_sum(Path* path) {
   return path->cost_sum;
 }
 
@@ -321,27 +325,33 @@ Path* path_neighbour(Path* path) {
 /* Returns a copy of the path. */
 Path* path_copy(Path* path) {
   Path* copy      = malloc(sizeof(struct _Path));
-  copy->cost_sum  = calloc(1,sizeof(long double));
   copy->distances = calloc(1,sizeof(double)*path->n*(path->n-1)/2);
   copy->str       = malloc(sizeof(int)*path->n*2+2);
   copy->r_path    = city_array(path->n);
+  copy->ids       = calloc(1, sizeof(int)*path->n);
 
   /* Pointer copy. */
   copy->cities = path->cities;
   copy->n      = path->n;
   copy->seed   = path->seed;
-  copy->ids    = path->ids;
   copy->matrix = path->matrix;
 
   /* Value copy. */
   copy->max_distance = path->max_distance;
-  *copy->cost_sum    = *path->cost_sum;
+  copy->cost_sum     = path->cost_sum;
   copy->normalized_v = path->normalized_v;
 
   /* Heap memory intialization. */
+  copy_ids(copy, path->ids);
   fill_path_array(copy);
-  
+
   return copy;
+}
+
+/* Copies the ids of one path to another. */
+static void copy_ids(Path* path, int* ids) {
+  for (int i = 0; i < path->n; ++i)
+    *(path->ids + i) = *(ids + i);
 }
 
 /* Returns if the paths are equal. */
@@ -350,7 +360,7 @@ int path_cmp(Path* p_1, Path* p_2) {
     return 0;
   if (p_1->n != p_2->n)
     return 0;
-  if (abs(*p_1->cost_sum - *p_2->cost_sum) >= 0.00016)
+  if (abs(p_1->cost_sum - p_2->cost_sum) >= 0.00016)
     return 0;
   if (abs(p_1->max_distance - p_2->max_distance) >= 0.00016)
     return 0;

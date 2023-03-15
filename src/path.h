@@ -104,7 +104,7 @@ City** path_array(Path* path);
  * @param path the path.
  ^ @return the sum of the costs.
  */
-long double* path_sum(Path* path);
+long double path_sum(Path* path);
 
 /**
  * Returns the array of ids.
