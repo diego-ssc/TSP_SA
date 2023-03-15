@@ -10,5 +10,3 @@ set output ARG2
 unset label
 min =GPVAL_DATA_Y_MIN
 data = ARG1
-plot data with lines lt -1, min w p  ls 0
-set output
