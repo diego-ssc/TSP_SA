@@ -40,7 +40,7 @@ typedef struct {
  * @param ids the ids.
  * @param seeds the seeds.
  */
-Data* data_new(int n, int* ids, unsigned int seed) {
+static Data* data_new(int n, int* ids, unsigned int seed) {
   /* Heap allocation. */
   Data* data = malloc(sizeof(Data));
   data->ids  = calloc(1, sizeof(int)*n);
@@ -58,7 +58,7 @@ Data* data_new(int n, int* ids, unsigned int seed) {
  * Frees the memory used by the Data.
  * @param data the data.
  */
-void data_free(Data* data) {
+static void data_free(Data* data) {
   if (data->ids)
     free(data->ids);
   free(data);
@@ -68,7 +68,7 @@ void data_free(Data* data) {
  * Executes the heuristic with the tsp instance.
  * @param data the user data.
  */
-void* heuristic(void* v_data) {
+static void* heuristic(void* v_data) {
   Data* data = (Data*)v_data;
   printf("Seed: %d\n", data->seed);
   TSP* tsp = tsp_new(data->n, data->ids, data->seed);
@@ -106,28 +106,76 @@ static void usage() {
   exit(1);
 }
 
+/**
+ * Creates the requested number of threads
+ * to execute the heuristic.
+ * @param n the number of threads.
+ * @param s the initial seed.
+ * @inst the TSP instance.
+ */
+static void create_threads(int n, int s, int* inst) {
+  int i;
+  pthread_t th[n];
+
+  for (i = 0; i < n; ++i) {
+    Data* data = data_new(150, inst, i+s);
+    if (pthread_create(th+i, NULL, heuristic, data)) {
+      fprintf(stderr, "Thread could not be created.");
+      exit(1);
+    }
+  }
+
+  for (i = 0; i < n; ++i) {
+    if(pthread_join(*(th+i), NULL)) {
+      fprintf(stderr, "Thread could not be joined.");
+      exit(1);
+    }
+  }
+}
+
+/* Parses the arguments passed to the program. */
 void parse_arguments(int argc, char** argv) {
   if (argc < 3)
     usage();
 }
 
+/* Executes the main thread of the program. */
 int main(int argc, char** argv) {
-  /* int inst[] = {1,2,3,4,5,6,7,54,163,164,165,168,172,186,327,329,331,332, */
-  /*               333,483,489,490,491,492,493,496,653,654,656,657,815,816, */
-  /*               817,820,978,979,980,981,982,984}; */
+  int inst[] = {1,2,3,4,5,6,7,54,163,164,165,168,172,186,327,329,331,332,
+                333,483,489,490,491,492,493,496,653,654,656,657,815,816,
+                817,820,978,979,980,981,982,984};
 
-  int inst_1[] = {979,483,186,980,327,164,331,984,491,492,489,
-                  4,817,978,5,6,165,3,333,981,820,332,982,816,
-                  7,654,490,653,2,656,1,168,657,815,496,172,163,
-                  329,493,54};
-  TSP* tsp = tsp_new(40, inst_1, 2902);
-  SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.);
-  printf("Original cost function: %0.16Lf\n\n", path_cost_function(tsp_path(tsp)));
-  Path* best = sweep(sa);
-  printf("%s\nCost Function: %0.16Lf\n\n", path_to_str(best),
-         path_cost_function(best));
-  sa_free(sa);
-  tsp_free(tsp);
+  /* int inst_1[] = {483,979,186,980,327,164,331,984,491,492,489, */
+  /*                 4,817,978,6,5,165,3,333,981,820,332,982,816, */
+  /*                 7,654,490,653,2,656,1,168,657,815,496,172,163, */
+  /*                 329,493,54}; */
+
+  /* /\* int inst_1[] = {54,483,186,980,327,164,331,984,491,492,489,817,978,5,6,981, *\/ */
+  /* /\*                 333,3,165,4,979,493,329,163,172,496,815,656,2,653,490,654, *\/ */
+  /* /\*                 820,332,982,816,7,1,168, 657}; *\/ */
+  /* TSP* tsp = tsp_new(40, inst_1, 2902); */
+  /* SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.); */
+  /* printf("Original cost function: %0.16Lf\n%s\n\n", path_cost_function(tsp_path(tsp)), */
+  /*        path_to_str(tsp_path(tsp))); */
+  /* Path* best = sweep(sa); */
+  /* printf("%s\nCost Function: %0.16Lf\n\n", path_to_str(best), */
+  /*        path_cost_function(best)); */
+  /* sa_free(sa); */
+  /* tsp_free(tsp); */
+  
+  /* int inst_2[] = {483,54,186,980,327,164,331,984,491,492,489,4,817,978,6,5,165,3,333,981,820,332,982,816,7,654,490,653,2,656,1,168,657,815,496,172,163,329,493,979}; */
+  /* TSP* tsp = tsp_new(40, inst_2, 2902); */
+
+  /* Path* path = path_new(loader_cities(tsp_database_loader(tsp)), 40, inst_2, tsp_seed(tsp), */
+  /*                       loader_adj_matrix(tsp_database_loader(tsp))); */
+  /* printf("Norm: %.16f\n", path_normalize(path)); */
+  /* printf("Sum: %.16Lf\n", path_sum(path)); */
+  /* printf("Cost function: %.16Lf\n", path_cost_function(path)); */
+  /* printf("S:    %s\n\n", path_to_str(path)); */
+  /* tsp_free(tsp); */
+  /* path_free(path); */
+
+
 
   
   /* int inst[] = {1,2,3,4,5,6,7,8,9,11,12,14,16,17,19,20,22,23,25,26,54,74,75, */
@@ -140,29 +188,11 @@ int main(int argc, char** argv) {
   /*     819,820,821,822,823,825,826,828,829,832,837,840,978,979,980,981, */
   /*     982,984,985,986,988,990,991,995,999,1001,1003,1037,1038,1073,1075}; */
 
-  /* TSP* tsp = tsp_new(40, inst, 2902); */
-  /* SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.); */
+  TSP* tsp = tsp_new(40, inst, 2902);
+  SA* sa = sa_new(tsp, 0, 0., 0, 0., 0.);
 
-  /* threshold_accepting(sa); */
-  /* sa_free(sa); */
-  /* tsp_free(tsp); */
-
-  /* int i; */
-  /* pthread_t th[1000]; */
-
-  /* for (i = 0; i < 1000; ++i) { */
-  /*   Data* data = data_new(150, inst, i+8000); */
-  /*   if (pthread_create(th+i, NULL, heuristic, data)) { */
-  /*     fprintf(stderr, "Thread could not be created."); */
-  /*     exit(1); */
-  /*   } */
-  /* } */
-
-  /* for (i = 0; i < 1000; ++i) { */
-  /*   if(pthread_join(*(th+i), NULL)) { */
-  /*     fprintf(stderr, "Thread could not be joined."); */
-  /*     exit(1); */
-  /*   } */
-  /* } */
+  threshold_accepting(sa);
+  sa_free(sa);
+  tsp_free(tsp);
   return 0;
 }

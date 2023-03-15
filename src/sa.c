@@ -24,7 +24,7 @@
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        800000//100000
+#define T        100000//800000 
 #define M        12000
 #define L        1200
 #define EPSILON  0.002
@@ -63,6 +63,8 @@ struct _SA {
   int n;
   /* The seed. */
   unsigned int seed;
+  /* The problem instance. */
+  TSP* tsp;
 };
 
 /* Frees the memory used by the batch. */
@@ -84,6 +86,7 @@ SA* sa_new(TSP* tsp, double t, int m,
   /* Attribute copy. */
   sa->n = tsp_city_number(tsp);
   sa->seed = tsp_seed(tsp);
+  sa->tsp = tsp;
 
   /* Parameters. */
   sa->t       = t ? t : T;
@@ -163,30 +166,38 @@ void threshold_accepting(SA* sa) {
  of the thresold accepting algorithm. */
 Path* sweep(SA* sa) {
   int i, j;
-  Path* copy, *path, *best;
+  Path* copy, *path, *best, *p_best;
 
   path = sa->sol;
   copy = path_copy(path);
   best = path_copy(path);
+  p_best = 0;
   
   do {
+    if (p_best)
+      path_free(p_best);
+    p_best = path_copy(best);
     for (i = 0; i < sa->n; ++i) {
       for (j = 0; j < sa->n; ++j) {
-        path_swap_indexes(copy, i, j);
-        if (path_cost_function(copy) > path_cost_function(path))
-          path_de_swap(copy);
-        else if (path_cost_function(copy) < path_cost_function(path)) {
-          free(best);
-          best = path_copy(copy);
-          path_de_swap(copy);
+        if (i != j)
+          path_swap_indexes(copy, i, j);
+        if (path_cost_function(copy) < path_cost_function(p_best)) {
+          if (path_cost_function(best) > path_cost_function(copy)) {
+            path_free(best);
+            best = path_copy(copy);
+          }
         }
+        if (i != j)
+          path_de_swap(copy);
       }
     }
-    if (path_cost_function(best) < path_cost_function(path)) {
-      free(path);
-      path = path_copy(best);
-    }
-  } while (path_cost_function(best) < path_cost_function(path));
+    path_free(copy);
+    copy = path_copy(best);
+  } while (abs(path_cost_function(best) - path_cost_function(p_best)) > 0.00016);
 
-  return path;
+  path_free(path);
+  tsp_set_solution(sa->tsp, best);
+  path_free(p_best);
+  path_free(copy);
+  return best;
 }

@@ -82,26 +82,13 @@ unsigned int tsp_seed(TSP* tsp);
  */
 Report* tsp_report(TSP* tsp);
 
-/**
- * Sets the initial solution of the TSP instance.
- * @param tsp the TSP instance.
- * @param initial the initial solution.
- */
-void tsp_set_initial_solution(TSP* tsp, City** initial);
 
 /**
- * Sets the current solution of the TSP instance.
+ * Sets the best solution of the TSP instance.
  * @param tsp the TSP instance.
  * @param current the current solution.
  */
-void tsp_set_current_solution(TSP* tsp, City** current);
-
-/**
- * Sets the final solution of the TSP instance.
- * @param tsp the TSP instance.
- * @param final the final solution.
- */
-void tsp_set_final_solution(TSP* tsp, City** final);
+void tsp_set_solution(TSP* tsp, Path* path);
 
 /**
  * Sets the database loader of the TSP instance.
