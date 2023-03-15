@@ -162,7 +162,7 @@ void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
   Path* best = path_copy(sa->sol);
-  printf("T[%u]: %0.16Lf\n", sa->seed, sa->t);
+  /* printf("T[%u]: %0.16Lf\n", sa->seed, sa->t); */
   while (sa->t > sa->epsilon) {
     q = DBL_MAX;
 
