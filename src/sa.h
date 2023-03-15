@@ -21,11 +21,18 @@
 
 /**
  * Creates a new Simulated Annealing Heuristic.
- * @param cities the cities array.
- * @param ids the instance's cities ids.
- * @param n the number of cities in the instance.
+ * @param tsp the TSP instance.
+ * @param t the intial temperature.
+ * @param m maximum iterations of `compute_batch`
+ * if no better solution is found.
+ * @param l the number of iterations the computing of
+ * a batch should take.
+ * @param epsilon the epsilon.
+ * @param phi the phi.
+ * @param p percentage of accepted solutions.
  */
-SA* sa_new();
+SA* sa_new(TSP* tsp, double t, int m, int l,
+           double epsilon, double phi, double p);
 
 /**
  * Frees the memory used by the simulated annealing
@@ -54,3 +61,25 @@ void threshold_accepting(SA* sa);
  * @return the best neighbour.
  */
 Path* sweep(SA* sa);
+
+/**
+ * Computes the initial temperature.
+ * @param sa the heuristic.
+ * @return the temperature.
+ */
+long double initial_temperature(SA* sa);
+
+
+/**
+ * Returns the temperature of the heuristic.
+ * @param sa the heuristic.
+ * @return the temperature.
+ */
+long double sa_temperature(SA* sa);
+
+/**
+ * Sets the temperature of the heuristic.
+ * @param sa the heuristic.
+ * @param t the new temperature.
+ */
+void sa_set_temperature(SA* sa, long double t);
