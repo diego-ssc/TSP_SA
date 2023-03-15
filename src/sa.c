@@ -24,7 +24,7 @@
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        100000//800000 
+#define T        100000//800000
 #define M        12000
 #define L        1200
 #define EPSILON  0.002
@@ -36,15 +36,16 @@
 /* The Batch structure. */
 struct _Batch {
   double mean;
-  char* str;
-  long double cost;
+  Path* path;
 };
 
 /* The Simulated Annealing structure. */
 struct _SA {
   /* The temperature */
   long double t;
+  /* The epsilon. */
   double epsilon;
+  /* The phi. */
   double phi;
   /* The current solution */
   Path* sol;
@@ -67,12 +68,18 @@ struct _SA {
   TSP* tsp;
 };
 
+/* Batch constructor. */
+Batch* batch_new(Path* path) {
+  Batch* batch = malloc(sizeof(struct _Batch));
+  batch->path = path_copy(path);
+  return batch;
+}
+
 /* Frees the memory used by the batch. */
 void batch_free(Batch* batch) {
-  if (batch->str)
-    free(batch->str);
-  if (batch)
-    free(batch);
+  if (batch->path)
+    path_free(batch->path);
+  free(batch);
 }
 
 /* Creates a new Simulated Annealing Heuristic. */
@@ -107,10 +114,7 @@ void sa_free(SA* sa) {
 /* Computes the set of solutions. */
 Batch* compute_batch(SA* sa) {
   long double t = sa->t;
-  /* Batch 'constructor'. */
-  Batch* batch = malloc(sizeof(struct _Batch));
-  batch->str = malloc(sizeof(int)*sa->n*2+2);
-  batch->cost = DBL_MAX;
+  Batch* batch = batch_new(sa->sol);
 
   int c = 0, m = sa->m;
   double r = 0.0;
@@ -123,9 +127,9 @@ Batch* compute_batch(SA* sa) {
       /* printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol)); */
       c++;
       r += path_cost_function(sa->sol);
-      if (path_cost_function(sa->sol) < batch->cost) {
-        batch->cost = path_cost_function(sa->sol);
-        sprintf(batch->str, "%s", path_to_str(sa->sol));
+      if (path_cost_function(sa->sol) < path_cost_function(batch->path)) {
+        path_free(batch->path);
+        batch->path = path_copy(sa->sol);
       }
     }
     else
@@ -140,7 +144,7 @@ Batch* compute_batch(SA* sa) {
 void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
-  register long double b = DBL_MAX;
+  Path* best = path_copy(sa->sol);
   path_randomize(sa->sol);
   while (sa->t > sa->epsilon) {
     q = DBL_MAX;
@@ -150,16 +154,16 @@ void threshold_accepting(SA* sa) {
       q = p;
       batch = compute_batch(sa);
       p = batch->mean;
-      if (batch->cost < b) {
-        b = batch->cost;
-        sprintf(sa->str, "%s", batch->str);
+      if (path_cost_function(batch->path) < path_cost_function(best)) {
+        path_free(best);
+        best = path_copy(batch->path);
       }
       batch_free(batch);
     }
     sa->t *= sa->phi;
   }
-  printf("\nBest[%u]: %.16Lf\n", sa->seed, b);
-  printf("%s\n", sa->str);
+  printf("\nBest[%u]: %.16Lf\n\n\t%s\n", sa->seed, path_cost_function(best), path_to_str(best));
+  path_free(best);
 }
 
 /* Computes the best neighbour of the final solution
@@ -172,7 +176,7 @@ Path* sweep(SA* sa) {
   copy = path_copy(path);
   best = path_copy(path);
   p_best = 0;
-  
+
   do {
     if (p_best)
       path_free(p_best);
