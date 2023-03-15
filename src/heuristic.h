@@ -32,11 +32,6 @@ typedef struct _City City;
 typedef struct _Database_loader Database_loader;
 
 /**
- * The Report opaque structure.
- */
-typedef struct _Report Report;
-
-/**
  * The TSP opaque structure.
  */
 typedef struct _TSP TSP;

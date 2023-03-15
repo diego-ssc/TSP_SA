@@ -10,5 +10,7 @@
 /src/GTAGS
 
 # tex generated files
-./report/report.aux
-./report/report.log
+/report/report.aux
+/report/report.log
+/report/report.toc
+/report/svg-inkscape
