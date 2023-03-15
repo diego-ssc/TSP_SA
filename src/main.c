@@ -157,12 +157,21 @@ int main(int argc, char** argv) {
       819,820,821,822,823,825,826,828,829,832,837,840,978,979,980,981,
       982,984,985,986,988,990,991,995,999,1001,1003,1037,1038,1073,1075};
 
-  int s = 2000;
-  int n = 15;
-  while (n--) {
-    create_threads(500, s, inst, 150);
-    s += 500;
-  }
-  
+  /* int s = 1; */
+  /* int n = 1; */
+  /* while (n--) { */
+  /*   create_threads(100, s, inst, 150); */
+  /*   s += 100; */
+  /* } */
+  Data* data = data_new(150, inst, 5663);
+  printf("Seed: %u\n", data->seed);
+  TSP* tsp = tsp_new(data->n, data->ids, data->seed);
+  SA* sa = sa_new(tsp, 0, 0., 0, 0., 0., 0.);
+  sa_set_temperature(sa, initial_temperature(sa));
+  threshold_accepting(sa);
+  sa_free(sa);
+  tsp_free(tsp);
+  data_free(data);
+
   return 0;
 }

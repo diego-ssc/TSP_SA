@@ -1,0 +1,8 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {chapter}{\numberline {1}Introducci\'on}{2}{}%
+\contentsline {section}{\numberline {1.1}Heur\'istica}{2}{}%
+\contentsline {chapter}{\numberline {2}Dise\~no}{3}{}%
+\contentsline {chapter}{\numberline {3}Implementaci\'on}{4}{}%
+\contentsline {chapter}{\numberline {4}Experimentaci\'on}{5}{}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{6}{}%
+\contentsline {section}{\numberline {5.1}Bibliograf\'ia}{6}{}%

@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass[a4paper]{report}
 
 \usepackage{pgf}
 \usepackage[utf8]{inputenc}
@@ -12,8 +12,9 @@
 \usepackage{times}
 \usepackage{dsfont}
 \usepackage{titling}
-\usepackage{svg}
-\svgpath{../data/plot}
+\usepackage[spanish]{babel}
+% \usepackage{svg}
+% \svgpath{../data/plot}
 
 
 \pretitle{\begin{center}\linespread{1}}
@@ -32,13 +33,20 @@
 \begin{document}
 \allowdisplaybreaks
 \maketitle
+\tableofcontents
 
-\section{Introducci\'on}
-
+\chapter{Introducci\'on}
 \section{Heur\'istica}
-\section{Dise\~no}
-\section{Implementaci\'on}
-\section{Experimentaci\'on}
+\chapter{Dise\~no}
+
+El dise\~no sigui\'o una estructura orientada a objetos. Contar con la informaci\'on
+de las ciudades en una base de datos relacional, sugiri\'o la implementaci\on de
+un objeto \texttt{database_loader}. De la msima manera, al contar con soluciones
+compuestas por permutaciones de ciudades, fue claro el uso de las clases \texttt{city}
+y \texttt{path} (ciudad y camino, respectivamente).
+
+\chapter{Implementaci\'on}
+\chapter{Experimentaci\'on}
 
 \begin{table}[h!]
   \begin{center}
@@ -58,18 +66,18 @@
 \end{table}
 
 
-\begin{figure}[h!tbp]
-  \hspace*{-1.6cm}
-  \includesvg[scale=1]{results_1}
-\end{figure}
+% \begin{figure}[h!tbp]
+%   \hspace*{-1.6cm}
+%   \includesvg[scale=1]{results_1}
+% \end{figure}
 
 
-\begin{figure}[h!tbp]
-  \hspace*{-1.6cm}
-  \includesvg[scale=1]{results_2}
-\end{figure}
+% \begin{figure}[h!tbp]
+%   \hspace*{-1.6cm}
+%   \includesvg[scale=1]{results_2}
+% \end{figure}
 
-\section{Conclusiones}
+\chapter{Conclusiones}
 
 \section{Bibliograf\'ia}
 

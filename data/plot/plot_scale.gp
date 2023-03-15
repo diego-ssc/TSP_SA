@@ -1,7 +1,9 @@
+#!/usr/local/bin/gnuplot --persist
+
 set terminal unknown
-plot 'data_2878.dat' with lines lt -1
+plot ARG1 with lines lt -1
 set term svg dynamic enhanced
-set output 'data_scaled_2878.svg'
+set output ARG2
 min =GPVAL_DATA_Y_MIN
-plot 'data_2878.dat' with lines lt -1, min w p  ls 0
+plot ARG1 with lines lt -1, min w p  ls 0
 set output

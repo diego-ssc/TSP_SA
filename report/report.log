@@ -1,24 +1,26 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2022.11.9)  10 MAR 2023 09:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2023.1.16)  15 MAR 2023 08:22
 entering extended mode
- \write18 enabled.
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
  %&-line parsing enabled.
 **report.tex
 (./report.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-04-10>
-(/usr/share/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/share/texmf-dist/tex/latex/base/report.cls
+Document Class: report 2021/10/04 v1.4n Standard LaTeX document class
 (/usr/share/texmf-dist/tex/latex/base/size10.clo
 File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
 \c@part=\count185
-\c@section=\count186
-\c@subsection=\count187
-\c@subsubsection=\count188
-\c@paragraph=\count189
-\c@subparagraph=\count190
-\c@figure=\count191
-\c@table=\count192
+\c@chapter=\count186
+\c@section=\count187
+\c@subsection=\count188
+\c@subsubsection=\count189
+\c@paragraph=\count190
+\c@subparagraph=\count191
+\c@figure=\count192
+\c@table=\count193
 \abovecaptionskip=\skip47
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
@@ -88,14 +90,14 @@ Package: pgfsys 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@yd=\dimen152
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count193
-\c@pgf@countb=\count194
-\c@pgf@countc=\count195
-\c@pgf@countd=\count196
+\c@pgf@counta=\count194
+\c@pgf@countb=\count195
+\c@pgf@countc=\count196
+\c@pgf@countd=\count197
 \t@pgf@toka=\toks21
 \t@pgf@tokb=\toks22
 \t@pgf@tokc=\toks23
-\pgf@sys@id@count=\count197
+\pgf@sys@id@count=\count198
 
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2021/05/15 v3.1.9a (3.1.9a)
@@ -110,8 +112,8 @@ File: pgfsys-common-pdf.def 2021/05/15 v3.1.9a (3.1.9a)
 )))
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-\pgfsyssoftpath@smallbuffer@items=\count198
-\pgfsyssoftpath@bigbuffer@items=\count199
+\pgfsyssoftpath@smallbuffer@items=\count199
+\pgfsyssoftpath@bigbuffer@items=\count266
 )
 (/usr/share/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -141,7 +143,7 @@ Package: pgfcore 2021/05/15 v3.1.9a (3.1.9a)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen153
-\pgfmath@count=\count266
+\pgfmath@count=\count267
 \pgfmath@box=\box51
 \pgfmath@toks=\toks24
 \pgfmath@stack@operand=\toks25
@@ -158,7 +160,7 @@ x) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerarithmetics
 .code.tex))) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count267
+\c@pgfmathroundto@lastzeros=\count268
 )) (/usr/share/texmf-dist/tex/generic/pgf/math/pgfint.code.tex)
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -191,7 +193,7 @@ File: pgfcorescopes.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgfpic=\box52
 \pgf@hbox=\box53
 \pgf@layerbox@main=\box54
-\pgf@picture@serial@count=\count268
+\pgf@picture@serial@count=\count269
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -219,8 +221,8 @@ File: pgfcorearrows.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 \pgf@max=\dimen177
-\pgf@sys@shading@range@num=\count269
-\pgf@shadingcount=\count270
+\pgf@sys@shading@range@num=\count270
+\pgf@shadingcount=\count271
 )
 (/usr/share/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2021/05/15 v3.1.9a (3.1.9a)
@@ -284,12 +286,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen187
 \cmidrulekern=\dimen188
 \defaultaddspace=\dimen189
-\@cmidla=\count271
-\@cmidlb=\count272
+\@cmidla=\count272
+\@cmidlb=\count273
 \@aboverulesep=\dimen190
 \@belowrulesep=\dimen191
-\@thisruleclass=\count273
-\@lastruleclass=\count274
+\@thisruleclass=\count274
+\@lastruleclass=\count275
 \@thisrulewidth=\dimen192
 )
 (/usr/share/texmf-dist/tex/latex/enumitem/enumitem.sty
@@ -298,8 +300,8 @@ Package: enumitem 2019/06/20 v3.9 Customized lists
 \enit@outerparindent=\dimen193
 \enit@toks=\toks31
 \enit@inbox=\box57
-\enit@count@id=\count275
-\enitdp@description=\count276
+\enit@count@id=\count276
+\enitdp@description=\count277
 )
 (/usr/share/texmf-dist/tex/latex/qtree/qtree.sty
 Package: 2008/12/12 v.3.1bQtree: tree-drawing for linguistics
@@ -326,8 +328,8 @@ File: p2e-pdftex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 \pIIe@tempdime=\dimen256
 \pIIe@tempdimf=\dimen257
 )
-\c@treecount=\count277
-\c@branchcount=\count278
+\c@treecount=\count278
+\c@branchcount=\count279
 \parentbox=\box58
 \treebox=\box59
 \treeboxone=\box60
@@ -426,9 +428,9 @@ File: p2e-pdftex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 \treewidth=\skip126
 \qta=\toks33
 \qtb=\toks34
-\nbranches=\count279
-\qroofx=\count280
-\qroofy=\count281
+\nbranches=\count280
+\qroofx=\count281
+\qroofy=\count282
 \@qrscratchbox=\box80
 )
 (/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
@@ -463,13 +465,13 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 (/usr/share/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2021/08/26 v2.02 operator names
 )
-\inf@bad=\count282
+\inf@bad=\count283
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count283
-\leftroot@=\count284
+\uproot@=\count284
+\leftroot@=\count285
 LaTeX Info: Redefining \overline on input line 399.
-\classnum@=\count285
-\DOTSCASE@=\count286
+\classnum@=\count286
+\DOTSCASE@=\count287
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
@@ -478,15 +480,15 @@ LaTeX Info: Redefining \cdots on input line 620.
 \big@size=\dimen260
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count287
-\c@MaxMatrixCols=\count288
+\macc@depth=\count288
+\c@MaxMatrixCols=\count289
 \dotsspace@=\muskip16
-\c@parentequation=\count289
-\dspbrk@lvl=\count290
+\c@parentequation=\count290
+\dspbrk@lvl=\count291
 \tag@help=\toks37
-\row@=\count291
-\column@=\count292
-\maxfields@=\count293
+\row@=\count292
+\column@=\count293
+\maxfields@=\count294
 \andhelp@=\toks38
 \eqnshift@=\dimen261
 \alignsep@=\dimen262
@@ -507,561 +509,172 @@ Package: times 2020/03/25 PSNFSS-v9.3 (SPQR)
 (/usr/share/texmf-dist/tex/latex/doublestroke/dsfont.sty
 Package: dsfont 1995/08/01 v0.1 Double stroke roman fonts
 )
-(/usr/share/texmf-dist/tex/latex/svg/svg.sty
-Package: svg 2020/11/26 v2.02k (include SVG pictures)
+(/usr/share/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2022/02/26 3.73 The Babel package
+\babel@savecnt=\count295
+\U@D=\dimen267
+\l@unhyphenated=\language87
 
-(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
-)
-(/usr/share/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2021/11/13 v3.35 KOMA-Script package (KOMA-Script-independent 
-basics and keyval usage)
+(/usr/share/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read4
+\bbl@dirlevel=\count296
 
-(/usr/share/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2021/11/13 v3.35 KOMA-Script package (file load hooks)
-
-(/usr/share/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty
-Package: scrlfile-hook 2021/11/13 v3.35 KOMA-Script package (using LaTeX hooks)
-
-
-(/usr/share/texmf-dist/tex/latex/koma-script/scrlogo.sty
-Package: scrlogo 2021/11/13 v3.35 KOMA-Script package (logo)
-)))
-Applying: [2021/05/01] Usage of raw or classic option list on input line 252.
-Already applied: [0000/00/00] Usage of raw or classic option list on input line
- 368.
-)
-(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
-Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
-)
-
-(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
-Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-)
-(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
-Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
-)
-Package pdftexcmds Info: \pdf@primitive is available.
-Package pdftexcmds Info: \pdf@ifprimitive is available.
-Package pdftexcmds Info: \pdfdraftmode found.
-)
-(/usr/share/texmf-dist/tex/latex/trimspaces/trimspaces.sty
-Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
-)
-(/usr/share/texmf-dist/tex/latex/tools/shellesc.sty
-Package: shellesc 2019/11/08 v1.0c unified shell escape interface for LaTeX
-Package shellesc Info: Unrestricted shell escape enabled on input line 75.
-)
-(/usr/share/texmf-dist/tex/latex/ifplatform/ifplatform.sty
-Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
-
-(/usr/share/texmf-dist/tex/generic/catchfile/catchfile.sty
-Package: catchfile 2019/12/09 v1.8 Catch the contents of a file (HO)
-
-(/usr/share/texmf-dist/tex/generic/etexcmds/etexcmds.sty
-Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
-))
-(/usr/share/texmf-dist/tex/generic/iftex/ifluatex.sty
-Package: ifluatex 2019/10/25 v1.5 ifluatex legacy package. Use iftex instead.
-)
-runsystem(uname -s > "report.w18")...executed.
-
- (./report.w18)
-runsystem(rm -- "report.w18")...executed.
-
-)
-\c@svg@param@lastpage=\count294
-\svg@box=\box83
-\c@svg@param@currpage=\count295
-)
-(/usr/share/texmf-dist/tex/latex/transparent/transparent.sty
-Package: transparent 2019/11/29 v1.4 Transparency via pdfTeX's color stack (HO)
-
-
-(/usr/share/texmf-dist/tex/latex/auxhook/auxhook.sty
-Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
+(/usr/share/texmf-dist/tex/generic/babel-spanish/spanish.ldf
+Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
+\es@quottoks=\toks41
+\es@quotdepth=\count297
+Package babel Info: Making " an active character on input line 570.
+Package babel Info: Making . an active character on input line 675.
+Package babel Info: Making < an active character on input line 722.
+Package babel Info: Making > an active character on input line 722.
 ))
 LaTeX Font Info:    Trying to load font information for OT1+ptm on input line 3
-2.
+3.
 
 (/usr/share/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
 (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count296
-\l__pdf_internal_box=\box84
-) (./report.aux)
+\l__color_backend_stack_int=\count298
+\l__pdf_internal_box=\box83
+) (./report.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 32.
-LaTeX Font Info:    ... okay on input line 32.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count297
-\scratchdimen=\dimen267
-\scratchbox=\box85
-\nofMPsegments=\count298
-\nofMParguments=\count299
-\everyMPshowfont=\toks41
-\MPscratchCnt=\count300
-\MPscratchDim=\dimen268
-\MPnumerator=\count301
-\makeMPintoPDFobject=\count302
-\everyMPtoPDFconversion=\toks42
+\scratchcounter=\count299
+\scratchdimen=\dimen268
+\scratchbox=\box84
+\nofMPsegments=\count300
+\nofMParguments=\count301
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count302
+\MPscratchDim=\dimen269
+\MPnumerator=\count303
+\makeMPintoPDFobject=\count304
+\everyMPtoPDFconversion=\toks43
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
+
+(/usr/share/texmf-dist/tex/generic/infwarerr/infwarerr.sty
+Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
+)
+(/usr/share/texmf-dist/tex/latex/grfext/grfext.sty
+Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
+
+(/usr/share/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
+Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
+))
+(/usr/share/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+
+(/usr/share/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+)
+(/usr/share/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+))
+(/usr/share/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO
+)
+
+(/usr/share/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
+)
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+)
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 85.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPE
+G,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 504.
 
 (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-LaTeX Font Info:    Trying to load font information for U+msa on input line 43.
+LaTeX Info: Redefining \. on input line 33.
+LaTeX Info: Redefining \% on input line 33.
+ [1
 
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./report.toc
+LaTeX Info: Redefining \. on input line 1.
+LaTeX Info: Redefining \% on input line 1.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 43.
-
+LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
 
 (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Package svg Info: Last page of `./svg-inkscape/results_1_svg-tex.pdf' is 18 on 
-input line 62.
+))
+\tf@toc=\write4
+\openout4 = `report.toc'.
 
-(./svg-inkscape/results_1_svg-tex.pdf_tex
-<./svg-inkscape/results_1_svg-tex.pdf, id=5, page=1, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 1>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page1 used on i
-nput line 56.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=6, page=2, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 2>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page2 used on i
-nput line 58.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=7, page=3, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 3>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page3 used on i
-nput line 60.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=8, page=4, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 4>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page4 used on i
-nput line 62.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=9, page=5, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 5>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page5 used on i
-nput line 64.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=10, page=6, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 6>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page6 used on i
-nput line 66.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=11, page=7, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 7>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page7 used on i
-nput line 68.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=12, page=8, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 8>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page8 used on i
-nput line 70.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=13, page=9, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 9>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page9 used on i
-nput line 72.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=14, page=10, 451.6875pt x 210.7875pt>
+ [1
 
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 10>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page10 used on 
-input line 74.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=15, page=11, 451.6875pt x 210.7875pt>
+]
+Cap\'{\i }tulo 1.
+[2
 
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 11>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page11 used on 
-input line 76.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=16, page=12, 451.6875pt x 210.7875pt>
+]
+Cap\'{\i }tulo 2.
+[3
 
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 12>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page12 used on 
-input line 78.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=17, page=13, 451.6875pt x 210.7875pt>
+]
+Cap\'{\i }tulo 3.
+[4
 
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 13>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page13 used on 
-input line 80.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=18, page=14, 451.6875pt x 210.7875pt>
+]
+Cap\'{\i }tulo 4.
+[5
 
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 14>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page14 used on 
-input line 82.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=19, page=15, 451.6875pt x 210.7875pt>
+]
+Cap\'{\i }tulo 5.
+[6
 
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 15>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page15 used on 
-input line 84.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=20, page=16, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 16>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page16 used on 
-input line 86.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=21, page=17, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 17>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page17 used on 
-input line 88.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_1_svg-tex.pdf, id=22, page=18, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_1_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_1_svg-tex.pdf, page 18>
-Package pdftex.def Info: ./svg-inkscape/results_1_svg-tex.pdf , page18 used on 
-input line 90.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-)
-Overfull \hbox (63.06294pt too wide) in paragraph at lines 61--63
-[]|  [] 
- []
-
-Package svg Info: Calling Inkscape on input line 68.
-runsystem(inkscape "../data/plot//results_2.svg" -D --export-latex --export-fil
-ename="results_2_svg-tex.pdf")...executed.
-
-runsystem(mkdir -p "./svg-inkscape/")...executed.
-
-runsystem(mv "results_2_svg-tex.pdf" "./svg-inkscape/results_2_svg-tex.pdf")...
-executed.
-
-runsystem(mv "results_2_svg-tex.pdf_tex" "./svg-inkscape/results_2_svg-tex.pdf_
-tex")...executed.
-
-Package svg Info: Last page of `./svg-inkscape/results_2_svg-tex.pdf' is 18 on 
-input line 68.
-(./svg-inkscape/results_2_svg-tex.pdf_tex
-<./svg-inkscape/results_2_svg-tex.pdf, id=24, page=1, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 1>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page1 used on i
-nput line 56.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=25, page=2, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 2>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page2 used on i
-nput line 58.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=26, page=3, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 3>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page3 used on i
-nput line 60.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=27, page=4, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 4>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page4 used on i
-nput line 62.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=28, page=5, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 5>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page5 used on i
-nput line 64.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=29, page=6, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 6>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page6 used on i
-nput line 66.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=30, page=7, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 7>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page7 used on i
-nput line 68.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=31, page=8, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 8>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page8 used on i
-nput line 70.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=32, page=9, 451.6875pt x 210.7875pt>
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 9>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page9 used on i
-nput line 72.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=33, page=10, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 10>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page10 used on 
-input line 74.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=34, page=11, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 11>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page11 used on 
-input line 76.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=35, page=12, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 12>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page12 used on 
-input line 78.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=36, page=13, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 13>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page13 used on 
-input line 80.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=37, page=14, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 14>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page14 used on 
-input line 82.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=38, page=15, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 15>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page15 used on 
-input line 84.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=39, page=16, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 16>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page16 used on 
-input line 86.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=40, page=17, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 17>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page17 used on 
-input line 88.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-<./svg-inkscape/results_2_svg-tex.pdf, id=41, page=18, 451.6875pt x 210.7875pt>
-
-File: ./svg-inkscape/results_2_svg-tex.pdf Graphic file (type pdf)
-<use ./svg-inkscape/results_2_svg-tex.pdf, page 18>
-Package pdftex.def Info: ./svg-inkscape/results_2_svg-tex.pdf , page18 used on 
-input line 90.
-(pdftex.def)             Requested size: 451.6875pt x 210.79985pt.
-)
-Overfull \hbox (63.06294pt too wide) in paragraph at lines 67--69
-[]|  [] 
- []
-
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map} <./svg-inkscape/results_1_s
-vg-tex.pdf> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_1_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_1_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
->] [2 <./svg-inkscape/results_2_svg-tex.pdf> <./svg-inkscape/results_2_svg-tex.
-pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
-> <./svg-inkscape/results_2_svg-tex.pdf
-
-pdfTeX warning: pdflatex (file ./svg-inkscape/results_2_svg-tex.pdf): PDF inclu
-sion: multiple pdfs with page group included in a single page
->] (./report.aux) ) 
+] (./report.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+) ) 
 Here is how much of TeX's memory you used:
- 13016 strings out of 478238
- 254901 string characters out of 5850456
- 554904 words of memory out of 5000000
- 30963 multiletter control sequences out of 15000+600000
- 480119 words of font info for 48 fonts, out of 8000000 for 9000
+ 13424 strings out of 478238
+ 251088 string characters out of 5850456
+ 536785 words of memory out of 5000000
+ 31400 multiletter control sequences out of 15000+600000
+ 484385 words of font info for 54 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 94i,15n,92p,413b,484s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/sha
-re/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/typ
-e1/urw/times/utmr8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pf
-b>
-Output written on report.pdf (2 pages, 67697 bytes).
+ 85i,9n,90p,413b,379s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texmf-dist/fo
+nts/type1/urw/times/utmb8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utm
+r8a.pfb></usr/share/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on report.pdf (7 pages, 38862 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 47 PDF objects out of 1000 (max. 8388607)
+ 31 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 203 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
