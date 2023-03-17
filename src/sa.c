@@ -134,7 +134,6 @@ void sa_free(SA* sa) {
 Batch* compute_batch(SA* sa) {
   long double t = sa->t;
   Batch* batch = batch_new(sa->sol);
-
   int c = 0, m = sa->m;
   double r = 0.0;
   long double cost;
@@ -190,7 +189,7 @@ void threshold_accepting(SA* sa) {
 }
 
 /* Computes the best neighbour of the final solution
- of the thresold accepting algorithm. */
+   of the thresold accepting algorithm. */
 Path* sweep(SA* sa) {
   int i, j;
   Path* copy, *path, *best, *p_best;
