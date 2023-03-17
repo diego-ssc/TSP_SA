@@ -82,6 +82,8 @@ struct _SA {
   /* n the number of iterations the computing of
      `accepted_percentage` should take. */
   int n_t;
+  /* The verbose option. */
+  int v;
 };
 
 /* Returns the percentage of accepted neighbours. */
@@ -107,7 +109,7 @@ void batch_free(Batch* batch) {
 /* Creates a new Simulated Annealing Heuristic. */
 SA* sa_new(TSP* tsp, double t, int m, int l,
            double epsilon, double phi, double p,
-           int n_t) {
+           int n_t, int v) {
   /* Heap allocation. */
   SA* sa  = malloc(sizeof(struct _SA));
   sa->sol = tsp_path(tsp);
@@ -117,6 +119,7 @@ SA* sa_new(TSP* tsp, double t, int m, int l,
   sa->n    = tsp_city_number(tsp);
   sa->seed = tsp_seed(tsp);
   sa->tsp  = tsp;
+  sa->v    = v;
 
   /* Path randomization. */
   path_randomize(sa->sol);
@@ -154,7 +157,8 @@ Batch* compute_batch(SA* sa) {
     cost = path_cost_function(sa->sol);
     path_swap(sa->sol);
     if (path_cost_function(sa->sol) <= (cost + t)) {
-      /* printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol)); */
+      if (sa->v)
+        printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(sa->sol));
       c++;
       r += path_cost_function(sa->sol);
       if (path_cost_function(sa->sol) < path_cost_function(batch->path)) {
@@ -179,7 +183,6 @@ void threshold_accepting(SA* sa) {
   while (sa->t > sa->epsilon) {
     q = DBL_MAX;
 
-    /* printf("T: %0.16Lf\n", sa->t); */
     while (p <= q) {
       q = p;
       batch = compute_batch(sa);
@@ -221,7 +224,8 @@ Path* sweep(SA* sa) {
           path_swap_indexes(copy, i, j);
         if (path_cost_function(copy) < path_cost_function(p_best)) {
           if (path_cost_function(best) > path_cost_function(copy)) {
-            /* printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(copy)); */
+            if (sa->v)
+              printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(copy));
             path_free(best);
             best = path_copy(copy);
           }

@@ -109,7 +109,8 @@ static void* heuristic(void* v_data) {
   Data* data = (Data*)v_data;
   TSP* tsp = tsp_new(data->n, data->ids, data->seed);
   SA* sa = sa_new(tsp, data->t, data->m, data->l,
-                  data->e, data->phi, data->a, data->n_t);
+                  data->e, data->phi, data->a,
+                  data->n_t, data->v);
   threshold_accepting(sa);
   sa_free(sa);
   tsp_free(tsp);

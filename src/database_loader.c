@@ -86,7 +86,6 @@ void loader_free(Database_loader* loader) {
 static int callback(void *data, int numCol,
                     char **colData, char **colName) {
   int i;
-
   Database_loader* loader = ((Data*)data)->loader;
   void(*f)(Database_loader*, int*, char**) = ((Data*)data)->f;
   i = 0;

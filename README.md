@@ -5,7 +5,7 @@ to find solutions to the Travelling Salesman Problem.
 Run:
 
 ```
-meson setup build
+meson setup -Dbuildtype=release build
 ```
 
 and:
@@ -29,13 +29,13 @@ in the root directory.
 ## Dependencies
 
 ```
-sqlite3
+[meson](https://www.sqlite.org/download.html)
+Version: 1.0.0
 ```
-
 ```
-glib
+[sqlite3](https://mesonbuild.com/Getting-meson.html)
+Version: 3.40.1 2022-12-28
 ```
-
 ```
-math.h
+[glib](https://docs.gtk.org/glib/index.html)
 ```

@@ -135,7 +135,7 @@ int city_cmp(City* c_1, City* c_2) {
   if (!c_1 || !c_2)
     return 0;
   if (c_1->id != c_2->id)
-    return 0;                    
+    return 0;
   if (abs(c_1->x - c_2->x) >= 0.00016)
     return 0;
   if (abs(c_1->y - c_2->y) >= 0.00016)
