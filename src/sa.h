@@ -30,9 +30,11 @@
  * @param epsilon the epsilon.
  * @param phi the phi.
  * @param p percentage of accepted solutions.
+ * @param n the number of iterations the computing of
+ * `accepted_percentage` should take.
  */
 SA* sa_new(TSP* tsp, double t, int m, int l,
-           double epsilon, double phi, double p);
+           double epsilon, double phi, double p, int n);
 
 /**
  * Frees the memory used by the simulated annealing

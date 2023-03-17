@@ -25,15 +25,14 @@
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        8
-#define M        260000
-#define L        12000//9000//1800
-#define EPSILON  0.000016
-#define PHI      0.98
-#define P        0.98//0.98
-#define N        9000
-
-#define T_EPSILON 0.00016
+#define T         8
+#define M         260000
+#define L         8000
+#define EPSILON   0.00016
+#define PHI       0.98
+#define P         0.98
+#define N         800
+#define T_EPSILON 0.001
 
 #define BEST_40   0.263713276
 #define BEST_150  0.149078160
@@ -73,6 +72,9 @@ struct _SA {
   unsigned int seed;
   /* The problem instance. */
   TSP* tsp;
+  /* n the number of iterations the computing of
+     `accepted_percentage` should take. */
+  int n_t;
 };
 
 /* Returns the percentage of accepted neighbours. */
@@ -97,7 +99,8 @@ void batch_free(Batch* batch) {
 
 /* Creates a new Simulated Annealing Heuristic. */
 SA* sa_new(TSP* tsp, double t, int m, int l,
-           double epsilon, double phi, double p) {
+           double epsilon, double phi, double p,
+           int n_t) {
   /* Heap allocation. */
   SA* sa  = malloc(sizeof(struct _SA));
   sa->sol = tsp_path(tsp);
@@ -108,16 +111,18 @@ SA* sa_new(TSP* tsp, double t, int m, int l,
   sa->seed = tsp_seed(tsp);
   sa->tsp  = tsp;
 
+  /* Path randomization. */
+  path_randomize(sa->sol);
+
   /* Parameters. */
   sa->t       = t ? t : T;
+  sa->p       = p ? p : P;
+  sa->n_t     = n_t ? n_t : N;
+  sa->t       = initial_temperature(sa);
   sa->m       = m ? m : M;
   sa->l       = l ? l : L;
   sa->epsilon = epsilon ? epsilon : EPSILON;
   sa->phi     = phi ? phi : PHI;
-  sa->p       = p ? p : P;
-
-  /* Path randomization. */
-  path_randomize(sa->sol);
 
   return sa;
 }
@@ -209,6 +214,7 @@ Path* sweep(SA* sa) {
           path_swap_indexes(copy, i, j);
         if (path_cost_function(copy) < path_cost_function(p_best)) {
           if (path_cost_function(best) > path_cost_function(copy)) {
+            /* printf("E[%u]:%.16Lf\n", sa->seed, path_cost_function(copy)); */
             path_free(best);
             best = path_copy(copy);
           }
@@ -266,6 +272,7 @@ static double accepted_percentage(SA* sa) {
     path_free(n);
   }
   return (double)c/N;
+  
 }
 
 /* Computes the intial temperature */

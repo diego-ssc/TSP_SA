@@ -50,6 +50,8 @@ typedef struct {
   double a;
   /* The verbose option. */
   int v;
+  /* The temperature batch size. */
+  int n_t;
 } Data;
 
 /**
@@ -57,17 +59,17 @@ typedef struct {
  * @param n the number of cities.
  * @param ids the ids.
  * @param seed the seed.
- * @param m The maximum number of exeuctions
+ * @param m The maximum number of executions
  * of a batch.
  * @param l The batch size.
  * @param t The temperature.
  * @param e The epsilon.
  * @param phi The phi.
- * @param a The average.
+ * @param a The temperature batch size.
  */
 static Data* data_new(int n, int* ids, unsigned int seed,
                       int m, int l, long double t, double e,
-                      double phi, double a, int v) {
+                      double phi, double a, int v, int n_t) {
   /* Heap allocation. */
   Data* data = malloc(sizeof(Data));
   data->ids  = calloc(1, sizeof(int)*n);
@@ -82,6 +84,7 @@ static Data* data_new(int n, int* ids, unsigned int seed,
   data->phi  = phi;
   data->a    = a;
   data->v    = v;
+  data->n_t  = n_t;
 
   /* Heap initialization. */
   memcpy(data->ids, ids, sizeof(int)*n);
@@ -106,8 +109,7 @@ static void* heuristic(void* v_data) {
   Data* data = (Data*)v_data;
   TSP* tsp = tsp_new(data->n, data->ids, data->seed);
   SA* sa = sa_new(tsp, data->t, data->m, data->l,
-                  data->e, data->phi, data->a);
-  sa_set_temperature(sa, initial_temperature(sa));
+                  data->e, data->phi, data->a, data->n_t);
   threshold_accepting(sa);
   sa_free(sa);
   tsp_free(tsp);
@@ -132,15 +134,21 @@ static void usage() {
           "\t-p\n"
           "\t\tSets the desired phi value.\n\n"
           "\t-a\n"
-          "\t\tSets the desired average of accepted cities.\n\n");
+          "\t\tSets the desired average of accepted cities.\n\n"
+          "\t-k\n"
+          "\t\tSets the desired temperature batch size.\n\n");
   fprintf(stderr, "Options:\n"
           "\t-s\n"
+          "\t\tSets the initial seed the program will use.\n\n"
+          "\t-n\n"
           "\t\tSets the number of seeds the program will use.\n\n"
           "\t-v\n"
           "\t\tPrints the evaluation for each path the program finds.\n\n"
           "\t-c\n"
           "\t\tSets the ids of the desired instance. It can be a file or"
-          " a list of ids.\n\n");
+          " a list of ids.\n\n"
+          "\t-f\n"
+          "\t\tParses a file ehich contains the parameters.\n\n");
   exit(1);
 }
 
@@ -151,23 +159,23 @@ static void usage() {
  * @param s the initial seed.
  * @param inst the TSP instance.
  * @param c the number of cities.
- * @param m The maximum number of exeuctions
- * of a batch.
+ * @param m The maximum number of exeuctions of a batch.
  * @param l The batch size.
  * @param t The temperature.
  * @param e The epsilon.
  * @param phi The phi.
  * @param a The average.
  * @param v The verbose option.
+ * @param n_t the the temperature batch size.
  */
 static void create_threads(int n, int s, int* inst, int c,
                            int m, int l, long double t, double e,
-                           double phi, double a, int v) {
+                           double phi, double a, int v, int n_t) {
   int i;
   pthread_t th[n];
 
   for (i = 0; i < n; ++i) {
-    Data* data = data_new(c, inst, i+s, m, l, t, e, phi, a, v);
+    Data* data = data_new(c, inst, i+s, m, l, t, e, phi, a, v, n_t);
     if (pthread_create(th+i, NULL, heuristic, data)) {
       fprintf(stderr, "Thread could not be created.");
       exit(1);
@@ -182,7 +190,8 @@ static void create_threads(int n, int s, int* inst, int c,
   }
 }
 
-int* parse_file(const char* file_name, int* size) {
+/* Parses the file that contains the cities. */
+static int* parse_file(const char* file_name, int* size) {
   int* ids, id, i = 0;
   char c;
 
@@ -191,7 +200,6 @@ int* parse_file(const char* file_name, int* size) {
     perror("TSP_SA");
     exit(1);
   }
-
 
   while ((c = getc(file)) != EOF)
     if (c == ',')
@@ -212,7 +220,41 @@ int* parse_file(const char* file_name, int* size) {
   return ids;
 }
 
-int* parse_city_args(int argc, char **argv, int *size) {
+static void parse_parameters(const char* file_name, long double* t,
+                             int* m, double* e, double* p, double* a,
+                             int* s, int* m_t) {
+
+  FILE* file = fopen(file_name, "r");
+  if (!file) {
+    perror("TSP_SA");
+    exit(1);
+  }
+
+  if(EOF != fscanf(file, "Temperature:%Lf", t));
+  fclose(file);
+  file = fopen(file_name, "r");
+  if(EOF != fscanf(file, "Max:%d", m));
+  fclose(file);
+  file = fopen(file_name, "r");
+  if(EOF != fscanf(file, "Epsilon:%lf", e));
+  fclose(file);
+  file = fopen(file_name, "r");
+  if(EOF != fscanf(file, "Phi:%lf", p));
+  fclose(file);
+  file = fopen(file_name, "r");
+  if(EOF != fscanf(file, "Average:%lf", a));
+  fclose(file);
+  file = fopen(file_name, "r");
+  if(EOF != fscanf(file, "Seed:%d", s));
+  fclose(file);
+  file = fopen(file_name, "r");
+  if(EOF != fscanf(file, "Max_temp:%d", m_t));
+  fclose(file);
+}
+
+
+/* Parses the ids passed as arguments to the program. */
+static int* parse_city_args(int argc, char **argv, int *size) {
   int i;
   for (i = 1; i < argc; i++, ++*size)
     if (*(argv + i)[0] == '-')
@@ -229,7 +271,14 @@ int* parse_city_args(int argc, char **argv, int *size) {
   return ids;
 }
 
-int* parse_cities(int argc, char **argv, int *size, int* status) {
+/**
+ * Parses the cities passed to the program.
+ * @param argc the number of arguments.
+ * @param argv the arguments.
+ * @param size the number of cities.
+ * @return the id array.
+ */
+static int* parse_cities(int argc, char **argv, int *size, int* status) {
   if ((argc - 1) > 0 && *(argv + 1)[0] != '-') {
     *status = 1;
     if ((argc - 2) > 0 && *(argv + 2)[0] != '-') {
@@ -245,14 +294,10 @@ int* parse_cities(int argc, char **argv, int *size, int* status) {
 void parse_arguments(int argc, char** argv) {
   if (argc < 3)
     usage();
-  int c, m = 0, l = 0, size = 0, s = 1, v = 0,
-    * ids = 0, cities = 0;
+  int c, m = 0, l = 0, size = 0, s = 0, v = 0,
+    * ids = 0, cities = 0, n = 1, n_t = 0;
   long double t = 0.;
   double e = 0., phi = 0., a = 0.;
-
-
-  printf("First arg: %s\n", *argv);
-  
   while (--argc > 0)
     if ((*++argv)[0] == '-')
       while ((c = *++argv[0]))
@@ -275,8 +320,10 @@ void parse_arguments(int argc, char** argv) {
         case 'a':
           a = argc - 1 ? atof(*(argv + 1)) : a;
           break;
+        case 'n':
+          n = argc - 1 ? atoi(*(argv + 1)) : n;
+          break;
         case 's':
-          printf("Hello: %s\n", *(argv + 1));
           s = argc - 1 ? atoi(*(argv + 1)) : s;
           break;
         case 'v':
@@ -284,6 +331,12 @@ void parse_arguments(int argc, char** argv) {
           break;
         case 'c':
           ids = parse_cities(argc, argv, &size, &cities);
+          break;
+        case 'k':
+          n_t = argc - 1 ? atoi(*(argv + 1)) : n_t;
+          break;
+        case 'f':
+          parse_parameters(*(argv+1), &t, &m, &e, &phi, &a, &s, &n_t);
           break;
         default:
           printf("TSP_SA: illegal option %c\n", c);
@@ -295,21 +348,19 @@ void parse_arguments(int argc, char** argv) {
     usage();
 
   int procs = get_nprocs();
-  printf("procs: %d\n", procs);
-  printf("s: %d\n", s);
-  int n = s < procs ? s : procs;
-  int x = ceil((double)s/n);
+  int lower = n < procs ? n : procs;
+  int x = ceil((double)n/lower);
 
   for(int i =0 ; i <size; ++i)
     if ((*(ids+i) <= 0) || (*(ids+i) > 1092)) {
-      fprintf(stderr, "TSP_SA: Invalid file format\n");
+      fprintf(stderr, "TSP_SA: Invalid path\n");
       exit(1);
     }
 
-  printf("THread number: %d\n", n);
   srand(time(0));
+  s = s ? s : random();
   while (x--)
-    create_threads(n, random(), ids, size, m, l, t, e, phi, a, v);
+    create_threads(lower, s, ids, size, m, l, t, e, phi, a, v, n_t);
   if (ids)
     free(ids);
 }
@@ -330,14 +381,6 @@ int main(int argc, char** argv) {
   /*     819,820,821,822,823,825,826,828,829,832,837,840,978,979,980,981, */
   /*     982,984,985,986,988,990,991,995,999,1001,1003,1037,1038,1073,1075}; */
 
-  //0.1528316180717023 256-512
-/*   #define T        8 */
-/* #define M        260000 */
-/* #define L        12000//9000//1800 */
-/* #define EPSILON  0.000016 */
-/* #define PHI      0.98 */
-/* #define P        0.98//0.98 */
-/* #define N        1000 */
   /* 0.1524116513820390 256-512 */
 /*   #define T        8 */
 /* #define M        260000 */
@@ -351,11 +394,12 @@ int main(int argc, char** argv) {
   /* int n = 8; */
   /* int t = 32; */
   /* while (n--) { */
-  /*   create_threads(t, s, inst, 150); */
+  /*   create_threads(t, s, inst, 150, 0, 0, 0.0, 0.0, 0.0, 0.0 , 0); */
   /*   s += t; */
   /* } */
 
   parse_arguments(argc, argv);
+
 
   return 0;
 }

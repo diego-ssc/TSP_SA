@@ -1,0 +1,7 @@
+Temperature:8
+Max:260000
+Epsilon:0.000016
+Phi:0.98
+Average:0.98
+Max_temp:900
+Seed:963
