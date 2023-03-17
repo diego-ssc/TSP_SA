@@ -88,9 +88,3 @@ void tsp_set_solution(TSP* tsp, Path* path);
  * @param loader the database loader.
  */
 void tsp_set_database_loader(TSP* tsp, Database_loader* loader);
-
-/**
- * Fills the nonexistent values of the adjacency matrix.
- * @param tsp the TSP instance.
- */
-void tsp_fill_matrix(TSP* tsp);

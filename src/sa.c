@@ -25,17 +25,24 @@
 #include "heuristic.h"
 #include "sa.h"
 
+/* #define T         8 */
+/* #define M         260000 */
+/* #define L         8000 */
+/* #define EPSILON   0.00016 */
+/* #define PHI       0.98 */
+/* #define P         0.98 */
+/* #define N         800 */
+
+
 #define T         8
 #define M         260000
-#define L         8000
-#define EPSILON   0.00016
+#define L         12000
+#define EPSILON   0.000016
 #define PHI       0.98
 #define P         0.98
-#define N         800
-#define T_EPSILON 0.001
+#define N         900
 
-#define BEST_40   0.263713276
-#define BEST_150  0.149078160
+#define T_EPSILON 0.00016
 
 /* The Batch structure. */
 struct _Batch {
@@ -118,11 +125,11 @@ SA* sa_new(TSP* tsp, double t, int m, int l,
   sa->t       = t ? t : T;
   sa->p       = p ? p : P;
   sa->n_t     = n_t ? n_t : N;
-  sa->t       = initial_temperature(sa);
   sa->m       = m ? m : M;
   sa->l       = l ? l : L;
   sa->epsilon = epsilon ? epsilon : EPSILON;
   sa->phi     = phi ? phi : PHI;
+  sa->t       = (sa->t == 8) ? initial_temperature(sa) : sa->t;
 
   return sa;
 }
@@ -272,7 +279,7 @@ static double accepted_percentage(SA* sa) {
     path_free(n);
   }
   return (double)c/N;
-  
+
 }
 
 /* Computes the intial temperature */

@@ -71,8 +71,6 @@ TSP* tsp_new(int n, int* ids, unsigned int seed) {
   tsp->path   = path_new(loader_cities(tsp->loader), n, ids,
                          tsp->seed, loader_adj_matrix(tsp->loader));
 
-  tsp_fill_matrix(tsp);
-
   return tsp;
 }
 
@@ -127,21 +125,4 @@ void tsp_set_solution(TSP* tsp, Path* path) {
 /* Sets the database loader of the TSP instance. */
 void tsp_set_database_loader(TSP* tsp, Database_loader* loader) {
   tsp->loader = loader;
-}
-
-/* Fills the nonexistent values of the adjacency matrix. */
-void tsp_fill_matrix(TSP* tsp) {
-  int i,j;
-  double n;
-  double (*m)[CITY_NUMBER+1] = loader_adj_matrix(tsp_database_loader(tsp));
-  double (*fm)[CITY_NUMBER+1] = tsp->fm;
-  City** cities = loader_cities(tsp->loader);
-  for (i = 1; i < CITY_NUMBER+1; ++i)
-    for (j = i+1; j < CITY_NUMBER+1; ++j) {
-        n = *(*(m+ i)+ j) == 0.0 ? city_distance(*(cities + i), *(cities + j)) *
-          path_max_distance(tsp->path) : *(*(m+ i)+ j);
-
-      *(*(fm + i)+ j) = n;
-      *(*(fm + j)+ i) = n;
-    }
 }

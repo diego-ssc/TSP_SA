@@ -28,10 +28,15 @@
 
 /* The city structure. */
 struct _City {
+  /* The id. */
   int id;
+  /* The x coordinate. */
   double x;
+  /* The y coordinate. */
   double y;
+  /* The country name. */
   char* country;
+  /* The city name. */
   char* name;
 };
 

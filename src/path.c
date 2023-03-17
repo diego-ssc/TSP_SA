@@ -26,16 +26,28 @@
 
 /* The path structure. */
 struct _Path {
+  /* The arrays of cities. */
   City** cities, **r_path;
+  /* The number of cities. */
   int n;
+  /* The ids of the city. */
   int* ids;
+  /* The distances between every city in
+     the path. */
   double* distances;
+  /* The sum of the costs of the cities. */
   long double cost_sum;
+  /* The maximum distance. */
   double max_distance;
+  /* The normalizer. */
   double normalized_v;
+  /* The adjacency matrix. */
   double (*matrix)[CITY_NUMBER+1];
+  /* The indexes with which a swap has been made*/
   int i,j;
+  /* The string representation. */
   char* str;
+  /* The seed. */
   unsigned int seed;
 };
 
@@ -179,7 +191,6 @@ static void c_path_swap(Path* path) {
   int temp_i, n = path->n;
   int* ids_r = path->ids;
   long double a = 0., b = 0., c = 0., d = 0.;
-
 
   if (i-1 >= 0)
     a = path_weight_function(path, *(r_path+i-1),

@@ -31,7 +31,6 @@ static void test_city_set_up(Test_city* test_city,
                              gconstpointer data) {
   test_city->loader = loader_new();
   loader_open(test_city->loader);
-  /* loader_open(test_city->loader, "../data"); */
   loader_load(test_city->loader);
 }
 

@@ -28,30 +28,40 @@
 
 /* The database loader structure. */
 struct _Database_loader {
+  /* The city array. */
   City** cities;
+  /* The adjacency matrix. */
   double (*connections)[CITY_NUMBER+1];
+  /* The database. */
   sqlite3 *db;
+  /* The path where the database is located. */
   char *path;
+  /* The error message. */
   char *zErrMsg;
+  /* The sql instructions. */
   char *sql;
+  /* The sql execution status. */
   int rc;
+  /* The index where the city is gonna be located in the array. */
   int *n;
-  double *max_distance;
 };
 
 /* The callback data structure. */
 typedef struct _Data {
+  /* The database loader. */
   Database_loader* loader;
+  /* The `fill` function. */
   void (*f)(Database_loader*,
             int*, char**);
 } Data;
 
 /* Creates a new Database Loader. */
 Database_loader* loader_new() {
+  /* Heap allocation. */
   Database_loader* loader = malloc(sizeof(struct _Database_loader));
-  loader->cities = city_array(CITY_NUMBER+1);
-  loader->connections = calloc(1, (CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
-  loader->n = calloc(1, sizeof(int));
+  loader->cities          = city_array(CITY_NUMBER+1);
+  loader->connections     = calloc(1, (CITY_NUMBER+1)*sizeof(double[CITY_NUMBER+1]));
+  loader->n               = calloc(1, sizeof(int));
   return loader;
 }
 

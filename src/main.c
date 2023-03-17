@@ -148,7 +148,7 @@ static void usage() {
           "\t\tSets the ids of the desired instance. It can be a file or"
           " a list of ids.\n\n"
           "\t-f\n"
-          "\t\tParses a file ehich contains the parameters.\n\n");
+          "\t\tParses a file which contains the parameters.\n\n");
   exit(1);
 }
 
@@ -211,7 +211,7 @@ static int* parse_file(const char* file_name, int* size) {
   ids = calloc(1, sizeof(int)*(*size));
   fclose(file);
   file = fopen(file_name, "r");
-  while (EOF != fscanf(file, "%d%c", &id, &c)) {
+  while (EOF != fscanf(file, "%d%*c", &id)) {
     *(ids + i) = id;
     i++;
   }
@@ -220,35 +220,49 @@ static int* parse_file(const char* file_name, int* size) {
   return ids;
 }
 
+/* Parses the parameters written on the file. */
 static void parse_parameters(const char* file_name, long double* t,
-                             int* m, double* e, double* p, double* a,
-                             int* s, int* m_t) {
-
+                             int* l, int* m, double* e, double* p,
+                             double* a, int* s, int* n_t) {
   FILE* file = fopen(file_name, "r");
   if (!file) {
     perror("TSP_SA");
     exit(1);
   }
 
-  if(EOF != fscanf(file, "Temperature:%Lf", t));
-  fclose(file);
-  file = fopen(file_name, "r");
-  if(EOF != fscanf(file, "Max:%d", m));
-  fclose(file);
-  file = fopen(file_name, "r");
-  if(EOF != fscanf(file, "Epsilon:%lf", e));
-  fclose(file);
-  file = fopen(file_name, "r");
-  if(EOF != fscanf(file, "Phi:%lf", p));
-  fclose(file);
-  file = fopen(file_name, "r");
-  if(EOF != fscanf(file, "Average:%lf", a));
-  fclose(file);
-  file = fopen(file_name, "r");
-  if(EOF != fscanf(file, "Seed:%d", s));
-  fclose(file);
-  file = fopen(file_name, "r");
-  if(EOF != fscanf(file, "Max_temp:%d", m_t));
+  char param[256];
+  long double n;
+  while(EOF != fscanf(file, "%s : %Lf", param, &n)) {
+    switch (*param) {
+    case 'T':
+      *t = n;
+      break;
+    case 'L':
+      *l = (int)n;
+      break;
+    case 'M':
+      *m = (int)n;
+      break;
+    case 'E':
+      *e = (double)n;
+      break;
+    case 'p':
+      *p = (double)n;
+      break;
+    case 'P':
+      *a = (double)n;
+      break;
+    case 'N':
+      *n_t = (int)n;
+      break;
+    case 'S':
+      *s = (int)n;
+      break;
+    default:
+      break;
+    }
+  }
+
   fclose(file);
 }
 
@@ -267,7 +281,6 @@ static int* parse_city_args(int argc, char **argv, int *size) {
       break;
     *(ids + i) = atoi(*(argv + i+1));
   }
-
   return ids;
 }
 
@@ -336,14 +349,13 @@ void parse_arguments(int argc, char** argv) {
           n_t = argc - 1 ? atoi(*(argv + 1)) : n_t;
           break;
         case 'f':
-          parse_parameters(*(argv+1), &t, &m, &e, &phi, &a, &s, &n_t);
+          parse_parameters(*(argv+1), &t, &l, &m, &e, &phi, &a, &s, &n_t);
           break;
         default:
-          printf("TSP_SA: illegal option %c\n", c);
+          fprintf(stderr, "TSP_SA: illegal option %c\n", c);
           argc = 0;
           break;
         }
-
   if (!cities)
     usage();
 
@@ -357,8 +369,6 @@ void parse_arguments(int argc, char** argv) {
       exit(1);
     }
 
-  srand(time(0));
-  s = s ? s : random();
   while (x--)
     create_threads(lower, s, ids, size, m, l, t, e, phi, a, v, n_t);
   if (ids)
@@ -367,39 +377,6 @@ void parse_arguments(int argc, char** argv) {
 
 /* Executes the main thread of the program. */
 int main(int argc, char** argv) {
-  /* int inst[] = {1,2,3,4,5,6,7,54,163,164,165,168,172,186,327,329,331,332, */
-  /*               333,483,489,490,491,492,493,496,653,654,656,657,815,816, */
-  /*               817,820,978,979,980,981,982,984}; */
-
-  /* int inst[] = {1,2,3,4,5,6,7,8,9,11,12,14,16,17,19,20,22,23,25,26,54,74,75, */
-  /*     77,151,163,164,165,166,167,168,169,171,172,173,174,176,179,181, */
-  /*     182,183,184,185,186,187,190,191,297,326,327,328,329,330,331,332, */
-  /*     333,334,336,339,340,343,344,345,346,347,349,350,351,352,444,483, */
-  /*     489,490,491,492,493,494,495,496,499,500,501,502,504,505,507,508, */
-  /*     509,510,511,512,520,652,653,654,655,656,657,658,660,661,662,663, */
-  /*     665,666,667,668,670,671,673,674,675,676,678,680,815,816,817,818, */
-  /*     819,820,821,822,823,825,826,828,829,832,837,840,978,979,980,981, */
-  /*     982,984,985,986,988,990,991,995,999,1001,1003,1037,1038,1073,1075}; */
-
-  /* 0.1524116513820390 256-512 */
-/*   #define T        8 */
-/* #define M        260000 */
-/* #define L        12000//9000//1800 */
-/* #define EPSILON  0.000016 */
-/* #define PHI      0.98 */
-/* #define P        0.98//0.98 */
-/* #define N        900 */
-
-  /* int s = 256; */
-  /* int n = 8; */
-  /* int t = 32; */
-  /* while (n--) { */
-  /*   create_threads(t, s, inst, 150, 0, 0, 0.0, 0.0, 0.0, 0.0 , 0); */
-  /*   s += t; */
-  /* } */
-
   parse_arguments(argc, argv);
-
-
   return 0;
 }

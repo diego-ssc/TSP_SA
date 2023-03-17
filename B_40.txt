@@ -1,0 +1,6 @@
+Temperature : 100000
+M           : 12000
+L           : 1200
+Epsilon     : 0.002
+phi         : 0.95
+Seed        : 2902
