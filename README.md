@@ -28,14 +28,17 @@ in the root directory.
 
 ## Dependencies
 
+### [Meson](https://www.sqlite.org/download.html)
 ```
-[meson](https://www.sqlite.org/download.html)
+meson
 Version: 1.0.0
 ```
+### [SQLITE](https://mesonbuild.com/Getting-meson.html)
 ```
-[sqlite3](https://mesonbuild.com/Getting-meson.html)
+sqlite3
 Version: 3.40.1 2022-12-28
 ```
+### [GLib](https://docs.gtk.org/glib/index.html)
 ```
-[glib](https://docs.gtk.org/glib/index.html)
+glib
 ```
