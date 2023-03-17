@@ -125,17 +125,13 @@ computadas linealmente, se asociar\'ian como copias al nuevo objeto.
 El problema del agente viajero fue, como lo han sido todas las estructuras del proyecto, modelado siguiendo
 un dise\~no orientado a objetos, sin embargo, no ser\'ia un error afirmar que este no era su prop\'osito inicial.
 La clase comenz\'o siendo un objeto central de ejecuci\'on que administrar\'ia la invocaci\'on y liberaci\'on
-de todos los objetos mencionados anteriormente, incluso, ser\'ia la encargada de ejecutar la heur\'istica.
-Durante una refactorizaci\'on, precisamente una que preparaba el terreno para adaptar la implementaci\'on de
-la huer\'istica sobre el dise\~no del proyecto (y adem\'as, cuando decid\'i elegir crear una clase camino por
-sobre los arreglos de ciudades), esta clase dej\'o de ser solo el paquete que ten\'ia el ambiente global del
-proyecto.\\
+de todas las clases necesarias, incluso, ser\'ia la encargada de ejecutar la heur\'istica.\\
 
-La clase termin\'o siendo quien inicia la ejecuci\'on del problema, creando un objeto
-\textbf{\texttt{database\_loader}} y se encarga de proveer la informaci\'on contenida en este, adem\'as de
-liberarlo de la memoria din\'amica. Como atributo, tiene un camino (el \'unico creado en la ejecuci\'on del
-programa; con el constructor de la clase, al menos) que tambi\'en ser\'a usado para la heur\'istica. Por
-ello, una ejeuci\'on, no estar\'a completa sin una invocaci\'on a la clase \textbf{\texttt{sa}}.
+La clase desempe\~na el papel de marcar el inicio de la ejecuci\'on del problema, creando un objeto
+\textbf{\texttt{database\_loader}}, proveyendo la informaci\'on computada en este.
+Tiene como atributo un camino (el \'unico creado en la ejecuci\'on del programa; con el constructor
+de la clase, al menos) que tambi\'en ser\'a usado para la heur\'istica. Por ello, una ejeuci\'on,
+no estar\'a completa sin una invocaci\'on a la clase \textbf{\texttt{sa}}.
 
 \section{Recocido Simulado}
 

@@ -25,15 +25,6 @@
 #include "heuristic.h"
 #include "sa.h"
 
-/* #define T         8 */
-/* #define M         260000 */
-/* #define L         8000 */
-/* #define EPSILON   0.00016 */
-/* #define PHI       0.98 */
-/* #define P         0.98 */
-/* #define N         800 */
-
-
 #define T         8
 #define M         260000
 #define L         12000
