@@ -60,8 +60,6 @@ struct _SA {
   /* The number of iterations the computing of
      a batch should take.*/
   int l;
-  /* The string representation of the best path. */
-  char* str;
   /* The number of cities. */
   int n;
   /* Percentage of accepted solutions. */
@@ -104,7 +102,6 @@ SA* sa_new(TSP* tsp, double t, int m, int l,
   /* Heap allocation. */
   SA* sa  = malloc(sizeof(struct _SA));
   sa->sol = tsp_path(tsp);
-  sa->str = malloc(sizeof(int)*tsp_city_number(tsp)*2+2);
 
   /* Attribute copy. */
   sa->n    = tsp_city_number(tsp);
@@ -130,8 +127,6 @@ SA* sa_new(TSP* tsp, double t, int m, int l,
 
 /* Frees the memory used by the simulated annealing heuristic. */
 void sa_free(SA* sa) {
-  if (sa->str)
-    free(sa->str);
   free(sa);
 }
 
