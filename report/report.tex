@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 \documentclass[a4paper]{report}
-=======
-\documentclass[a4paper]{article}
->>>>>>> b1398913cfacdb2fa91e04aaf95996a1119182ee
 
 \usepackage{pgf}
 \usepackage[utf8]{inputenc}
@@ -16,14 +12,9 @@
 \usepackage{times}
 \usepackage{dsfont}
 \usepackage{titling}
-<<<<<<< HEAD
 \usepackage[spanish]{babel}
 % \usepackage{svg}
 % \svgpath{../data/plot}
-=======
-\usepackage{svg}
-\svgpath{../data/plot}
->>>>>>> b1398913cfacdb2fa91e04aaf95996a1119182ee
 
 
 \pretitle{\begin{center}\linespread{1}}
@@ -42,30 +33,117 @@
 \begin{document}
 \allowdisplaybreaks
 \maketitle
-<<<<<<< HEAD
 \tableofcontents
 
 \chapter{Introducci\'on}
+\section{El problema}
+
+\begin{center}
+  \textit{...la pregunta es encontrar, para un conjunto finito de puntos de los
+    cuales se conocen las distancias entre cada par, el camino más corto entre
+    estos puntos. Por supuesto, el problema es resuelto por un conjunto finito
+    de intentos. \textbf{Schrijver (2005)}
+    \footnote{Alexander (Lex) Schrijver (4 de Mayo 1948, \'Amsterdam) es 
+      un matem\'atico y cient\'ifico en computaci\'on holand\'es,
+      profesor de matem\'aticas discretas y optimizaci\'on 
+      en la Universidad de \'Amsterdam}}
+\end{center}
+
 \section{Heur\'istica}
 \chapter{Dise\~no}
 
 El dise\~no sigui\'o una estructura orientada a objetos. Contar con la informaci\'on
-de las ciudades en una base de datos relacional, sugiri\'o la implementaci\on de
-un objeto \texttt{database_loader}. De la msima manera, al contar con soluciones
-compuestas por permutaciones de ciudades, fue claro el uso de las clases \texttt{city}
-y \texttt{path} (ciudad y camino, respectivamente).
+de las ciudades en una base de datos relacional, sugiri\'o la implementaci\'on de
+un objeto \textbf{\texttt{database\_loader}}. De la msima manera, el contar con soluciones
+compuestas por permutaciones de ciudades, hizo claro el uso de las clases
+\textbf{\texttt{city}} y \textbf{\texttt{path}} (ciudad y camino, respectivamente).
+De la misma manera, se ha planteado el modelado del problema y de la heur\'istica 
+como clases compuestas a partir las unidades m\'as fundamentales y con atributos y
+comportamiento asociado.\\
+
+\section{La base de datos}
+El problema se plante\'o como una base de datos relacional cuyo contenido est\'a
+compuesto de las ciudades (1092 en total) y de sus conexiones (que representan
+la gr\'afica del problema).\\
+
+Es importante mencionar que la matriz de adyacencias represnetada por la tabla de
+conexiones no es cuadrada, sin embargo, el objeto \textbf{\texttt{database\_loader}}
+la cargar\'a  a una matriz de enteros (\textbf{\texttt{int}} de C) haci\'endola cuadrada.\\
+
+La tabla de ciudades se carga a un arreglo de apuntadores a objetos de tipo
+\textbf{\texttt{city}}. Normalmente se usar\'ia un puntero a un objeto de tipo
+\textbf{\texttt{city}}, pero el constructor de la clase, naturalmente, aloja los
+objetos en el heap, devolviendo, por lo tanto, un puntero a un objeto;
+por ello, el arreglo solo re\'une los punteros de los objetos que
+ya se encuentran guardados din\'amicamente; evitando, en conjunto,
+una posible ambig\"uedad al tratar con ambos tipos que, en esencia, no
+comparten caracter\'isticas adicionales a ser un apuntador a una ciudad.
+
+\section{Las ciudades}
+El objeto \textbf{\texttt{city}} tiene como propiedades los campos incluidos en la base de 
+datos, con excepci\'on de la poblaci\'on. La clase abstrae el concepto de una
+ciudad, omitiendo una representaci\'on total a partir de atributos asociados
+(como lo hace la base de datos), sino involucrando en la composici\'on un
+comportamiento particular.\\
+
+Esta abstracci\'on se da al decidir que una ciudad proporcione el comportamiento
+para calcular la distancia con otra ciudad en conjunto con su uso como unidad
+fundamental del problema.\\
+
+Cabe destacar que la clase \textbf{\texttt{city}} tambi\'en es la encargada de crear los
+arreglos de ciudades, resultado de una "modularizaci\'on" del dise\~no : ninguna clase
+conoce el tama\~no de la estructura \textbf{\texttt{city}}, por lo tanto, ninguna clase (a
+excepci\'on de city) es capaz de crear din\'amicamente un arreglo de ciudades; esto
+podr\'ia evitarse si se incluyera la declaraci\'on de la estructura dentro del encabezado
+(header) de la clase, pero considero se tratar\'ia de una violaci\'on a la encapsulaci\'on
+de los datos.
+
+\section{Los caminos}
+Al tener la idea de una ciudad ya abstra\'ida en una clase, era natural que los caminos consitieran
+de, al menos, un arreglo de ciudades. El primer dise\~no que realic\'e se trataba de una representaci\'on
+sin atributos, ni comportamiento; solo un arreglo de ciudades. Poco tiempo despu\'es escrib\'i la
+clase \textbf{\texttt{path}}. Esta ahora no solo se trataba de un arreglo de ciudades, sino de
+una estructura con atributos y comportamiendo asociados: esto facilit\'o (desde un punto de vista
+del disen\~no) la implementaciones de funciones como el intercambio de ciudades dentro de un camino,
+el c\'alculo del normalizador y la funci\'on de costo.\\
+
+La creaci\'on de un camino implica el c\'alculo de la distancia m\'axima de esa instancia, as\'i, como el
+normalizador y la suma de los costos de sus ciudades. Estos atributos se calculan a partir de operaciones
+lineales, por ello, son valores que incializo dentro del constructor de la clase y, si se quiere acceder
+a ellos una vez creado al objeto, la operaci\'on se reducir\'a a una consulta lineal del atributo deseado
+del objeto. Esta soluci\'on implicaba la disminuci\'on de la cantidad de invocaciones de funciones para
+crear una camino v\'alido (dej\'o de ser necesario invocar la funci\'on, seguido de usar un setter del
+objeto para guardar el resultado), sin embargo, me imped\'ia utilizar el mismo constructor para hacer copias
+de un objeto (usadas en la heur\'istica) si pretend\'ia mantener el tiempo de ejecuci\'on en un estado
+\'optimo, por supuesto.\\
+
+La implementaci\'on de la funci\'on copia de la clase \textbf{\texttt{path}}, entonces, no invoca al
+constructor de la clase, sino que accede a las propiedades del objeto par\'ametro y aquellas que eran
+computadas linealmente, se asociar\'ian como copias al nuevo objeto.
+
+\section{TSP}
+El problema del agente viajero fue, como lo han sido todas las estructuras del proyecto, modelado siguiendo
+un dise\~no orientado a objetos, sin embargo, no ser\'ia un error afirmar que este no era su prop\'osito inicial.
+La clase comenz\'o siendo un objeto central de ejecuci\'on que administrar\'ia la invocaci\'on y liberaci\'on
+de todos los objetos mencionados anteriormente, incluso, ser\'ia la encargada de ejecutar la heur\'istica.
+Durante una refactorizaci\'on, precisamente una que preparaba el terreno para adaptar la implementaci\'on de
+la huer\'istica sobre el dise\~no del proyecto (y adem\'as, cuando decid\'i elegir crear una clase camino por
+sobre los arreglos de ciudades), esta clase dej\'o de ser solo el paquete que ten\'ia el ambiente global del
+proyecto.\\
+
+La clase termin\'o siendo quien inicia la ejecuci\'on del problema, creando un objeto
+\textbf{\texttt{database\_loader}} y se encarga de proveer la informaci\'on contenida en este, adem\'as de
+liberarlo de la memoria din\'amica. Como atributo, tiene un camino (el \'unico creado en la ejecuci\'on del
+programa; con el constructor de la clase, al menos) que tambi\'en ser\'a usado para la heur\'istica. Por
+ello, una ejeuci\'on, no estar\'a completa sin una invocaci\'on a la clase \textbf{\texttt{sa}}.
+
+\section{Recocido Simulado}
+
 
 \chapter{Implementaci\'on}
+\section{Hilos de ejecuci\'on}
+\subsection{Generador de n\'umeros aleatorios}
 \chapter{Experimentaci\'on}
-=======
-
-\section{Introducci\'on}
-
-\section{Heur\'istica}
-\section{Dise\~no}
-\section{Implementaci\'on}
-\section{Experimentaci\'on}
->>>>>>> b1398913cfacdb2fa91e04aaf95996a1119182ee
 
 \begin{table}[h!]
   \begin{center}
@@ -83,9 +161,6 @@ y \texttt{path} (ciudad y camino, respectivamente).
     \end{tabular}
   \end{center}
 \end{table}
-
-
-<<<<<<< HEAD
 % \begin{figure}[h!tbp]
 %   \hspace*{-1.6cm}
 %   \includesvg[scale=1]{results_1}
@@ -98,20 +173,6 @@ y \texttt{path} (ciudad y camino, respectivamente).
 % \end{figure}
 
 \chapter{Conclusiones}
-=======
-\begin{figure}[h!tbp]
-  \hspace*{-1.6cm}
-  \includesvg[scale=1]{results_1}
-\end{figure}
-
-
-\begin{figure}[h!tbp]
-  \hspace*{-1.6cm}
-  \includesvg[scale=1]{results_2}
-\end{figure}
-
-\section{Conclusiones}
->>>>>>> b1398913cfacdb2fa91e04aaf95996a1119182ee
 
 \section{Bibliograf\'ia}
 

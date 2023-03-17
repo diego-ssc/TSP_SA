@@ -25,13 +25,13 @@
 #include "heuristic.h"
 #include "sa.h"
 
-#define T        8//100000
-#define M        12000
-#define L        1200//6200//1200  ///2000
-#define EPSILON  0.002 //
-#define PHI      0.95
-#define P        0.86//0.5
-#define N        1000
+#define T        8
+#define M        260000
+#define L        12000//9000//1800
+#define EPSILON  0.000016
+#define PHI      0.98
+#define P        0.98//0.98
+#define N        9000
 
 #define T_EPSILON 0.00016
 
@@ -163,7 +163,7 @@ void threshold_accepting(SA* sa) {
   double p = 0., q;
   Batch* batch;
   Path* best = path_copy(sa->sol);
-  /* printf("T[%u]: %0.16Lf\n", sa->seed, sa->t); */
+  printf("T[%u]: %0.16Lf\n", sa->seed, sa->t);
   while (sa->t > sa->epsilon) {
     q = DBL_MAX;
 
@@ -259,19 +259,19 @@ static double accepted_percentage(SA* sa) {
   for (i = 0; i < N; ++i) {
     n = path_copy(sa->sol);
     path_swap(sa->sol);
-    if (path_cost_function(sa->sol) <= path_cost_function(n) + sa->t)
+    if (path_cost_function(sa->sol) <= (path_cost_function(n) + sa->t))
       c++;
     else
       path_de_swap(sa->sol);
     path_free(n);
   }
-  return (double)c/sa->n;
+  return (double)c/N;
 }
 
 /* Computes the intial temperature */
 static long double binary_search(SA* sa, double t_1, double t_2) {
   long double t_m = (t_1 + t_2)/2.;
-  if (t_2 - t_1 < T_EPSILON)
+  if ((t_2 - t_1) < T_EPSILON)
     return t_m;
   double p = accepted_percentage(sa);
   if (fabs(sa->p - p) < T_EPSILON)
