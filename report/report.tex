@@ -400,6 +400,11 @@ frutos, en esta ejecuci\'on se obtuvo como resultado m\'as \'optimo 0.154. Poste
 se ejecut\'o el sistema con una tama\~no de lote de 12000 y se logr\'o superar la soluci\'on
 previa, en 3 minutos y ejecutando 200 semillas concurrentes.
 
+\section{Ejecuci\'on de las soluciones \'optimas}
+
+\[\texttt{./build/TSP\_SA -f B\_40.txt -c 40\_instance.txt}\]
+\[\texttt{./build/TSP\_SA -f B\_150.txt -c 150\_instance.txt}\]
+
 \chapter{Conclusiones}
 
 Logr\'e observar que mi sistema se comportaba de manera \'optima incluso con par\'ametros
@@ -407,8 +412,12 @@ grandes he ah\'i la justificaci\'on de los par\'ametros de la mejor soluci\'on e
 para la instancia de 150 ciudades. Por otro lado, un tama\~no de lote reducido (que,
 aparentemente, funcionaba mejor con otros sistemas) parec\'ia solo funcionar con la intancia
 40 ciudades. La instancia de 150 ciudades tardaba, aproximadamente, 20 veces m\'as en la ejecuci\'on
-de una semilla.
+de una semilla.\\
 
+Dada la experimentaci\'on, considero que el generador de n\'umeros aleatorios fue un factor
+clave en la implementaci\'on del sistema. No solo las soluciones parec\'ian falsamente
+pseudoaleatorias, sino que tambi\'en la temeperatura inicial era afectada por este problema.
+Sin importar la instancia, siempre aparec\'ia una cantidad considerable de manera repetida
 
 
 \bibliography{ref}{}
