@@ -1,4 +1,4 @@
-## Compilaci\'on
+## Compilación
 ```
 bibtex report
 ```

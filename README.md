@@ -21,10 +21,74 @@ in the root directory.
 Run:
 
 ```
-./build/TSP_SA
+./build/TSP_SA [tsp-parameters] [cities-ids] [options]
+```
+### Parameters:
+
+```
+-t
+Sets the desired temperature for the execution.
+```
+
+```
+-m
+Sets the desired maximum number of iterations to find a proper batch.
+```
+
+```
+-l
+Sets the desired batch size.
+```
+
+```
+-e
+Sets the desired epsilon value.
+```
+
+```
+-p
+Sets the desired phi value.
+```
+
+```
+-a
+Sets the desired average of accepted cities.
+```
+
+```
+-k
+Sets the desired temperature batch size.
+```
+### Options:
+
+```
+-s
+Sets the initial seed the program will use.
+```
+
+```
+-n
+Sets the number of seeds the program will use.
+```
+
+```
+-v
+Prints the evaluation for each path the program finds.
+```
+
+```
+-c
+Sets the ids of the desired instance. It can be a file or a list of ids.
+```
+
+```
+-f
+Parses a file which contains the parameters.
+
 ```
 
 in the root directory.
+### 
 
 ## Dependencies
 
