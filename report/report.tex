@@ -105,14 +105,14 @@ compuestas por permutaciones de ciudades, hizo claro el uso de las clases
 \textbf{\texttt{city}} y \textbf{\texttt{path}} (ciudad y camino, respectivamente).
 De la misma manera, se ha planteado el modelado del problema y de la heur\'istica
 como clases compuestas a partir las unidades m\'as fundamentales y con atributos y
-comportamiento asociado.\\
+comportamiento asociados.\\
 
 \section{La base de datos}
 El problema se plante\'o como una base de datos relacional cuyo contenido est\'a
 compuesto de las ciudades (1092 en total) y de sus conexiones (que representan
 la gr\'afica del problema).\\
 
-Es importante mencionar que la matriz de adyacencias represnetada por la tabla de
+Es importante mencionar que la matriz de adyacencias representada por la tabla de
 conexiones no es cuadrada, sin embargo, el objeto \textbf{\texttt{database\_loader}}
 la cargar\'a  a una matriz de enteros (\textbf{\texttt{int}} de C) haci\'endola cuadrada.\\
 
@@ -123,7 +123,7 @@ objetos en el heap, devolviendo, por lo tanto, un puntero a un objeto;
 por ello, el arreglo solo re\'une los punteros de los objetos que
 ya se encuentran guardados din\'amicamente; evitando, en conjunto,
 una posible ambig\"uedad al tratar con ambos tipos que, en esencia, no
-comparten caracter\'isticas adicionales a ser un apuntador a una ciudad.
+comparten caracter\'isticas adicionales m\'as que ser un apuntador a una ciudad.
 
 \section{Las ciudades}
 El objeto \textbf{\texttt{city}} tiene como propiedades los campos incluidos en la base de
@@ -150,14 +150,14 @@ de, al menos, un arreglo de ciudades. El primer dise\~no que realic\'e se tratab
 sin atributos, ni comportamiento; solo un arreglo de ciudades. Poco tiempo despu\'es escrib\'i la
 clase \textbf{\texttt{path}}. Esta ahora no solo se trataba de un arreglo de ciudades, sino de
 una estructura con atributos y comportamiendo asociados: esto facilit\'o (desde un punto de vista
-del disen\~no) la implementaciones de funciones como el intercambio de ciudades dentro de un camino,
+del dise\~no) la implementaciones de funciones como el intercambio de ciudades dentro de un camino,
 el c\'alculo del normalizador y la funci\'on de costo.\\
 
-La creaci\'on de un camino implica el c\'alculo de la distancia m\'axima de esa instancia, as\'i, como el
+La creaci\'on de un camino implica el c\'alculo de la distancia m\'axima de esa instancia, as\'i como el
 normalizador y la suma de los costos de sus ciudades. Estos atributos se calculan a partir de operaciones
 lineales, por ello, son valores que incializo dentro del constructor de la clase y, si se quiere acceder
-a ellos una vez creado al objeto, la operaci\'on se reducir\'a a una consulta lineal del atributo deseado
-del objeto. Esta soluci\'on implicaba la disminuci\'on de la cantidad de invocaciones de funciones para
+a ellos una vez creado al objeto, la operaci\'on se reducir\'a a una consulta constante del atributo deseado.
+Esta soluci\'on implicaba la disminuci\'on de la cantidad de invocaciones de funciones para
 crear una camino v\'alido (dej\'o de ser necesario invocar la funci\'on, seguido de usar un setter del
 objeto para guardar el resultado), sin embargo, me imped\'ia utilizar el mismo constructor para hacer copias
 de un objeto (usadas en la heur\'istica) si pretend\'ia mantener el tiempo de ejecuci\'on en un estado
@@ -180,11 +180,11 @@ de la clase, al menos) que tambi\'en ser\'a usado para la heur\'istica. Por ello
 no estar\'a completa sin una invocaci\'on a la clase \textbf{\texttt{sa}}.
 
 \section{Recocido Simulado}
-La clase implementa el algoritmo del Recocido Simulado guarda los par\'ametros que usa la heur\'istica
+La clase que implementa el algoritmo del Recocido Simulado guarda los par\'ametros que usa la heur\'istica
 (adem\'as de definir unos predeterminados) y est\'a asociada con \textbf{\texttt{tsp}} teni\'endola
 como un atributo; el camino inicial es proporcionado por \textbf{\texttt{tsp}}.\\
 
-Adem\'as de implementar las funciones que la heur\'istica de Recodio Simulado define, implementa la
+Adem\'as de implementar las funciones que la heur\'istica de Recocido Simulado define, implementa la
 heur\'istica de c\'alculo de temperatura incial y el barrido; este \'ultimo para lograr llegar
 a un m\'inimo local, dada la soluci\'on final de la heur\'istica.\\
 
@@ -197,9 +197,9 @@ es f\'acil simularla. Cada una de las clases descritas en el dise\~no est\'an de
 estructuras (objetos) que engloban una serie de variables (atributos) y con una serie de funciones
 asociadas a ellos (comportamiento).\\
 
-La implementaci\'on de una simulaci\'on de la orientaci\'on a objetos suele basarse en la implementaci\'on
+La implementaci\'on de una simulaci\'on de la orientaci\'on a objetos suele basarse en la composici\'on
 de estructuras que, adem\'as de contar como miembros variables que se considerar\'ian atributos,
-tienen como miembro apuntadores a funciones. Sin emabargo, mi implementaci\'on consisti\'o en la definici\'on
+tienen como miembro apuntadores a funciones. Sin embargo, mi implementaci\'on consisti\'o en la definici\'on
 de funciones que recib\'ian, en la mayor\'ia de los casos, un apuntador a un objeto de la clase (estructura)
 en cuesti\'on.\\
 
@@ -212,7 +212,7 @@ en paralelo y, usando hasta el 70\% de los 16GB de RAM, era posible crear 1,000 
 \subsection{Generador de n\'umeros aleatorios}
 Los hilos de ejecuci\'on tra\'ian consigo la limitaci\'on en el uso de variables o funciones globales
 que pudieran generar alguna condici\'on de carrera o el establecimiento de una variable como constante
-para todos los hilos de ejecuci\'on. Este \'ultimo caso fue un problema presente en mi implementaci\'on;
+para todos estos. Este \'ultimo caso fue un problema presente en mi implementaci\'on;
 en un inicio, us\'e las funciones \textbf{\texttt{srand()}} y \textbf{\texttt{rand()}} para generar
 los n\'umeros pseudoaleatorios para los algoritmos no deterministas, sin embargo, not\'e que al introducir
 los hilos de ejecuci\'on, la primera semilla que se pasaba como par\'ametro a la primera ejecuci\'on
@@ -222,7 +222,7 @@ para todos los hilos creados durante esta.\\
 Por ello, introduje una funci\'on nueva: \textbf{\texttt{rand\_r()}}. Esta funci\'on recibe una referencia
 a una entero sin signo y genera n\'umeros pseudoaleatorios en el rango [0-RAND\_MAX\footnote{El valor del
   macro RAND\_MAX ser\'a de al menos 32767.}], esto podr\'ia explicar el comportamiento inusual de generaci\'on
-de temperaturas iniciales y soluciones casi id\'enticas y con alta regularidad. Es definida como una funci\'on
+de temperaturas iniciales y soluciones casi id\'enticas y con alta regularidad. Esta es definida como una funci\'on
 generadora de n\'umeros pseudoaleatorios d\'ebil, porque el rango del tipo de su semilla no es destacable.
 
 \section{Problemas}
@@ -237,7 +237,7 @@ poco antes de comenzar el proyecto.
 \subsection{Fugas de memoria}
 Al no contar con un recolector de basura, es necesario liberar la memoria din\'amica reservada durante
 la ejecuci\'on del programa. Producto de la abstracci\'on del programa en clases (estructuras)
-la creaci\'on de objetos implicaba una liberaci\'on an\'alogo: aparear cada llamada de \textbf{\texttt{malloc()}}
+la creaci\'on de objetos implicaba una liberaci\'on an\'aloga: aparear cada llamada de \textbf{\texttt{malloc()}}
 a \textbf{\texttt{free()}}. Esto se torna una tarea complicada al asignar memoria din\'amica en ciclos. Por ejemplo,
 en la implementaci\'on de la clase \textbf{\texttt{database\_loader}}, se asigna una porci\'on de memoria a un
 arreglo de apuntadores a objetos  de la clase \textbf{\texttt{city}} (comportamiento provisto por la clase
@@ -246,7 +246,7 @@ arreglo de apuntadores a objetos  de la clase \textbf{\texttt{city}} (comportami
 memoria para cada ciudad contenida en la base de datos, resulta, por lo tanto, f\'acil perder de vista
 cada una de las asignaciones (1092 en total). Se torna una tarea complicada al mezclarla con la ausencia
 de la asignaci\'on din\'amica del nombre de las ciudades, que define comportamiento indefinido (guardado en
-el stack de la funci\'on), y que sol\'ian desaparecer al intentar imprimirlos en la funci\'on \textbf{\texttt{callback}}:
+el stack de la funci\'on), y que sol\'ian desaparecer al intentar imprimirlos en la funci\'on \textbf{\texttt{main}}:
 no me fue claro si el error proven\'ia de la liberaci\'on, en un principio.\\
 
 No mucho tiempo despu\'es encontr\'e una herramienta dise\~nada por Google que pretende ayudar en la localizaci\'on
@@ -254,14 +254,14 @@ de las asignaciones que no tuvieron una liberaci\'on apareada (\textit{ASAN}; ad
 expl\'icitos errores como el acceso a un \'indice no v\'alido de un arreglo o al intentar liberar memoria ya
 liberada, entre otros).
 Si bien no es completamente certero el decir que el programa no cuenta con fugas de memoria\footnote{\textit{..las
-    fugas de memoria pueden ser sustitu\'idas por la determinaci\'on del alto de un programa con las mismas
+    fugas de memoria pueden ser sustitu\'idas por la determinaci\'on del paro de un programa con las mismas
     consecuencias l\'ogicas.} La determinaci\'on de la ausencia de fugas de memoria implicar\'ia, en ciertos casos,
   la soluci\'on al problema del paro (al lidiar con programas lo suficientemente complejos). ~\cite{samsai}}, la
 evaluaci\'on de \textit{ASAN} (Address Sanitizer) y la ejecuci\'on prolongada del programa (con un m\'aximo de 6
-horas continuas), sugieren que, en caso de contar con alguna, esta ser\'a despreciable.\\
+horas continuas), sugieren que, en caso de contar con alguna, esta ser\'ia despreciable.\\
 
 Durante la implementaci\'on de las pruebas unitarias, un error asociado a la asignaci\'on de memoria surgi\'o,
-este era a\'un m\'as obscuro. Se trataba de un error que sirg\'ia cuando el directorio \textbf{\texttt{build}} (usado por
+este era a\'un m\'as obscuro. Se trataba de un error que surg\'ia cuando el directorio \textbf{\texttt{build}} (usado por
 el sistema de construcci\'on \textit{Meson}) del programa no era generado con las banderas de \textit{ASAN};
 las pruebas parec\'ian no tener \'exito en casos previamente comprobados. Era a\'un m\'as raro el hecho de que
 \textit{ASAN} no detectara alguna fuga o problema asociado con la memoria din\'amica, en general. Este result\'o
@@ -280,11 +280,11 @@ Las variables de tipo \textbf{\texttt{register}} son descritas como sigue:
 \end{center}
 
 Consider\'e, as\'i, su introducci\'on en la implementaci\'on del programa (ya que la eficiencia y la optimizaci\'on son
-dos conceptos claves). Parec\'ia una tarea simple, pero considerando que la asignaci\'on
+dos conceptos claves). Parec\'ia una tarea simple, pero, en esencia, la asignaci\'on
 de registros \textit{tiene como objetivo el asignar una cantidad finita de registros m\'aquina a un n\'umero
   ilimitado de variables temporales tal que las variables temporales con rangos de vida interferentes sean
-  asignados a diferentes registros~\cite{reg}}, suele resolverse con algoritmos (heur\'isticas, en realidad; se
-trata de un problema \textit{NP}) que
+  asignados a diferentes registros~\cite{reg}}, adem\'as de que suele resolverse con algoritmos (heur\'isticas,
+en realidad; se trata de un problema \textit{NP}) que
 pretenden encontrar soluciones al problema de coloraci\'on de teor\'ia de gr\'aficas\footnote{El problema de
   coloraci\'on de gr\'aficas puede ser descrito de la siguiente manera: dada una gr\'afica G y un entero positivo
   K, asigna un color a cada v\'ertice de G, usando a lo m\'as K colores, tal que dos v\'ertices adyacentes reciban
@@ -300,7 +300,7 @@ introducirlos en la estructura del programa.
 \chapter{Experimentaci\'on}
 El comportamiento del sistema frente a las instancias presentadas no fue el \'optimo, el equilibrio
 buscado en los par\'ametros no fue encontrado (esto resultata m\'as notable en la segunda instancia).
-Sin embargo, fue posible alcanzar soluciones \'optimas, dada la rapidez del mismo, que involucraba
+Sin embargo, fue posible alcanzar soluciones lo suficientemente buenas, dada la rapidez del mismo, que involucraba
 una ligera p\'erdida en el rendimiento al aumentar ciertos par\'ametros a valores que, normalmente,
 ser\'ian considerados inmensos.\\
 
@@ -329,7 +329,7 @@ Esta instancia no necesit\'o de par\'ametros elevados, ni de una gran cantidad
 de ejecuciones para obtener una soluci\'on \'optima. Esta fue obtenida sin la
 implementaci\'on de la heur\'istica de temperatura inicial y sin el algoritmo
 del barrido. Su obtenci\'on se hizo a trav\'es de 3 mil ejecuciones, dividida
-en 3 ejecuciones de 100 hilos cada una, con una duraci\'on aproximada de 3
+en 3 ejecuciones de 1000 hilos cada una, con una duraci\'on aproximada de 3
 minutos por ejecuci\'on (el tama\~no del lote tan reducido provocara que las
 ejecuciones no tomaran una gran cantidad de tiempo).
 
@@ -396,11 +396,11 @@ ejecuciones no tomaran una gran cantidad de tiempo).
   \caption{Evaluaciones de la mejor soluci\'on encontrada en la instancia de 150 ciudades.}
 \end{figure}
 
-El tam\~no del lote fue un factor muy relevante en la computaci\'on de las soluciones; dejar
-64,000 ejecuciones (con un tiempo aproximado de ejecuci\'on de 6 horas) no rindi\'o grandes
-frutos, en esta ejecuci\'on se obtuvo como resultado m\'as \'optimo 0.154. Posteriormente,
+El tam\~no del lote fue un factor muy relevante en la computaci\'on de las soluciones;
+64,000 ejecuciones (con un tiempo aproximado de ejecuci\'on de 6 horas) no rindieron grandes
+frutos, en estas se obtuvieron como resultado m\'as \'optimo la evaluaci\'on 0.154. Posteriormente,
 se ejecut\'o el sistema con una tama\~no de lote de 12000 y se logr\'o superar la soluci\'on
-previa, en 3 minutos y ejecutando 200 semillas concurrentes.
+previa en 3 minutos y ejecutando 200 semillas concurrentes.
 
 \section{Ejecuci\'on de las soluciones \'optimas}
 
@@ -410,17 +410,15 @@ previa, en 3 minutos y ejecutando 200 semillas concurrentes.
 \chapter{Conclusiones}
 
 Logr\'e observar que mi sistema se comportaba de manera \'optima incluso con par\'ametros
-grandes he ah\'i la justificaci\'on de los par\'ametros de la mejor soluci\'on encontrada
+relativamente elevados, he ah\'i la justificaci\'on de los par\'ametros de la mejor soluci\'on encontrada
 para la instancia de 150 ciudades. Por otro lado, un tama\~no de lote reducido (que,
 aparentemente, funcionaba mejor con otros sistemas) parec\'ia solo funcionar con la intancia
 40 ciudades. La instancia de 150 ciudades tardaba, aproximadamente, 20 veces m\'as en la ejecuci\'on
-de una semilla.\\
+de una semilla (considerando los cambios en los par\'ametros).\\
 
 Dada la experimentaci\'on, considero que el generador de n\'umeros aleatorios fue un factor
 clave en la implementaci\'on del sistema. No solo las soluciones parec\'ian falsamente
 pseudoaleatorias, sino que tambi\'en la temeperatura inicial era afectada por este problema.
-Sin importar la instancia, siempre aparec\'ia una cantidad considerable de manera repetida
-
 
 \bibliography{ref}{}
 \bibliographystyle{plain}
