@@ -12,9 +12,10 @@
 \usepackage{times}
 \usepackage{dsfont}
 \usepackage{titling}
+\usepackage{cite}
 \usepackage[spanish]{babel}
-% \usepackage{svg}
-% \svgpath{../data/plot}
+\usepackage{svg}
+\svgpath{../data/plot}
 
 
 \pretitle{\begin{center}\linespread{1}}
@@ -26,9 +27,11 @@
 \title {\textbf {\Large{El problema del agente viajero}}\protect\\
   \large{\textbf{Recocido Simulado}}\protect\\ \vspace{0.4cm}
   \normalsize{\textbf{Seminario de Ciencias de la Computaci\'on B}} \protect\\ \vspace{0.2cm}
-  \normalsize{Canek Pel\'aez Vald\'es}}
+  \normalsize{Canek Pel\'aez Vald\'es} \protect\\ \vspace{0.4cm}
+  \normalsize{Universidad Nacional Aut\'onoma de M\'exico}}
 \date{}
 \author{\normalsize Sánchez Correa Diego Sebastián}
+
 
 \begin{document}
 \allowdisplaybreaks
@@ -36,6 +39,27 @@
 \tableofcontents
 
 \chapter{Introducci\'on}
+Podr\'iamos pensar que el mundo actual, dada la tecnolog\'ia con la que contamos,
+cuenta con computadoras capaces de hasta la m\'as grande de las computaciones. Vaya que es
+cierto, que, desde el surgimento de la computadora, el progreso tecnol\'ogico ha sido inmenso,
+sin embargo, sin importar el poder computacional al que hemos llegado, siguien existiendo
+problemas que no son resolubles en un tiempo racionalmente corto, unos problemas que, incluso,
+podr\'ian definirse como irresolubles por el tiempo que conllevar\'ia computarlos para obtener
+la mejor soluci\'on.\\
+
+Los tiempos de computaci\'on de cualquier algoritmo caer\'an en dos grupos.
+El primero, consiste de solo los problemas cuyas soluciones est\'an acotadas por un polinomio
+de un grado bajo. El segundo, por los problemas cuyos mejores algoritmos son no polinomiales.
+
+Estos \'ultimos, son los problemas NP. Los problemas \textit{NP} (Non Deterministic Polynimial Time)
+pueden ser subdivididos en \textit{NP-Completo} y \textit{NP-Duro}.
+
+Un problema que es \textit{NP-Completo} tiene la propiedad de que podr\'a ser resulto en tiempo
+polinomial si y solo si todos los problemas en el conjunto \textit{NP-Completo} pueden ser
+resueltos en tiempo polinomial. Adem\'as, existe un algoritmo que verifica que una soluci\'on
+dada es la \'optima. Esta \'ultima propiedad hace destacar a los problemas \textit{NP-duro} y este
+el conjunto donde se encuentra el Problema del Agente Viajero.
+\clearpage
 \section{El problema}
 
 \begin{center}
@@ -43,13 +67,33 @@
     cuales se conocen las distancias entre cada par, el camino más corto entre
     estos puntos. Por supuesto, el problema es resuelto por un conjunto finito
     de intentos. \textbf{Schrijver (2005)}
-    \footnote{Alexander (Lex) Schrijver (4 de Mayo 1948, \'Amsterdam) es 
+    \footnote{Alexander (Lex) Schrijver (4 de Mayo 1948, \'Amsterdam) es
       un matem\'atico y cient\'ifico en computaci\'on holand\'es,
-      profesor de matem\'aticas discretas y optimizaci\'on 
+      profesor de matem\'aticas discretas y optimizaci\'on
       en la Universidad de \'Amsterdam}}
 \end{center}
 
-\section{Heur\'istica}
+\begin{center}
+  \textit{Dados n puntos y todas las distancias entre las parejas ordenadas de
+    distintos puntos. El problema es hallar un sistema de circuitos ordenados tal que:\\
+    1. Cada punto permanezca en exactamente un circuito.\\
+    2. Cada circuito contenga al menos 2 puntos.\\
+    3. Ning\'un circuito pase por a trav\'es del mismo punto m\'as de una vez.\\
+    4. La distancia total de los circuitos es un m\'inimo.
+  }~\cite{julia}
+\end{center}
+
+
+\section{La Heur\'istica}
+El recocido simulado \textit{es un m\'etodo probabil\'istico propuesto por Kirkpatrick, Gelett,
+  y Vecchi y Cerny para encontar el m\'inimo global de una funci\'on de costo que puede poseer
+  varios m\'inimos locales~\cite{dimitris}.}
+
+Esta fue formulada a partir de la simulaci\'on de un fen\'omeno f\'isico usado com\'unmente
+en la metalurgia, se trata del proceso que se da, una vez calentado un metal y enfriado, posteriormente,
+si este no es vuelto a calentar, entonces, este se har\'a muy duro y fr\'agil, en cambio, el recocido
+pretende dar maleabilidad y ductilidad al material enfriando en peque\~nos umbrales el material.
+
 \chapter{Dise\~no}
 
 El dise\~no sigui\'o una estructura orientada a objetos. Contar con la informaci\'on
@@ -57,7 +101,7 @@ de las ciudades en una base de datos relacional, sugiri\'o la implementaci\'on d
 un objeto \textbf{\texttt{database\_loader}}. De la msima manera, el contar con soluciones
 compuestas por permutaciones de ciudades, hizo claro el uso de las clases
 \textbf{\texttt{city}} y \textbf{\texttt{path}} (ciudad y camino, respectivamente).
-De la misma manera, se ha planteado el modelado del problema y de la heur\'istica 
+De la misma manera, se ha planteado el modelado del problema y de la heur\'istica
 como clases compuestas a partir las unidades m\'as fundamentales y con atributos y
 comportamiento asociado.\\
 
@@ -80,7 +124,7 @@ una posible ambig\"uedad al tratar con ambos tipos que, en esencia, no
 comparten caracter\'isticas adicionales a ser un apuntador a una ciudad.
 
 \section{Las ciudades}
-El objeto \textbf{\texttt{city}} tiene como propiedades los campos incluidos en la base de 
+El objeto \textbf{\texttt{city}} tiene como propiedades los campos incluidos en la base de
 datos, con excepci\'on de la poblaci\'on. La clase abstrae el concepto de una
 ciudad, omitiendo una representaci\'on total a partir de atributos asociados
 (como lo hace la base de datos), sino involucrando en la composici\'on un
@@ -134,13 +178,168 @@ de la clase, al menos) que tambi\'en ser\'a usado para la heur\'istica. Por ello
 no estar\'a completa sin una invocaci\'on a la clase \textbf{\texttt{sa}}.
 
 \section{Recocido Simulado}
+La clase implementa el algoritmo del Recocido Simulado guarda los par\'ametros que usa la heur\'istica
+(adem\'as de definir unos predeterminados) y est\'a asociada con \textbf{\texttt{tsp}} teni\'endola
+como un atributo; el camino inicial es proporcionado por \textbf{\texttt{tsp}}.\\
 
+Adem\'as de implementar las funciones que la heur\'istica de Recodio Simulado define, implementa la
+heur\'istica de c\'alculo de temperatura incial y el barrido; este \'ultimo para lograr llegar
+a un m\'inimo local, dada la soluci\'on final de la heur\'istica.\\
+
+Como la heur\'istica describe lotes de soluciones, se incluye una estructura interna que tiene como
+atributos un camino y el promedio del lote.\\
 
 \chapter{Implementaci\'on}
-\section{Hilos de ejecuci\'on}
-\subsection{Generador de n\'umeros aleatorios}
-\chapter{Experimentaci\'on}
+C no es un lenguaje de programaci\'on orientado a objetos, sin embargo, dada su baja abstracci\'on
+es f\'acil simularla. Cada una de las clases descritas en el dise\~no est\'an definidas a partir de
+estructuras (objetos) que engloban una serie de variables (atributos) y con una serie de funciones
+asociadas a ellos (comportamiento).\\
 
+La implementaci\'on de una simulaci\'on de la orientaci\'on a objetos suele basarse en la implementaci\'on
+de estructuras que, adem\'as de contar como miembros variables que se considerar\'ian atributos,
+tienen como miembro apuntadores a funciones. Sin emabargo, mi implementaci\'on consisti\'o en la definici\'on
+de funciones que recib\'ian, en la mayor\'ia de los casos, un apuntador a un objeto de la clase (estructura)
+en cuesti\'on.\\
+
+\section{Hilos de ejecuci\'on}
+En funci\'on de la maximizaci\'on de ejecuciones del sistema, la idea de la implementaci\'on de la creaci\'on
+de hilos de ejecuci\'on no pod\'ia omitirse. El programa fue ejecutado en una computadora de escritorio
+con un procesador AMD Ryzen\textsuperscript{TM} 5 1600; este pod\'ia ejecutarse un total de 16 veces
+en paralelo y, usando hasta el 70\% de los 16GB de RAM, era posible crear 1,000 hilos de ejecuci\'on.
+
+\subsection{Generador de n\'umeros aleatorios}
+Los hilos de ejecuci\'on tra\'ian consigo la limitaci\'on en el uso de variables o funciones globales
+que pudieran generar alguna condici\'on de carrera o el establecimiento de una variable como constante
+para todos los hilos de ejecuci\'on. Este \'ultimo caso fue un problema presente en mi implementaci\'on;
+en un inicio, us\'e las funciones \textbf{\texttt{srand()}} y \textbf{\texttt{rand()}} para generar
+los n\'umeros pseudoaleatorios para los algoritmos no deterministas, sin embargo, not\'e que al introducir
+los hilos de ejecuci\'on, la primera semilla que se pasaba como par\'ametro a la primera ejecuci\'on
+de \textbf{\texttt{srand()}}, era la \'unica usada durante la ejecuci\'on del programa y, por lo tanto,
+para todos los hilos creados durante esta.\\
+
+Por ello, introduje una funci\'on nueva: \textbf{\texttt{rand\_r()}}. Esta funci\'on recibe una referencia
+a una entero sin signo y genera n\'umeros pseudoaleatorios en el rango [0-RAND\_MAX\footnote{El valor del
+  macro RAND\_MAX ser\'a de al menos 32767.}], esto podr\'ia explicar el comportamiento inusual de generaci\'on
+de temperaturas iniciales y soluciones casi id\'enticas y con alta regularidad. Es definida como una funci\'on
+generadora de n\'umeros pseudoaleatorios d\'ebil, porque el rango del tipo de su semilla no es destacable.
+
+\section{Problemas}
+Hace un par de meses realic\'e un proyecto en el lenguaje de programaci\'on C++, esto me introdujo a
+conceptos con los que no estaba familiarizado; en general, aquellos relacionados con la asignaci\'on
+y liberaci\'on de memoria. Los punteros (o apuntadores) fueron un concepto destacable entre las fuentes de
+problemas m\'as comunes durante la depuraci\'on. Sin embargo, C++ provee abstracciones (como la clase
+String) que evitaban estos conceptos y se asum\'ian como buenas pr\'acticas o est\'andares del lenguaje.
+Es por esto que, a pesar de ser C++ un superconjunto de C, no me familiaric\'e con estos conceptos hasta
+poco antes de comenzar el proyecto.
+
+\subsection{Fugas de memoria}
+Al no contar con un recolector de basura, es necesario liberar la memoria din\'amica reservada durante
+la ejecuci\'on del programa. Producto de la abstracci\'on del programa en clases (estructuras)
+la creaci\'on de objetos implicaba una liberaci\'on an\'alogo: aparear cada llamada de \textbf{\texttt{malloc()}}
+a \textbf{\texttt{free()}}. Esto se torna una tarea complicada al asignar memoria din\'amica en ciclos. Por ejemplo,
+en la implementaci\'on de la clase \textbf{\texttt{database\_loader}}, se asigna una porci\'on de memoria a un
+arreglo de apuntadores a objetos  de la clase \textbf{\texttt{city}} (comportamiento provisto por la clase
+\textbf{\texttt{city}}) , y para su llenado se itera sobre la funci\'on \textbf{\texttt{callback}} que usa
+\textbf{\texttt{sqlite}} para interactuar con los datos que una consulta devuelve; en este ciclo se asigna
+memoria para cada ciudad contenida en la base de datos, resulta, por lo tanto, f\'acil perder de vista
+cada una de las asignaciones (1092 en total). Se torna una tarea complicada al mezclarla con la ausencia
+de la asignaci\'on din\'amica del nombre de las ciudades, que define comportamiento indefinido (guardado en
+el stack de la funci\'on), y que sol\'ian desaparecer al intentar imprimirlos en la funci\'on \textbf{\texttt{callback}}:
+no me fue claro si el error proven\'ia de la liberaci\'on, en un principio.\\
+
+No mucho tiempo despu\'es encontr\'e una herramienta dise\~nada por Google que pretende ayudar en la localizaci\'on
+de las asignaciones que no tuvieron una liberaci\'on apareada (\textit{ASAN}; adem\'as de hacer mucho m\'as
+expl\'icitos errores como el acceso a un \'indice no v\'alido de un arreglo o al intentar liberar memoria ya
+liberada, entre otros).
+Si bien no es completamente certero el decir que el programa no cuenta con fugas de memoria\footnote{\textit{..las
+    fugas de memoria pueden ser sustitu\'idas por la determinaci\'on del alto de un programa con las mismas
+    consecuencias l\'ogicas.} La determinaci\'on de la ausencia de fugas de memoria implicar\'ia, en ciertos casos,
+  la soluci\'on al problema del paro (al lidiar con programas lo suficientemente complejos). ~\cite{samsai}}, la
+evaluaci\'on de \textit{ASAN} (Address Sanitizer) y la ejecuci\'on prolongada del programa (con un m\'aximo de 6
+horas continuas), sugieren que, en caso de contar con alguna, esta ser\'a despreciable.\\
+
+Durante la implementaci\'on de las pruebas unitarias, un error asociado a la asignaci\'on de memoria surgi\'o,
+este era a\'un m\'as obscuro. Se trataba de un error que sirg\'ia cuando el directorio \textbf{\texttt{build}} (usado por
+el sistema de construcci\'on \textit{Meson}) del programa no era generado con las banderas de \textit{ASAN};
+las pruebas parec\'ian no tener \'exito en casos previamente comprobados. Era a\'un m\'as raro el hecho de que
+\textit{ASAN} no detectara alguna fuga o problema asociado con la memoria din\'amica, en general. Este result\'o
+ser causado por el uso de \textbf{\texttt{malloc()}} en la inicializaci\'on de variables (arreglos de n\'umeros)
+que requer\'ian un estado inicial, antes de ser usados o de determinar qu\'e valores estar\'ian contenidos en
+ellas (\textbf{\texttt{calloc()}} tiene este comportamiento). \textit{Valgrind} (otra herramienta para detecci\'on
+de fugas de memoria) fue primordial en la detecci\'on de este error.\\
+
+\section{Registros}
+Las variables de tipo \textbf{\texttt{register}} son descritas como sigue:
+\begin{center}
+  \textit{Una declaraci\'on \texttt{\textbf{register}} sugiere al compilador que la variable en cuesti\'on
+    ser\'a muy utilizada. La idea es que las variables \texttt{\textbf{register}} ser\'an colocadas en registros
+    m\'aquina, lo que resultar\'ia en programas m\'as peque\~nos y r\'apidos. Pero los compiladores son libres
+    de ignorar esta sugerencia.~\cite{cpl}}
+\end{center}
+
+Consider\'e, as\'i, su introducci\'on en la implementaci\'on del programa (ya que la eficiencia y la optimizaci\'on son
+dos conceptos claves). Parec\'ia una tarea simple, pero considerando que la asignaci\'on
+de registros \textit{tiene como objetivo el asignar una cantidad finita de registros m\'aquina a un n\'umero
+  ilimitado de variables temporales tal que las variables temporales con rangos de vida interferentes sean
+  asignados a diferentes registros~\cite{reg}}, suele resolverse con algoritmos (heur\'isticas, en realidad; se
+trata de un problema \textit{NP}) que
+pretenden encontrar soluciones al problema de coloraci\'on de teor\'ia de gr\'aficas\footnote{El problema de
+  coloraci\'on de gr\'aficas puede ser descrito de la siguiente manera: dada una gr\'afica G y un entero positivo
+  K, asigna un color a cada v\'ertice de G, usando a lo m\'as K colores, tal que dos v\'ertices adyacentes reciban
+  el mismo color.~\cite{reg}}\footnote{\textit{En 1982, Chaitin redujo el problema de coloraci\'on de gr\'aficas, al de
+    asignaci\'on de registros , y con ello, probando que la asignaci\'on de registros es un problema NP completo
+    tambi\'en}~\cite{reg}~\cite{chaitin}}. El mapeo se hace de v\'ertice a variable temporal, donde las aristas
+conectan a las variables cuyos rangos de vida interfieren~\cite{reg}.\\
+
+Que los compiladores eligieran si aceptaban estas sugerencias y que la obtenci\'on de una buena asignaci\'on
+fuera reducible a encontrar una soluci\'on para un problema \textit{NP} fueron suficientes para evitar
+introducirlos en la estructura del programa.
+
+\chapter{Experimentaci\'on}
+El comportamiento del sistema frente a las instancias presentadas no fue el \'optimo, el equilibrio
+buscado en los par\'ametros no fue encontrado (esto resultata m\'as notable en la segunda instancia).
+Sin embargo, fue posible alcanzar soluciones \'optimas, dada la rapidez del mismo, que involucraba
+una ligera p\'erdida en el rendimiento al aumentar ciertos par\'ametros a valores que, normalmente,
+ser\'ian considerados inmensos.\\
+
+La calibraci\'on de los par\'ametros no parec\'ia tener una gran repercusi\'on en
+las ejecuciones de la primera instancia. Fue hasta la segunda instancia
+en la que not\'e que el incremento de algunos de ellos hac\'ian del sistema un programa m\'as
+lento, pero con mucho mejores ejecuciones.\\
+
+La experimentaci\'on fue realizada principalmente de manera concurrente en una computadora de escritorio
+con especificaciones:
+  \begin{itemize} [label=$\scriptstyle{\scriptstyle{\scriptstyle{\scriptstyle{\square}}}}$]
+  \item \makebox[5cm][l]{\textit{Procesador:}} AMD Ryzen\textsuperscript{TM} 5 1600 Six-Core @ 3.20GHz (8 Cores / 16 Threads)
+    \makebox[3cm][l]{} AMD "Zen" Core Architecture
+  \item \makebox[5cm][l]{\textit{Memoria RAM:}} 16GB
+  \item \makebox[5cm][l]{\textit{Cach\'es de los procesadores:}} Caché L1 total: 576KB\\
+    \makebox[5cm][l]{}    Caché L2 total: 3MB\\
+    \makebox[5cm][l]{}    Caché L3 total: 16MB
+  \item \makebox[5cm][l]{\textit{Almacenamiento:}} 960GB KINGSTON SA400S3 SSD\\
+  \item \makebox[5cm][l]{\textit{OS:}} Arch rolling\\
+    \makebox[5cm][l]{\textit{Kernel:}} 6.1.8-zen1-1-zen (x86\_64)
+  \end{itemize}
+
+
+\section{Instancia de 40 ciudades}
+Esta instancia no necesit\'o de par\'ametros elevados, ni de una gran cantidad
+de ejecuciones para obtener una soluci\'on \'optima. Esta fue obtenida sin la
+implementaci\'on de la heur\'istica de temperatura inicial y sin el algoritmo
+del barrido. Su obtenci\'on se hizo a trav\'es de 3 mil ejecuciones, dividida
+en 3 ejecuciones de 100 hilos cada una, con una duraci\'on aproximada de 3
+minutos por ejecuci\'on (el tama\~no del lote tan reducido provocara que las
+ejecuciones no tomaran una gran cantidad de tiempo).
+
+\begin{figure}[h!tbp]
+  \hspace*{-1.6cm}
+  \includesvg[scale=1]{hello}
+  \caption{Impresi\'on de las evaluaciones computadas por el lote de una soluci\'on factible.}
+\end{figure}
+\clearpage
+\begin{center}
+  \textit{Par\'ametros de la mejor soluci\'on encontrada para la instancia de 40 ciudades.}
+\end{center}
 \begin{table}[h!]
   \begin{center}
     \begin{tabular}{||l|c||}
@@ -157,20 +356,61 @@ no estar\'a completa sin una invocaci\'on a la clase \textbf{\texttt{sa}}.
     \end{tabular}
   \end{center}
 \end{table}
-% \begin{figure}[h!tbp]
-%   \hspace*{-1.6cm}
-%   \includesvg[scale=1]{results_1}
-% \end{figure}
 
+\begin{figure}[h!tbp]
+  \hspace*{-1.6cm}
+  \includesvg[scale=1]{best40.svg}
+  \caption{Evaluaciones de la mejor soluci\'on encontrada en la instancia de 40 ciudades.}
+\end{figure}
+\clearpage
 
-% \begin{figure}[h!tbp]
-%   \hspace*{-1.6cm}
-%   \includesvg[scale=1]{results_2}
-% \end{figure}
+\section{Instancia de 150 ciudades}
+
+\begin{center}
+  \textit{Par\'ametros de la mejor soluci\'on encontrada para la instancia de 150 ciudades.}
+\end{center}
+\begin{table}[h!]
+  \begin{center}
+    \begin{tabular}{||l|c||}
+      \hline
+      \textit{Par\'ametro} & \textit{Valor}\\
+      \hline
+      Semilla & 263 \\
+      Temperatura & 8 \\
+      M & 260000 \\
+      L & 12000 \\
+      \'Epsilon & 0.000016 \\
+      Phi & 0.98 \\
+      P & 0.98 \\
+      N & 900 \\
+      \hline
+    \end{tabular}
+  \end{center}
+\end{table}
+
+\begin{figure}[h!tbp]
+  \hspace*{-1.6cm}
+  \includesvg[scale=1]{best150.svg}
+  \caption{Evaluaciones de la mejor soluci\'on encontrada en la instancia de 150 ciudades.}
+\end{figure}
+
+El tam\~no del lote fue un factor muy relevante en la computaci\'on de las soluciones; dejar
+64,000 ejecuciones (con un tiempo aproximado de ejecuci\'on de 6 horas) no rindi\'o grandes
+frutos, en esta ejecuci\'on se obtuvo como resultado m\'as \'optimo 0.154. Posteriormente,
+se ejecut\'o el sistema con una tama\~no de lote de 12000 y se logr\'o superar la soluci\'on
+previa, en 3 minutos y ejecutando 200 semillas concurrentes.
 
 \chapter{Conclusiones}
 
-\section{Bibliograf\'ia}
+Logr\'e observar que mi sistema se comportaba de manera \'optima incluso con par\'ametros
+grandes he ah\'i la justificaci\'on de los par\'ametros de la mejor soluci\'on encontrada
+para la instancia de 150 ciudades. Por otro lado, un tama\~no de lote reducido (que,
+aparentemente, funcionaba mejor con otros sistemas) parec\'ia solo funcionar con la intancia
+40 ciudades. La instancia de 150 ciudades tardaba, aproximadamente, 20 veces m\'as en la ejecuci\'on
+de una semilla.
 
 
+
+\bibliography{ref}{}
+\bibliographystyle{plain}
 \end{document}
