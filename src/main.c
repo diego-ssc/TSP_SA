@@ -121,7 +121,7 @@ static void* heuristic(void* v_data) {
 /* Prints the execution instructions of the program. */
 static void usage() {
   fprintf(stderr, "Usage:\n\t./TSP_SA [tsp-parameters]"
-          " [cities-ids] [options]\n\n");
+          " [cities-ids-or-file] [options]\n\n");
   fprintf(stderr, "Parameters:\n"
           "\t-t\n"
           "\t\tSets the desired temperature for the execution.\n\n"

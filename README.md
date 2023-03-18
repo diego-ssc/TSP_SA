@@ -21,8 +21,9 @@ in the root directory.
 Run:
 
 ```
-./build/TSP_SA [tsp-parameters] [cities-ids] [options]
+./build/TSP_SA [tsp-parameters] [cities-ids-or-file] [options]
 ```
+in the root directory.
 ### Parameters:
 
 ```
@@ -87,8 +88,7 @@ Parses a file which contains the parameters.
 
 ```
 
-in the root directory.
-### 
+###
 
 ## Dependencies
 
@@ -103,6 +103,3 @@ sqlite3
 Version: 3.40.1 2022-12-28
 ```
 ### [GLib](https://docs.gtk.org/glib/index.html)
-```
-glib
-```
