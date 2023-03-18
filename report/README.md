@@ -3,5 +3,5 @@
 bibtex report
 ```
 ```
-pdflatex --shell-escape
+pdflatex --shell-escape report.tex
 ```
